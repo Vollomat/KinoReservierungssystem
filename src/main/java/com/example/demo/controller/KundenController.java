@@ -38,4 +38,6 @@ public class KundenController {
         return gefunden;
     }
 
+    //Das ist ein Test
+
 }
