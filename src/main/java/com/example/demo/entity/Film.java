@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Entity
 public class Film {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int filmID;
@@ -19,6 +20,7 @@ public class Film {
     private Date erscheinungsdatum;
 
     private int laengeInMinuten;
+
 
     public int getFilmID() {
         return filmID;
