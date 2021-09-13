@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Film {
 
-
     private static int zaehler = 0;
     private int filmID;
     private String titel;

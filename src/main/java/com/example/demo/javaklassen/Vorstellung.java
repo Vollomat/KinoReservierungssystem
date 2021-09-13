@@ -5,7 +5,8 @@ import java.util.TreeSet;
 
 public class Vorstellung {
 
-    private static int vorstellungsID;
+    private static int zaehler = 0;
+    private int vorstellungsID;
     private Film film;
     private KinoSaal kinoSaal;
     private Date startDatum;
@@ -13,19 +14,29 @@ public class Vorstellung {
     private TreeSet<SitzplatzfuerDenSitzplan> aktuelleSitzplaetze;
 
     public Vorstellung(Film film, KinoSaal kinoSaal, Date startDatum, boolean dreiD) {
+        this.vorstellungsID = zaehler + 1;
         this.film = film;
         this.kinoSaal = kinoSaal;
         this.startDatum = startDatum;
         this.dreiD = dreiD;
         this.aktuelleSitzplaetze = null;
+        zaehler++;
     }
 
-    public static int getVorstellungsID() {
+    public static int getZaehler() {
+        return zaehler;
+    }
+
+    public static void setZaehler(int zaehler) {
+        Vorstellung.zaehler = zaehler;
+    }
+
+    public int getVorstellungsID() {
         return vorstellungsID;
     }
 
-    public static void setVorstellungsID(int vorstellungsID) {
-        Vorstellung.vorstellungsID = vorstellungsID;
+    public void setVorstellungsID(int vorstellungsID) {
+        this.vorstellungsID = vorstellungsID;
     }
 
     public Film getFilm() {

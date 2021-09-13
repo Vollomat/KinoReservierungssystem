@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Kunde extends Person {
 
-    private static int kundenID = 0;
+    private static int zaehler = 0;
+    private int kundenID;
     private final static boolean ADMINRECHTE = false;
     private String mobilfunknummer;
     private String email;
@@ -15,20 +16,30 @@ public class Kunde extends Person {
 
     public Kunde(String name, String vorname, int alter, String strasse, String hausnummer, int plz, String ort, String mobilfunknummer, String email) {
         super(name, vorname, alter, strasse, hausnummer, plz, ort);
+        this.kundenID = zaehler + 1;
         this.mobilfunknummer = mobilfunknummer;
         this.email = email;
         this.rabattstufe = 0;
         this.verifiziertesKonto = false;
         this.kundensperrung = false;
         this.alleTickets = new ArrayList<>();
+        zaehler++;
     }
 
-    public static int getKundenID() {
+    public static int getZaehler() {
+        return zaehler;
+    }
+
+    public static void setZaehler(int zaehler) {
+        Kunde.zaehler = zaehler;
+    }
+
+    public int getKundenID() {
         return kundenID;
     }
 
-    public static void setKundenID(int kundenID) {
-        Kunde.kundenID = kundenID;
+    public void setKundenID(int kundenID) {
+        this.kundenID = kundenID;
     }
 
     public String getMobilfunknummer() {

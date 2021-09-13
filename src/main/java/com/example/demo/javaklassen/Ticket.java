@@ -4,7 +4,8 @@ import java.util.Date;
 
 public class Ticket {
 
-    private static int ticketID;
+    private static int zaehler = 0;
+    private int ticketID;
     private Kunde besitzer;
     private Vorstellung vorstellung;
     private Date date;
@@ -13,20 +14,30 @@ public class Ticket {
     private float preis;
 
     public Ticket(Kunde besitzer, Vorstellung vorstellung, Date date, Sitzplatz sitzplatz, float preis) {
+        this.ticketID = zaehler + 1;
         this.besitzer = besitzer;
         this.vorstellung = vorstellung;
         this.date = date;
         this.sitzplatz = sitzplatz;
         this.preis = preis;
         this.bezahlt = false;
+        zaehler++;
     }
 
-    public static int getTicketID() {
+    public static int getZaehler() {
+        return zaehler;
+    }
+
+    public static void setZaehler(int zaehler) {
+        Ticket.zaehler = zaehler;
+    }
+
+    public int getTicketID() {
         return ticketID;
     }
 
-    public static void setTicketID(int ticketID) {
-        Ticket.ticketID = ticketID;
+    public void setTicketID(int ticketID) {
+        this.ticketID = ticketID;
     }
 
     public Kunde getBesitzer() {
