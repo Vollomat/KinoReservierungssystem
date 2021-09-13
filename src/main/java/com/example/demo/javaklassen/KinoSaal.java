@@ -14,6 +14,17 @@ public class KinoSaal {
         zaehler++;
     }
 
+    public boolean sitzplatzHinzufuegen(Sitzplatz sitzplatz) {
+        return this.sitzplaetze.add(sitzplatz);
+    }
+
+    public boolean sitzplatzLoeschen(Sitzplatz sitzplatz) {
+        if(this.sitzplaetze.contains(sitzplatz)) {
+            return this.sitzplaetze.remove(sitzplatz);
+        }
+        return false;
+    }
+
     public static int getZaehler() {
         return zaehler;
     }
