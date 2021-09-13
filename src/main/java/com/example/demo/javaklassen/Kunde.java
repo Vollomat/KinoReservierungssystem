@@ -26,6 +26,22 @@ public class Kunde extends Person {
         zaehler++;
     }
 
+    public void rabattstufeErhoehen() {
+        this.rabattstufe++;
+    }
+
+    public void rabattstufeVerringern() {
+        this.rabattstufe--;
+    }
+
+    public void kundenSperren() {
+        this.setKundensperrung(true);
+    }
+
+    public void kundenEntsperren() {
+        this.setKundensperrung(false);
+    }
+
     public static int getZaehler() {
         return zaehler;
     }
