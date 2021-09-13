@@ -1,6 +1,8 @@
 package com.example.demo.javaklassen;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Vorstellung {
@@ -11,7 +13,8 @@ public class Vorstellung {
     private KinoSaal kinoSaal;
     private Date startDatum;
     private boolean dreiD;
-    private TreeSet<SitzplatzfuerDenSitzplan> aktuelleSitzplaetze;
+    private TreeSet<Sitzplatz> freieSitzplaetze; //alle belegten Sitzplätze
+    private TreeSet<SitzplatzfuerDenSitzplan> gebuchteSitzplaetze;
 
     public Vorstellung(Film film, KinoSaal kinoSaal, Date startDatum, boolean dreiD) {
         this.vorstellungsID = zaehler + 1;
@@ -19,9 +22,76 @@ public class Vorstellung {
         this.kinoSaal = kinoSaal;
         this.startDatum = startDatum;
         this.dreiD = dreiD;
-        this.aktuelleSitzplaetze = null;
+        this.freieSitzplaetze = kinoSaal.getSitzplaetze();
+        this.gebuchteSitzplaetze = new TreeSet<>();
         zaehler++;
     }
+
+    public Ticket[] ticketBuchen(Kunde besitzer, ArrayList<Sitzplatz> sitzplaetze) {
+        Ticket[] tickets = new Ticket[sitzplaetze.size()];
+        Date date = new Date();
+        for(int i = 0; i < sitzplaetze.size(); i++) {
+            if (this.freieSitzplaetze.contains(sitzplaetze.get(i))) {
+                tickets[i] = new Ticket(besitzer, this, date, sitzplaetze.get(i), 20);
+                //TODO
+                //Preisberechnung!
+            } else {
+                System.out.println("Der angegebene Sitzplatz ist schon vergeben!!!!!");
+            }
+        }
+        return tickets;
+    }
+
+    public Ticket[] ticketBuchen(Kunde besitzer, int anzahl) {
+        Ticket[] tickets = new Ticket[anzahl];
+        Date date = new Date();
+        for(int i = 0; i < anzahl; i++) {
+            if(this.getFreieSitzplaetze().size() > 0) {
+                tickets[i] = new Ticket(besitzer, this, date, this.getFreieSitzplaetze().first(), 20);
+                //TODO
+                //Preisberechnung!
+            }
+        }
+        return tickets;
+    }
+
+    public boolean ticketStornieren(Ticket ticket) {
+        boolean stornieren = false;
+        if(ticket.getSitzplatzfuerDenSitzplan() != null) {
+            SitzplatzfuerDenSitzplan sitzplatzfuerDenSitzplan = ticket.getSitzplatzfuerDenSitzplan();
+            this.freieSitzplaetze.add(sitzplatzfuerDenSitzplan.getSitzplatz());
+            this.gebuchteSitzplaetze.remove(sitzplatzfuerDenSitzplan);
+            stornieren = true;
+        } else {
+            if(ticket.getSitzplatz() != null) {
+                Sitzplatz sitzplatz = ticket.getSitzplatz();
+                SitzplatzfuerDenSitzplan sitzplatzfuerDenSitzplan = new SitzplatzfuerDenSitzplan(sitzplatz, Zustaende.PRAESENT);
+                this.freieSitzplaetze.add(sitzplatzfuerDenSitzplan.getSitzplatz());
+                this.gebuchteSitzplaetze.remove(sitzplatzfuerDenSitzplan);
+                stornieren = true;
+            }
+        }
+        return stornieren;
+    }
+
+    public TreeSet<Sitzplatz> getReservierteSitzplaetze() {
+        TreeSet<Sitzplatz> alleReserviertenSitzplaetze = new TreeSet<>();
+        Iterator<SitzplatzfuerDenSitzplan> iterator = this.getGebuchteSitzplaetze().iterator();
+        for (int i = 0; i < this.getGebuchteSitzplaetze().size(); i++) {
+            while (iterator.hasNext()) {
+                if(iterator.next().getZustand().equals(Zustaende.RESERVIERT)) {
+                    alleReserviertenSitzplaetze.add(iterator.next().getSitzplatz());
+                }
+            }
+        }
+
+        //TODO
+        //Vielleicht Fehler drinnen!
+
+        return alleReserviertenSitzplaetze;
+    }
+
+
 
     public static int getZaehler() {
         return zaehler;
@@ -71,11 +141,19 @@ public class Vorstellung {
         this.dreiD = dreiD;
     }
 
-    public TreeSet<SitzplatzfuerDenSitzplan> getAktuelleSitzplaetze() {
-        return aktuelleSitzplaetze;
+    public TreeSet<Sitzplatz> getFreieSitzplaetze() {
+        return freieSitzplaetze;
     }
 
-    public void setAktuelleSitzplaetze(TreeSet<SitzplatzfuerDenSitzplan> aktuelleSitzplaetze) {
-        this.aktuelleSitzplaetze = aktuelleSitzplaetze;
+    public void setFreieSitzplaetze(TreeSet<Sitzplatz> freieSitzplaetze) {
+        this.freieSitzplaetze = freieSitzplaetze;
+    }
+
+    public TreeSet<SitzplatzfuerDenSitzplan> getGebuchteSitzplaetze() {
+        return gebuchteSitzplaetze;
+    }
+
+    public void setGebuchteSitzplaetze(TreeSet<SitzplatzfuerDenSitzplan> gebuchteSitzplaetze) {
+        this.gebuchteSitzplaetze = gebuchteSitzplaetze;
     }
 }

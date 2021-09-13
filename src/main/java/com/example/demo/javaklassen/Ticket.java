@@ -11,6 +11,7 @@ public class Ticket {
     private Date date;
     private boolean bezahlt;
     private Sitzplatz sitzplatz;
+    private SitzplatzfuerDenSitzplan sitzplatzfuerDenSitzplan;
     private float preis;
 
     public Ticket(Kunde besitzer, Vorstellung vorstellung, Date date, Sitzplatz sitzplatz, float preis) {
@@ -22,6 +23,48 @@ public class Ticket {
         this.preis = preis;
         this.bezahlt = false;
         zaehler++;
+    }
+
+    public Ticket(Kunde besitzer, Vorstellung vorstellung, Date date, SitzplatzfuerDenSitzplan sitzplatzfuerDenSitzplan, float preis) {
+        this.ticketID = zaehler + 1;
+        this.besitzer = besitzer;
+        this.vorstellung = vorstellung;
+        this.date = date;
+        this.sitzplatzfuerDenSitzplan = sitzplatzfuerDenSitzplan;
+        this.preis = preis;
+        this.bezahlt = false;
+        zaehler++;
+    }
+
+    public Object pdfTicketErstellen() {
+        //TODO
+        return null;
+    }
+
+    public Object rechnungErstellen() {
+        //TODO
+        return null;
+    }
+
+    public SitzplatzfuerDenSitzplan getSitzplatzfuerDenSitzplan() {
+        return sitzplatzfuerDenSitzplan;
+    }
+
+    public void setSitzplatzfuerDenSitzplan(SitzplatzfuerDenSitzplan sitzplatzfuerDenSitzplan) {
+        this.sitzplatzfuerDenSitzplan = sitzplatzfuerDenSitzplan;
+    }
+
+    public void versenden() {
+        //TODO
+    }
+
+    public void preisberechnen() {
+        int prozentualerRabatt = this.getBesitzer().getRabattstufe() * 10;
+        if(!this.getBesitzer().isVerifiziertesKonto()) {
+            prozentualerRabatt = prozentualerRabatt + 5;
+        }
+        float neuerPreis = preis * (1 - prozentualerRabatt);
+        this.setPreis(neuerPreis);
     }
 
     public static int getZaehler() {

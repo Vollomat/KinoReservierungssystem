@@ -21,6 +21,37 @@ public class Mitarbeiter {
         zaehler++;
     }
 
+    public Film filmAnlegen(Film film) {
+        //TODO
+        return null;
+    }
+
+    public Film filmLoeschen(Film film) {
+        //TODO
+        return null;
+    }
+
+    public Vorstellung vorstellungAnlegen(Vorstellung vorstellung) {
+        //TODO
+        return null;
+    }
+
+    public Vorstellung vorstellungLoeschen(Vorstellung vorstellung) {
+        //TODO
+        return null;
+    }
+
+    public KinoSaal kinoSaalAnlegen(KinoSaal kinoSaal) {
+        //TODO
+        return null;
+    }
+
+    public KinoSaal kinoSaalLoeschen(KinoSaal kinoSaal) {
+        //TODO
+        return null;
+    }
+
+
     public static int getZaehler() {
         return zaehler;
     }
