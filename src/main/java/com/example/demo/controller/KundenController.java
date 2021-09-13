@@ -20,24 +20,8 @@ public class KundenController {
 
     @GetMapping("")
     public List<Kunden> index() {
-        System.out.println("Beginn GET");
-        kundenLoeschen();
+        System.out.println("GET wurde ausgeführt für alle Kunden");
         return kundenRepository.findAll();
     }
-
-    public boolean kundenLoeschen(){
-        List<Kunden> alleKunden = kundenRepository.findAll();
-        boolean gefunden = false;
-        for(Kunden test : alleKunden) {
-            if(test.getNachname().equals("Mustermann")) {
-                kundenRepository.delete(test);
-                gefunden = true;
-            }
-        }
-        System.out.println("Wurde gelöscht --> " + gefunden);
-        return gefunden;
-    }
-
-    //Das ist ein Test
 
 }
