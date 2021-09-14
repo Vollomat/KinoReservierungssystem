@@ -15,6 +15,7 @@ public class Vorstellung {
     private boolean dreiD;
     private TreeSet<Sitzplatz> freieSitzplaetze; //alle belegten Sitzplätze
     private TreeSet<SitzplatzfuerDenSitzplan> gebuchteSitzplaetze;
+    private static final float STANDARDPREIS = 30.0F;
 
     public Vorstellung(Film film, KinoSaal kinoSaal, Date startDatum, boolean dreiD) {
         this.vorstellungsID = zaehler + 1;
@@ -32,9 +33,9 @@ public class Vorstellung {
         Date date = new Date();
         for(int i = 0; i < sitzplaetze.size(); i++) {
             if (this.freieSitzplaetze.contains(sitzplaetze.get(i))) {
-                tickets[i] = new Ticket(besitzer, this, date, sitzplaetze.get(i), 20);
-                //TODO
-                //Preisberechnung!
+                tickets[i] = new Ticket(besitzer, this, date, sitzplaetze.get(i), STANDARDPREIS);
+                tickets[i].preisberechnen();
+                //TreeSets erneuern
             } else {
                 System.out.println("Der angegebene Sitzplatz ist schon vergeben!!!!!");
             }
@@ -47,9 +48,9 @@ public class Vorstellung {
         Date date = new Date();
         for(int i = 0; i < anzahl; i++) {
             if(this.getFreieSitzplaetze().size() > 0) {
-                tickets[i] = new Ticket(besitzer, this, date, this.getFreieSitzplaetze().first(), 20);
-                //TODO
-                //Preisberechnung!
+                tickets[i] = new Ticket(besitzer, this, date, this.getFreieSitzplaetze().first(), STANDARDPREIS);
+                tickets[i].preisberechnen();
+                //TreeSets erneuern
             }
         }
         return tickets;

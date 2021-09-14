@@ -63,7 +63,35 @@ public class Ticket {
         if(!this.getBesitzer().isVerifiziertesKonto()) {
             prozentualerRabatt = prozentualerRabatt + 5;
         }
-        float neuerPreis = preis * (1 - prozentualerRabatt);
+        float neuerPreis = preis * (100 - prozentualerRabatt);
+
+        //Anhand der aktuellen Auslastung sollte der Preis noch differenziert werden
+        double auslastungInProzent = 100.0 - ((this.getVorstellung().getFreieSitzplaetze().size()/this.getVorstellung().getGebuchteSitzplaetze().size())*100);
+        if(auslastungInProzent < 10.0) {
+            neuerPreis = (float) (neuerPreis * (1 - 0.12));
+        } else {
+            if(auslastungInProzent < 20.0) {
+                neuerPreis = (float) (neuerPreis*(1 - 0.05));
+            } 	else {
+                if(auslastungInProzent < 50.0) {
+                    neuerPreis = (float) (neuerPreis * (1 - 0.02));
+                }
+            }
+        }
+
+        //Anhand des Alters sollte der Preis noch differenziert werden
+        if(this.getBesitzer().getAlter() < 10) {
+            neuerPreis = (float) (neuerPreis * (1 - 0.5));
+        } else {
+            if(this.getBesitzer().getAlter() < 18) {
+                neuerPreis = (float) (neuerPreis * (1 - 0.25));
+            } else {
+                if(this.getBesitzer().getAlter() < 27) {
+                    neuerPreis = (float) (neuerPreis * (1 - 0.1));
+                }
+            }
+
+        }
         this.setPreis(neuerPreis);
     }
 
