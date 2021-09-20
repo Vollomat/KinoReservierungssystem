@@ -1,14 +1,15 @@
 package com.example.demo.javaklassen;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class KinoSaal {
 
     private static int zaehler = 0;
     private int saalID;
-    private TreeSet<Sitzplatz> sitzplaetze;
+    private ArrayList<Sitzplatz> sitzplaetze;
 
-    public KinoSaal(TreeSet<Sitzplatz> sitzplaetze) {
+    public KinoSaal(ArrayList<Sitzplatz> sitzplaetze) {
         this.saalID = zaehler + 1;
         this.sitzplaetze = sitzplaetze;
         zaehler++;
@@ -41,11 +42,11 @@ public class KinoSaal {
         this.saalID = saalID;
     }
 
-    public TreeSet<Sitzplatz> getSitzplaetze() {
+    public ArrayList<Sitzplatz> getSitzplaetze() {
         return sitzplaetze;
     }
 
-    public void setSitzplaetze(TreeSet<Sitzplatz> sitzplaetze) {
+    public void setSitzplaetze(ArrayList<Sitzplatz> sitzplaetze) {
         this.sitzplaetze = sitzplaetze;
     }
 }

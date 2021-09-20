@@ -13,8 +13,8 @@ public class Vorstellung {
     private KinoSaal kinoSaal;
     private Date startDatum;
     private boolean dreiD;
-    private TreeSet<Sitzplatz> freieSitzplaetze; //alle belegten Sitzplätze
-    private TreeSet<SitzplatzfuerDenSitzplan> gebuchteSitzplaetze;
+    private ArrayList<Sitzplatz> freieSitzplaetze; //alle belegten Sitzplätze
+    private ArrayList<SitzplatzfuerDenSitzplan> gebuchteSitzplaetze;
     private static final float STANDARDPREIS = 30.0F;
 
     public Vorstellung(Film film, KinoSaal kinoSaal, Date startDatum, boolean dreiD) {
@@ -24,7 +24,7 @@ public class Vorstellung {
         this.startDatum = startDatum;
         this.dreiD = dreiD;
         this.freieSitzplaetze = kinoSaal.getSitzplaetze();
-        this.gebuchteSitzplaetze = new TreeSet<>();
+        this.gebuchteSitzplaetze = new ArrayList<>();
         zaehler++;
     }
 
@@ -48,7 +48,7 @@ public class Vorstellung {
         Date date = new Date();
         for(int i = 0; i < anzahl; i++) {
             if(this.getFreieSitzplaetze().size() > 0) {
-                tickets[i] = new Ticket(besitzer, this, date, this.getFreieSitzplaetze().first(), STANDARDPREIS);
+                tickets[i] = new Ticket(besitzer, this, date, this.getFreieSitzplaetze().get(0), STANDARDPREIS);
                 tickets[i].preisberechnen();
                 //TreeSets erneuern
             }
@@ -75,8 +75,8 @@ public class Vorstellung {
         return stornieren;
     }
 
-    public TreeSet<Sitzplatz> getReservierteSitzplaetze() {
-        TreeSet<Sitzplatz> alleReserviertenSitzplaetze = new TreeSet<>();
+    public ArrayList<Sitzplatz> getReservierteSitzplaetze() {
+        ArrayList<Sitzplatz> alleReserviertenSitzplaetze = new ArrayList<>();
         Iterator<SitzplatzfuerDenSitzplan> iterator = this.getGebuchteSitzplaetze().iterator();
         for (int i = 0; i < this.getGebuchteSitzplaetze().size(); i++) {
             while (iterator.hasNext()) {
@@ -142,19 +142,19 @@ public class Vorstellung {
         this.dreiD = dreiD;
     }
 
-    public TreeSet<Sitzplatz> getFreieSitzplaetze() {
+    public ArrayList<Sitzplatz> getFreieSitzplaetze() {
         return freieSitzplaetze;
     }
 
-    public void setFreieSitzplaetze(TreeSet<Sitzplatz> freieSitzplaetze) {
+    public void setFreieSitzplaetze(ArrayList<Sitzplatz> freieSitzplaetze) {
         this.freieSitzplaetze = freieSitzplaetze;
     }
 
-    public TreeSet<SitzplatzfuerDenSitzplan> getGebuchteSitzplaetze() {
+    public ArrayList<SitzplatzfuerDenSitzplan> getGebuchteSitzplaetze() {
         return gebuchteSitzplaetze;
     }
 
-    public void setGebuchteSitzplaetze(TreeSet<SitzplatzfuerDenSitzplan> gebuchteSitzplaetze) {
+    public void setGebuchteSitzplaetze(ArrayList<SitzplatzfuerDenSitzplan> gebuchteSitzplaetze) {
         this.gebuchteSitzplaetze = gebuchteSitzplaetze;
     }
 }

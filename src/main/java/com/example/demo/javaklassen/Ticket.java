@@ -66,9 +66,9 @@ public class Ticket {
         float neuerPreis = preis * (1 - prozentualerRabatt/100);
 
         //Anhand der aktuellen Auslastung sollte der Preis noch differenziert werden
-        int auslastungInProzent = 0;
+        double auslastungInProzent = 0;
         if(this.getVorstellung().getGebuchteSitzplaetze().size() > 0) {
-            auslastungInProzent = 100 - ((this.getVorstellung().getFreieSitzplaetze().size() / this.getVorstellung().getGebuchteSitzplaetze().size()) * 100);
+            auslastungInProzent = (double) 100 * this.getVorstellung().getGebuchteSitzplaetze().size() / this.getVorstellung().getFreieSitzplaetze().size();
         }
         if(auslastungInProzent < 10.0) {
             neuerPreis = (float) (neuerPreis * (1 - 0.12));
