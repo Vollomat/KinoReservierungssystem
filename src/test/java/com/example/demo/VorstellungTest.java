@@ -34,13 +34,13 @@ class TicketTest {
         void preisBerechnenTest() {
             int anzahlFreierSitzplaetze = 20;
             int anzahlBesetzteSitzplaetze = 1;
+            //1 von 20 Sitzplätzen sind gebucht --> Gesamtauslastung 5% --> Rabatt siehe Dokumentation!
             float benoetigterTicketpreis = 17.8F;
             float berechneterTicketpreis;
             ArrayList<Sitzplatz> aktuellfreieSitzplaetze = new ArrayList<>();
             for(int i = 0; i < anzahlFreierSitzplaetze ; i++) {
                 aktuellfreieSitzplaetze.add(new Sitzplatz(i,i));
             }
-            //1 von 20 Sitzplätzen sind gebucht --> Gesamtauslastung 5%
             ArrayList<SitzplatzfuerDenSitzplan> aktuellbesetzteSitzplaetze = new ArrayList<>();
             for(int j = 0; j < anzahlBesetzteSitzplaetze; j++) {
                 aktuellbesetzteSitzplaetze.add(new SitzplatzfuerDenSitzplan(new Sitzplatz(j, j), Zustaende.GEBUCHT));
