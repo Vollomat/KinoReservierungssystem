@@ -59,14 +59,17 @@ public class Ticket {
     }
 
     public void preisberechnen() {
-        int prozentualerRabatt = this.getBesitzer().getRabattstufe() * 10;
-        if(!this.getBesitzer().isVerifiziertesKonto()) {
+        float prozentualerRabatt = this.getBesitzer().getRabattstufe() * 10;
+        if(this.getBesitzer().isVerifiziertesKonto()) {
             prozentualerRabatt = prozentualerRabatt + 5;
         }
-        float neuerPreis = preis * (100 - prozentualerRabatt);
+        float neuerPreis = preis * (1 - prozentualerRabatt/100);
 
         //Anhand der aktuellen Auslastung sollte der Preis noch differenziert werden
-        int auslastungInProzent = 100 - ((this.getVorstellung().getFreieSitzplaetze().size()/this.getVorstellung().getGebuchteSitzplaetze().size())*100);
+        int auslastungInProzent = 0;
+        if(this.getVorstellung().getGebuchteSitzplaetze().size() > 0) {
+            auslastungInProzent = 100 - ((this.getVorstellung().getFreieSitzplaetze().size() / this.getVorstellung().getGebuchteSitzplaetze().size()) * 100);
+        }
         if(auslastungInProzent < 10.0) {
             neuerPreis = (float) (neuerPreis * (1 - 0.12));
         } else {
@@ -92,6 +95,8 @@ public class Ticket {
             }
 
         }
+        double d = Math.pow(10, 1);
+        neuerPreis = (float) (Math.rint(neuerPreis * d) / d);
         this.setPreis(neuerPreis);
     }
 
