@@ -7,6 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovieMaxx</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+
+        async function UserAction() {
+            let request = new XMLHttpRequest();
+            request.open('POST', 'http://localhost:8085');
+            request.send();
+            alert(request.response + request.status + request.response.toString())
+
+            }
+
+    </script>
 </head>
 <body>
 
@@ -34,6 +45,7 @@
                 <li><a href="#"> <img src="images\movie4.jpg" height="180px"></a></li>
                 <li><a href="#"> <img src="images\movie5.jpg" height="180px"></a></li>
                 <li><a href="#"> <img src="images\movie6.jpg" height="180px"></a></li>
+                <li><button type="submit" onclick="UserAction()">Test</button></li>
             </ul>
             </movies1> <!-- end movies1 -->
             <movies2>

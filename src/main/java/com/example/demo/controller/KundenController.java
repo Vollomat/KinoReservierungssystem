@@ -2,14 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Kunden;
 import com.example.demo.repository.KundenRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @RequestMapping("/kunden")
+@RestController
 public class KundenController {
 
     private KundenRepository kundenRepository;
@@ -18,10 +17,19 @@ public class KundenController {
         this.kundenRepository = kundenRepository;
     }
 
-    @GetMapping("")
-    public List<Kunden> index() {
+    @RequestMapping(produces = "application/json", method = RequestMethod.GET)
+    public List<Kunden> alleKunden() {
         System.out.println("GET wurde ausgeführt für alle Kunden");
         return kundenRepository.findAll();
     }
+
+    @RequestMapping(produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/kunden", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void kundenAnlegen(@RequestBody Kunden kunden) {
+        kundenRepository.findAll().add(kunden);
+        kundenRepository.save(kunden);
+    }
+
 
 }
