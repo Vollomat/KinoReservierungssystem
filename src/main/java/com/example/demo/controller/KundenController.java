@@ -27,7 +27,6 @@ public class KundenController {
     @PostMapping(value ="/kunden", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void kundenAnlegen(@RequestBody Kunden kunden) {
-        kundenRepository.findAll().add(kunden);
         kundenRepository.save(kunden);
     }
 
