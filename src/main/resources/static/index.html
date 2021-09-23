@@ -11,10 +11,13 @@
 
         async function UserAction() {
             let request = new XMLHttpRequest();
-            request.open('POST', 'http://localhost:8085');
-            request.send();
-            alert(request.response + request.status + request.response.toString())
-
+            request.open('POST', 'http://localhost:8080/kunden/');
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send(JSON.stringify({
+                id: "0",
+                vorname: "Max",
+                nachname: "Musterfrau"
+            }));
             }
 
     </script>
