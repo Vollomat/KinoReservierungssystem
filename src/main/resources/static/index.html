@@ -14,10 +14,34 @@
             request.open('POST', 'http://localhost:8080/kunden/');
             request.setRequestHeader('Content-Type', 'application/json');
             request.send(JSON.stringify({
-                id: "0",
                 vorname: "Max",
                 nachname: "Musterfrau"
             }));
+
+            let request2 = new XMLHttpRequest();
+            request2.open('POST', 'http://localhost:8080/vorstellungen/');
+            request2.setRequestHeader('Content-Type', 'application/json');
+            request2.send(JSON.stringify({
+                filmName: "Terminator7",
+                kinosaalNummer: "2",
+                startuhrzeit: "12:15:00",
+                laengeDerVorstellungInMinuten: "153"
+            }));
+
+
+            let request3 = new XMLHttpRequest();
+            request3.open('POST', 'http://localhost:8080/tickets/');
+            request3.setRequestHeader('Content-Type', 'application/json');
+            request3.send(JSON.stringify({
+                vornameDesBesitzers:"Günther",
+                nachnameDesBesitzers:"Jauch",
+                startuhrzeit:"12:15:00",
+                kinosaalNummer:"2",
+                filmName:"Terminator7",
+                preis:"12.77",
+                status:"RESERVIERT"
+            }));
+
             }
 
     </script>
