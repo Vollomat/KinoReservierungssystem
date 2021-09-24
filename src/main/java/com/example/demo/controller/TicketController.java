@@ -48,7 +48,6 @@ public class TicketController {
                 if(!alleTickets.get(i).getStatus().equals(ticket.getStatus())) {   //Update Status vom Ticket
                     ergebnis = false;
                     ticketRepository.delete(alleTickets.get(i));
-                    System.out.println("Es geht bis hierhin");
                     ticketRepository.save(ticket);
                 }
             }
