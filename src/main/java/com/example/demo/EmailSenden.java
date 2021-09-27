@@ -26,7 +26,25 @@ public class EmailSenden {
         BodyPart messageBodyPart = new MimeBodyPart();
         // Textteil der E-Mail
         messageBodyPart.setText("Ihr Ticketbuchung war erfolgreich! Ticket-ID: 123456, Vorstellung: test, ...");
-
+        String htmlBody = "<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "  <head>\n" +
+                "\n" +
+                "    <meta charset=\"utf-8\" />\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n" +
+                "\n" +
+                "    <title>Ihre Buchung war erfolgreich!</title>\n" +
+                "\n" +
+                "  </head>\n" +
+                "  <body>\n" +
+                "    \n" +
+                "    <h1><center>Ihre Buchung war erfolgreich!</center></h1><br/>\n" +
+                "    Hallo Patrick Vollstedt,\n" +
+                "    \n" +
+                "   \n" +
+                "  </body>\n" +
+                "</html>";
+        messageBodyPart.setContent(htmlBody, "text/html");
         multipart.addBodyPart(messageBodyPart);
         message.setContent(multipart);
 

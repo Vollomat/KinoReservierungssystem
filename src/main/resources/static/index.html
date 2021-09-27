@@ -34,6 +34,7 @@
 
 
             let request3 = new XMLHttpRequest();
+            var json;
             request3.open('POST', 'http://localhost:8080/tickets/');
             request3.setRequestHeader('Content-Type', 'application/json');
             request3.send(JSON.stringify({
@@ -46,7 +47,33 @@
                 status:"RESERVIERT"
             }));
 
+            var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+            xhr.onload = success; // call success function if request is successful
+            xhr.onerror = error;  // call error function if request failed
+            xhr.open('POST', 'http://localhost:8080/tickets/'); // open a GET request
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                vornameDesBesitzers:"Günther",
+                nachnameDesBesitzers:"Jauch",
+                startuhrzeit:"12:15:00",
+                kinosaalNummer:"2",
+                filmName:"Terminator7",
+                preis:"12.77",
+                status:"RESERVIERT"
+            })); // send the request to the server.
             }
+
+
+        function success() {
+            var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
+            console.log(data);
+            alert(data);
+        }
+
+        // function to handle error
+        function error(err) {
+            alert('Request Failed');
+        }
 
     </script>
 </head>
