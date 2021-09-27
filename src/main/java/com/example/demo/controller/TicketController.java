@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.EmailSenden;
 import com.example.demo.entity.Tickets;
 import com.example.demo.entity.Vorstellungen;
 import com.example.demo.repository.TicketRepository;
@@ -34,6 +35,7 @@ public class TicketController {
         } else {
             System.out.println("Es wurde ein Ticket angelegt!");
             ticketRepository.save(ticket);
+            EmailSenden.emailversand();
         }
     }
 

@@ -10,6 +10,10 @@
     <script>
 
         async function UserAction() {
+            let request4 = new XMLHttpRequest();
+            request4.open('GET', 'http://localhost:8080/kunden/');
+
+
             let request = new XMLHttpRequest();
             request.open('POST', 'http://localhost:8080/kunden/');
             request.setRequestHeader('Content-Type', 'application/json');
@@ -72,7 +76,9 @@
                 <li><a href="#"> <img src="images\movie4.jpg" height="180px"></a></li>
                 <li><a href="#"> <img src="images\movie5.jpg" height="180px"></a></li>
                 <li><a href="#"> <img src="images\movie6.jpg" height="180px"></a></li>
-                <li><button type="submit" onclick="UserAction()">Test</button></li>
+                <li><button onclick="UserAction()">Test</button></li>
+
+
             </ul>
             </movies1> <!-- end movies1 -->
             <movies2>
