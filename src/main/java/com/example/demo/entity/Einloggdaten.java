@@ -2,28 +2,17 @@ package com.example.demo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Einloggdaten {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int einloggdatenID;
-
+    @GeneratedValue()
     private String email;
 
     private String passwort;
 
-
-    public int getEinloggdatenID() {
-        return einloggdatenID;
-    }
-
-    public void setEinloggdatenID(int einloggdatenID) {
-        this.einloggdatenID = einloggdatenID;
-    }
 
     public String getEmail() {
         return email;

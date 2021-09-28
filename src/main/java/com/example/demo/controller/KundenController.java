@@ -54,9 +54,11 @@ public class KundenController {
     @RequestMapping(value = "/login",produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Kunden einloggen(@RequestBody Einloggdaten einloggdaten) {
         ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) alleKunden();
         for(int i=0; i<alleKunden.size(); i++) {
+            System.out.println("Passwort:" + alleKunden.get(i).getPasswort().equals(einloggdaten.getPasswort()));
             if(alleKunden.get(i).getPasswort().equals(einloggdaten.getPasswort()) && alleKunden.get(i).getEmail().equals(einloggdaten.getEmail())) {
                 return alleKunden.get(i);
             }
