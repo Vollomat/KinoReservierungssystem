@@ -17,13 +17,9 @@ public class KinoticketReservierungssystem {
 
     public static void main(String[] args) {
         SpringApplication.run(KinoticketReservierungssystem.class, args);
-        //Ich habe hier kommentiert
-
     }
 
-
     public static String datenbankAbfrageOMDBAPI(String urlFuerOMDB) throws IOException {
-
         URL url = new URL(urlFuerOMDB);
         HttpURLConnection verbindung = (HttpURLConnection) url.openConnection();
         verbindung.setRequestMethod("GET");
@@ -36,7 +32,6 @@ public class KinoticketReservierungssystem {
         }
         bufferedreader.close();
         verbindung.disconnect();
-
         return ergebnis.toString();
     }
 
@@ -44,15 +39,14 @@ public class KinoticketReservierungssystem {
         boolean geklappt = false;
         String[] strings = omdbErgebnis.split("\"");
         String titel = strings[5];
-        String jahr = strings[5+4];
-        String imdbID = strings[5+4+4];
-        String urlfuerBild = strings[5+4+4+8];
+        String jahr = strings[5 + 4];
+        String imdbID = strings[5 + 4 + 4];
+        String urlfuerBild = strings[5 + 4 + 4 + 8];
         System.out.println("Folgender Film wird in die Datenbank testdatenbank eingefügt:");
         System.out.println("titel: " + titel + ", jahr: " + jahr + ", imdbID: " + imdbID + ", urlBild:" + urlfuerBild);
         System.out.println();
         OMDBFilme omdbFilm = new OMDBFilme(titel, jahr, imdbID, urlfuerBild);
         return omdbFilm;
     }
-
 
 }
