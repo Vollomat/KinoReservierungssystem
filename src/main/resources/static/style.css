@@ -42,7 +42,7 @@ h3{
 * {
   box-sizing: border-box;
   padding: 0;
-  background-color: rgb(37, 36, 36);
+  background-color: rgb(37, 36, 36) transparent;
   font-family: 'Lato', sans-serif;
 }
 
@@ -117,14 +117,14 @@ button:hover {
 
 .movies img {
   padding: 20px;
-  width: 30px;
+  width: 30;
   max-width: 150px;
 }
 
 p {
   color: whitesmoke;
   font-family: "Lato", sans-serif;
-<!--list-style-type:circle;-->
+  <!--list-style-type:circle;-->
   list-style:circle;
   font-size: 20px;
 }
@@ -145,10 +145,12 @@ p {
   height: 50px;
   width: 50px;
 }
-
+  
 TT {
   color: whitesmoke;
   font-size: 15px;
+}
+
 }
 
 figcaption {
@@ -157,8 +159,9 @@ figcaption {
   font-size: 18px;
 }
 
-.search-box{
+.search-box{  
   padding: 9px 25px;
+  background-color: none;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -178,6 +181,7 @@ figcaption {
   float: right;
   width: 40px;
   height: 40px;
+  background-color: none;
   border: none;
 }
 
@@ -194,38 +198,40 @@ figcaption {
 }
 
 table {
+  background-color: none;
   border-collapse: collapse;
   border: none;
   color: white;
   margin: 0 auto;
   text-align: center;
-}
+ }
 
-thead {
-  background-color: rgb(88, 21, 32);
-}
+ thead {
+   background-color: rgb(88, 21, 32);
+ }
 
-tfoot {
-  font-size: 80%;
-  border-top: 1px solid #999;
-}
+ tfoot {
+   background-color: none;
+   font-size: 80%;
+   border-top: 1px solid #999;
+ }
 
 
 
-td, th {
-  text-align: left;
-  padding: 0.5em 1em;
-}
+ td, th {
+   text-align: left;
+   padding: 0.5em 1em;
+ }
 
 
 /*footer style*/----------------------------------------------
-                .container {
-                  max-width: 1170px;
-                  margin: auto;
-                  /*text-align: left;*/
-                  perspective: 1000px;
-                  margin-bottom: 30px;
-                }
+.container {
+  max-width: 1170px;
+  margin: auto;
+  /*text-align: left;*/
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
 
 .row {
   display: flex;
@@ -239,9 +245,9 @@ ul {
 .footer {
   background-color: rgb(88, 21, 32);
   background-image:
-          linear-gradient(
-                  rgb(37, 36, 36), rgb(88, 21, 32) 25%
-          );
+    linear-gradient(
+      rgb(37, 36, 36), rgb(88, 21, 32) 25%
+    );
   padding: 70px 0;
   text-align: left;
 }
@@ -336,11 +342,11 @@ ul {
 }
 
 /*tooltip*/----------------------------------------------
-             /* Tooltip container */
-           .tooltip {
-             position: relative;
-             display: inline-block;
-           }
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
 
 /* Tooltip text */
 .tooltip .tooltiptext {
@@ -350,7 +356,7 @@ ul {
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-
+ 
   /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
@@ -406,9 +412,9 @@ ul {
 
 /*Registrierung*/----------------------------------------------
 
-                 .daten{
-                   margin: 50px;
-                 }
+.daten{
+  margin: 50px;
+}
 
 .registrierung{
   max-width: 700px;
@@ -468,24 +474,24 @@ form .input-box span.details{
 .user-details .input-box input:valid{
   border-color: rgb(88, 21, 32);
 }
-form .gender-details .gender-title{
+ form .gender-details .gender-title{
   font-size: 25px;
   font-weight: 500;
   color: #fff;
-}
-form .category{
+ }
+ form .category{
   display: flex;
   width: 80%;
   margin: 14px 0 ;
   justify-content: space-between;
-}
-form .category label{
+ }
+ form .category label{
   display: flex;
   align-items: center;
   cursor: pointer;
   color: #fff;
-}
-form .category label .dot{
+ }
+ form .category label .dot{
   height: 18px;
   width: 18px;
   border-radius: 50%;
@@ -494,41 +500,41 @@ form .category label .dot{
   border: 5px solid transparent;
   transition: all 0.3s ease;
 }
-#dot-1:checked ~ .category label .one,
-#dot-2:checked ~ .category label .two,
-#dot-3:checked ~ .category label .three{
-  background: rgb(88, 21, 32);
-  border-color: #d9d9d9;
-}
-form input[type="radio"]{
-  display: none;
-}
-form .button{
-  height: 45px;
-  margin: 35px 0
-}
-form .button input{
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: rgb(88, 21, 32);
-}
-form .button input:hover{
+ #dot-1:checked ~ .category label .one,
+ #dot-2:checked ~ .category label .two,
+ #dot-3:checked ~ .category label .three{
+   background: rgb(88, 21, 32);
+   border-color: #d9d9d9;
+ }
+ form input[type="radio"]{
+   display: none;
+ }
+ form .button{
+   height: 45px;
+   margin: 35px 0
+ }
+ form .button input{
+   height: 100%;
+   width: 100%;
+   border-radius: 5px;
+   border: none;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 500;
+   letter-spacing: 1px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   background: rgb(88, 21, 32);
+ }
+ form .button input:hover{
   transform: scale(0.99);
   background: rgb(116, 55, 65);
-}
-@media(max-width: 584px){
-  .container{
-    max-width: 100%;
   }
-  form .user-details .input-box{
+ @media(max-width: 584px){
+ .container{
+  max-width: 100%;
+}
+form .user-details .input-box{
     margin-bottom: 15px;
     width: 100%;
   }
@@ -542,17 +548,17 @@ form .button input:hover{
   .user-details::-webkit-scrollbar{
     width: 5px;
   }
-}
-@media(max-width: 459px){
+  }
+  @media(max-width: 459px){
   .registrierung .content .category{
     flex-direction: column;
   }
 }
 
 /*saalplan*/----------------------------------------------
-            .movie-container{
-              margin: 20px 0;
-            }
+.movie-container{
+  margin: 20px 0;
+}
 
 .movie-container select{
   background-color: #fff;
@@ -653,7 +659,7 @@ p.text span{
 }
 
 .anzahl input{
-  margin-bottom: -3px;
+  margin-bottom: -3px; 
   height: 25px;
   width: 100%;
   outline: none;
@@ -668,13 +674,14 @@ p.text span{
 }
 
 /*checkbox*/----------------------------------------------
-            .checkbox{
-              max-width: 1170px;
-              margin: auto;
-              text-align: left;
-              perspective: 1000px;
-              margin-bottom: 30px;
-            }
+.checkbox{
+  max-width: 1170px;
+  margin: auto;
+  text-align: left;
+  align-items:left;
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
 
 input[type=checkbox] + label {
   display: block;
@@ -733,9 +740,9 @@ input[type=checkbox]:checked:disabled + label:before {
 }*/
 
 /*Hover-Effekt Filme*/----------------------------------------------
-                      .filmbilder{
-                        width: 1000px;
-                      }
+.filmbilder{
+  width: 1000px;
+}
 
 .filmbilder .box{
   position: relative;
@@ -826,22 +833,22 @@ input[type=checkbox]:checked:disabled + label:before {
 
 
 details {
-  font-size: 20px;
-
+    font-size: 20px;
+  
 }
 summary{
-
-  color: white;
+    
+    color: white;
 }
 details[open] summary {
-  background: #581520;
-  margin-bottom: 1em;
+	background: #581520;
+	margin-bottom: 1em;
 }
 
 textarea{
   width: 40%;
   hight: 10%;
-
+ 
 }
 
 btns{
@@ -878,3 +885,7 @@ btns{
   border-style: solid;
 
 }
+
+
+
+

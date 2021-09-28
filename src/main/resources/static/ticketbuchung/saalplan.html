@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://kit.fontawesome.com/57d79c9300.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  
+<header>
+  <h3>
+    MovieMaxx
+  </h3>
+  <a class="ticket" href="/index.html"><button class="btn btn2">Startseite</button></a>
+</header>
+ 
+  <div>
+    <h2>
+      Wähle deine Sitze:
+    </h2>
+  </div>
+  <br>
+  <br>
+  <div class="saalplan">
+    <div class="movie-container">
+        <label>
+            Wähle einen Film:
+        </label>
+        <select id="movie">
+            <option value="30">Free Guy (30€)</option>
+            <option value="30">Avatar (30€)</option>
+            <option value="30">Joker (30€)</option>
+            <option value="30">To All They Boys I Loved Before (30€)</option>
+        </select>
+    </div><!--end movie-container-->
+
+    <ul class="showcase">
+        <li>
+            <div class="seat"></div>
+            <small>nicht ausgewählt</small>
+        </li>
+        <li>
+            <div class="seat occupied"></div>
+            <small>bereits belegt</small>
+        </li>
+        <li>
+            <div class="seat selected"></div>
+            <small>ausgewählt</small>
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="screen"></div>
+
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+        </div>
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+        </div>
+        <div class="row">
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+        </div>
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+        </div><!--end row-->
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+        </div><!--end row-->
+    </div><!--end container-->
+    <p class="text">Du hast <span id="count">0</span>
+        Sitze zum Preis von <span id="total">0</span>€ ausgewählt.
+    </p>
+    
+    <p>
+      
+    </p>
+    
+
+<div class"checkboxen">
+  <p class="text">
+    Buchst du für Personen, die
+  </p>
+    <form>
+      <table>
+        <style>
+          #spalte1{width: 250px;}
+          #spalte2{width: 185px;}
+        </style>
+        <colgroup>
+          <col id="spalte1">
+        </colgroup>
+        <colgroup>
+          <col id="spalte2">
+        </colgroup>
+        <tbody>
+          <tr>
+            <td><input type="checkbox" id="input1" name="input-1" onclick="checkbox1()">
+              <label for="input1"> unter 6 Jahren sind?</label></td>  
+            <td><div class="anzahl"><input type="number" min="0" id="anzahl1" name="" style="display:none" placeholder="Wie viele?"></div></td> 
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="input2" name="input-2" onclick="checkbox2()">
+              <label for="input2"> unter 18 Jahren sind?</label></td>  
+            <td><div class="anzahl"><input type="number" min="0" id="anzahl2" name="" style="display:none" placeholder="Wie viele?"></div></td> 
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="input3" name="input-3" onclick="checkbox3()">
+              <label for="input3"> Schüler/Studenten sind?</label></td>  
+            <td><div class="anzahl"><input type="number" min="0" id="anzahl3" name="" style="display:none" placeholder="Wie viele?"></div></td> 
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="input4" name="input-4" onclick="checkbox4()">
+              <label for="input4"> sonstiges</label></td>  
+            <td><div class="anzahl"><input type="number" min="0" id="anzahl4" name="" style="display:none" placeholder="Wie viele?"></div></td> 
+          </tr>
+        </tbody>
+      </table> 
+    </form>
+  </div>
+    
+    <p style="font-style:italic; font-size:12px">
+      Rabatte werden an der Kasse abgezogen.
+    </p>
+
+    
+<!--vorher>
+  <div class="checkboxen">
+    <p class="text">
+      Buchst du für Personen, die
+    </p>
+    <form>
+      <p>
+         
+      </p>
+      <input type="checkbox" id="input1" name="input-1" onclick="checkbox1()">
+      <label for="input1"> unter 6 Jahren sind?</label>
+      <input type="number" min="0" id="anzahl1" name="" style="display:none" placeholder="Wie viele?"><br />
+
+      <input type="checkbox" id="input2" name="input-2" onclick="checkbox2()">
+      <label for="input2"> unter 18 Jahren sind?</label>
+      <input class="sonderpreise" type="number" min="0" id="anzahl2" name="" style="display:none" placeholder="Wie viele?"><br />
+
+      <input type="checkbox" id="input3" name="input-3" onclick="checkbox3()">
+      <label for="input3"> Schüler/Studenten sind?</label>
+      <input class="sonderpreise" type="number" min="0" id="anzahl3" name="" style="display:none" placeholder="Wie viele?"><br />
+
+      <input type="checkbox" id="input4" name="input-4" onclick="checkbox4()">
+      <label for="input4"> sonstiges</label>
+      <input class="sonderpreise" type="number" min="0" id="anzahl4" name="" style="display:none" placeholder="Wie viele?">
+    </form>
+  </div>
+<!--vorher-->   
+    
+        <div>
+      <a class="ticket" href="#"><button class="btn btn2">Bestätigen</button></a>
+    </div>
+  </div><!--end saalplan-->
+
+<!-- Java Script-->
+    <script>
+    function checkbox1() {
+      var checkBox = document.getElementById("input1");
+      var text = document.getElementById("anzahl1");
+      if (checkBox.checked == true){
+        text.style.display = "block";
+      } else {
+         text.style.display = "none";
+      }
+    }
+      
+    function checkbox2() {
+      var checkBox = document.getElementById("input2");
+      var text = document.getElementById("anzahl2");
+      if (checkBox.checked == true){
+        text.style.display = "block";
+      } else {
+         text.style.display = "none";
+      }
+    }
+      
+    function checkbox3() {
+      var checkBox = document.getElementById("input3");
+      var text = document.getElementById("anzahl3");
+      if (checkBox.checked == true){
+        text.style.display = "block";
+      } else {
+         text.style.display = "none";
+      }
+    }
+       
+    function checkbox4() {
+      var checkBox = document.getElementById("input4");
+      var text = document.getElementById("anzahl4");
+      if (checkBox.checked == true){
+        text.style.display = "block";
+      } else {
+         text.style.display = "none";
+      }
+    }
+    </script>
+
+
+  
+  <footer class="footer">
+  	 <div class="container">
+  	 	<div class="row">
+  	 		<div class="footer-col">
+  	 			<h4>Informationen</h4>
+  	 			<ul>
+  	 				<li><a href="/subpages/preise.html">Eintrittspreise</a></li>
+  	 				<li><a href="/subpages/contact.html">Anfahrt & Öffnungszeiten</a></li>
+  	 				<li><a href="/footarea/Covid.html">Covid-19-Infos</a></li>
+  	 				<li><a href="/footarea/gutscheine.html">Gutscheine</a></li>
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>Kontakt</h4>
+  	 			<ul>
+  	 				<li><a href="/footarea/faq.html">FAQ</a></li>
+  	 				<li><a href="/subpages/contact.html">Kontakt</a></li>
+  	 				<li><a href="#">Newsletter</a></li>
+  	 				<li><a href="#">Über Uns</a></li>
+  	 				<li><a href="#">Karriere</a></li>
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>Rechtliches</h4>
+  	 			<ul>
+  	 				<li><a href="/footarea/impressum.html">Impressum</a></li>
+  	 				<li><a href="/footarea/datenschutz.html">Datenschutz</a></li>
+  	 				<li><a href="/footarea/agb.html">AGB</a></li>
+  	 				<li><a href="/footarea/hausordnung.html">Hausordnung</a></li>
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>Folge Uns Auf</h4>
+  	 			<div class="social-links">
+            <div class="facebook"><div class="tooltip"><a href="https://de-de.facebook.com/facebook/"><i class="fab fa-facebook-f"></i></a><span class="tooltiptext">Facebook</span></div></div>
+  	 				<div class="twitter"><div class="tooltip"><a href="https://twitter.com/home?lang=de"><i class="fab fa-twitter"></i></a><span class="tooltiptext">Twitter</span></div></div>
+  	 				<div class="instagram"><div class="tooltip"><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a><span class="tooltiptext">Instagram</span></div></div>
+            <div class="youtube"><div class="tooltip"><a href="https://youtube.com/"><i class="fab fa-youtube"></i></a><span class="tooltiptext">YouTube</span></div></div>
+  	 			</div>
+  	 		</div>
+  	 	</div>
+  	 </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
