@@ -15,7 +15,7 @@
         var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
         xhr.onload = success; // call success function if request is successful
         xhr.onerror = error;  // call error function if request failed
-        xhr.open('POST', 'http://localhost:8080/kunden/login'); // open a GET request
+        xhr.open('POST', 'http://localhost:8080/kunden/login'); // open a POST request
         xhr.setRequestHeader('Content-Type', 'application/json');
         let username = document.querySelector("#username").value;
         let passwort = document.querySelector("#passwort").value;
@@ -28,6 +28,9 @@
 
     function success() {
         var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
+        if (data == false){
+            document.getElementById('FehlermeldungLogin').innerHTML = "Ihre Login-Daten sind falsch!";
+        }
         console.log(data);
         alert(data);
     }
@@ -63,15 +66,15 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" id="username" placeholder="Wähle einen Usernamen" required>
+            <input type="text" id="username" placeholder="Gib deinen Usenamen ein" required>
           </div>
           <div class="input-box">
             <span class="details">Passwort</span>
-            <input type="password" id="passwort" placeholder="Wähle ein Passwort" required>
+            <input type="password" id="passwort" placeholder="Gib dein Passwort ein" required>
           </div>
           <p style="font-style:italic; font-size:10px; text-align:center">
             <a href="#">Passwort vergessen?</a>
-          </p>
+            <p id="FehlermeldungLogin" > Test Fehlermeldung Login </p>
         </div>
         <div class="button">
           <a href="/ticketbuchung/saalplan.html"><input type="submit" value="Bestätigen"></a>
@@ -84,7 +87,7 @@
   </div>
 </daten>
   <p>
-    
+
   </p>
 <footer class="footer">
   	 <div class="container">
