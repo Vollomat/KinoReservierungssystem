@@ -14,14 +14,26 @@
         xhr.open('POST', 'http://localhost:8080/kunden/'); // open a GET request
         xhr.setRequestHeader('Content-Type', 'application/json');
         let vorname = document.querySelector("#vorname").value;
+        let nachname = document.querySelector("#nachname").value;
+        let email = document.querySelector("#email").value;
+        let alter = document.querySelector("#alter").value;
+        let strasse = document.querySelector("#strasse").value;
+        let hausnummer = document.querySelector("#hausnummer").value;
+        let plz = document.querySelector("#plz").value;
+        let ort = document.querySelector("#ort").value;
+        let username = document.querySelector("#username").value;
+        let passwort = document.querySelector("#passwort").value;
         xhr.send(JSON.stringify({
-            vornameDesBesitzers:vorname,
-            nachnameDesBesitzers:"Jauch",
-            startuhrzeit:"12:15:00",
-            kinosaalNummer:"2",
-            filmName:"Terminator7",
-            preis:"12.77",
-            status:"RESERVIERT"
+            vorname:vorname,
+            nachname:nachname,
+            email:email,
+            alter:alter,
+            strasse:strasse,
+            hausnummer:hausnummer,
+            postleitzahl:plz,
+            ort:ort,
+            username:username,
+            passwort:passwort
         })); // send the request to the server.
         }
 
@@ -72,39 +84,39 @@
           </div>
           <div class="input-box">
             <span class="details">Nachname</span>
-            <input type="text" placeholder="Gebe deinen Nachnamen ein" required>
+            <input type="text" id="nachname" placeholder="Gebe deinen Nachnamen ein" required>
           </div>
           <div class="input-box">
             <span class="details">E-Mail</span>
-            <input type="e-mail" placeholder="Gebe deine E-Mail-Adresse ein" required>
+            <input type="e-mail" id="email" placeholder="Gebe deine E-Mail-Adresse ein" required>
           </div>
           <div class="input-box">
             <span class="details">Alter</span>
-            <input type="number" placeholder="Gebe dein Alter ein" required>
+            <input type="number" id="alter" placeholder="Gebe dein Alter ein" required>
           </div>
           <div class="input-box">
             <span class="details">Straße</span>
-            <input type="text" placeholder="Gebe deine Straße ein" required>
+            <input type="text" id="strasse" placeholder="Gebe deine Straße ein" required>
           </div>
           <div class="input-box">
             <span class="details">Hausnummer</span>
-            <input type="text" placeholder="Gebe deine Hausnummer ein" required>
+            <input type="text" id="hausnummer" placeholder="Gebe deine Hausnummer ein" required>
           </div>
           <div class="input-box">
             <span class="details">Postleitzahl</span>
-            <input type="text" placeholder="Gebe deine Postleitzahl ein" required>
+            <input type="text" id="plz" placeholder="Gebe deine Postleitzahl ein" required>
           </div>
           <div class="input-box">
             <span class="details">Ort</span>
-            <input type="text" placeholder="Gebe deinen Wohnort ein" required>
+            <input type="text" id="ort" placeholder="Gebe deinen Wohnort ein" required>
           </div>
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" placeholder="Wähle einen Usernamen" required>
+            <input type="text" id="username" placeholder="Wähle einen Usernamen" required>
           </div>
           <div class="input-box">
             <span class="details">Passwort</span>
-            <input type="password" placeholder="Wähle ein Passwort" required>
+            <input type="password" id="passwort" placeholder="Wähle ein Passwort" required>
           </div>
         </div>
         <div class="gender-details">
