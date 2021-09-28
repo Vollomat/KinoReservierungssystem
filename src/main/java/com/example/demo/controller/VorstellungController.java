@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Vorstellungen;
-import com.example.demo.javaklassen.Vorstellung;
 import com.example.demo.repository.VorstellungRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
