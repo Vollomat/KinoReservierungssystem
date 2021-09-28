@@ -4,12 +4,6 @@ Elisa:
 
 - Die einzelnen fehlenden Filmseiten müssen nach Vorlage (Free Guy) noch erstellt werden
 
-- Die Seiten "Bezahlen" und "Kasse" müssen noch gemacht werden:
-Bezahlen, d.h. auswählen, wie man zahlen möchte und Abfragen entsprechender Daten
-Kasse, d.h. nocheinmal Zusammenfassung aller zuvor eingegebenen Daten
-
-- Seite mit Bestellungen (nur wenn eingeloggt)
-
 - Gast: Name, Vorname, E-Mail, Alter (optional)
 
 - Login: Username -> E-Mail
@@ -29,8 +23,7 @@ Buttons geschrieben werden (und wenn man draufklickt, kommt man auf die Ticket-b
 Dana:
 
 
-- Folgende Seiten im Footer müssen noch ergänzt werden:  Über Uns,
-Karriere, Gutscheine
+- Folgende Seiten im Footer müssen noch ergänzt werden: Über Uns, Karriere, Gutscheine
 
 ______________________________________________________
 
