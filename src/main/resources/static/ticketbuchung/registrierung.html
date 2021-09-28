@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieMaxx</title>
+    <script src="https://kit.fontawesome.com/57d79c9300.js" crossorigin="anonymous"></script>
+    <script>
+        async function UserAction() {
+        var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+        xhr.onload = success; // call success function if request is successful
+        xhr.onerror = error;  // call error function if request failed
+        xhr.open('POST', 'http://localhost:8080/kunden/'); // open a GET request
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        let vorname = document.querySelector("#vorname").value;
+        xhr.send(JSON.stringify({
+            vornameDesBesitzers:vorname,
+            nachnameDesBesitzers:"Jauch",
+            startuhrzeit:"12:15:00",
+            kinosaalNummer:"2",
+            filmName:"Terminator7",
+            preis:"12.77",
+            status:"RESERVIERT"
+        })); // send the request to the server.
+        }
+
+
+        function success() {
+            var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
+            console.log(data);
+            alert(data);
+        }
+
+        // function to handle error
+        function error(err) {
+            alert('Request Failed');
+        }
+
+
+
+    </script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <header>
+      <a href="/index.html"> <img class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2FPhoto_1632420527471.png?v=1632561566020" height="65px" alt="logo"></a>
+      <nav>
+          <ul class="nav_links">
+              <li><a href="/subpages/programm.html">Programm</a></li>
+              <li><a href="/subpages/events.html">Events</a></li>
+              <li><a href="/subpages/preise.html">Preise</a></li>
+              <li><a href="/subpages/contact.html">Kontakt</a></li>
+          </ul>
+      </nav> <!-- end navigation --> 
+      <a class="ticket" href="/index.html"><button class="btn btn2">Startseite</button></a>
+  </header> <!-- end header --> 
+  
+  <h2>
+    Registrierung
+  </h2>
+  
+<daten>
+  <div class="registrierung">
+    <div class="content">
+      <form action="/ticketbuchung/saalplan.html">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Vorname</span>
+            <input type="text" id="vorname" placeholder="Gebe deinen Vornamen ein" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Nachname</span>
+            <input type="text" placeholder="Gebe deinen Nachnamen ein" required>
+          </div>
+          <div class="input-box">
+            <span class="details">E-Mail</span>
+            <input type="e-mail" placeholder="Gebe deine E-Mail-Adresse ein" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Alter</span>
+            <input type="number" placeholder="Gebe dein Alter ein" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Straße</span>
+            <input type="text" placeholder="Gebe deine Straße ein" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Hausnummer</span>
+            <input type="text" placeholder="Gebe deine Hausnummer ein" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Postleitzahl</span>
+            <input type="text" placeholder="Gebe deine Postleitzahl ein" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Ort</span>
+            <input type="text" placeholder="Gebe deinen Wohnort ein" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" placeholder="Wähle einen Usernamen" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Passwort</span>
+            <input type="password" placeholder="Wähle ein Passwort" required>
+          </div>
+        </div>
+        <div class="gender-details">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <input type="radio" name="gender" id="dot-3">
+          <span class="gender-title">Geschlecht</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Männlich</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Weiblich</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">divers</span>
+            </label>
+          </div>
+        </div>
+        <div class="button">
+          <button onclick="UserAction()" href="/ticketbuchung/saalplan.html"><input type="submit" value="Bestätigen"></button>
+        </div>
+        <p style="font-style:italic; font-size:10px; text-align:center">
+          <a href="/ticketbuchung/login.html">Du hast schon ein Konto?  Klicke hier zum Einloggen</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</daten>
+  
+  <p>
+    
+  </p>
+  
+  
+<footer class="footer">
+  	 <div class="container">
+  	 	<div class="row">
+  	 		<div class="footer-col">
+  	 			<h4>Informationen</h4>
+  	 			<ul>
+  	 				<li><a href="/subpages/preise.html">Eintrittspreise</a></li>
+  	 				<li><a href="/subpages/contact.html">Anfahrt & Öffnungszeiten</a></li>
+  	 				<li><a href="/footarea/Covid.html">Covid-19-Infos</a></li>
+  	 				<li><a href="/footarea/gutscheine.html">Gutscheine</a></li>
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>Kontakt</h4>
+  	 			<ul>
+  	 				<li><a href="/footarea/faq.html">FAQ</a></li>
+  	 				<li><a href="/subpages/contact.html">Kontakt</a></li>
+  	 				<li><a href="#">Newsletter</a></li>
+  	 				<li><a href="#">Über Uns</a></li>
+  	 				<li><a href="#">Karriere</a></li>
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>Rechtliches</h4>
+  	 			<ul>
+  	 				<li><a href="/footarea/impressum.html">Impressum</a></li>
+  	 				<li><a href="/footarea/datenschutz.html">Datenschutz</a></li>
+  	 				<li><a href="/footarea/agb.html">AGB</a></li>
+  	 				<li><a href="/footarea/hausordnung.html">Hausordnung</a></li>
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>Folge Uns Auf</h4>
+  	 			<div class="social-links">
+            <div class="facebook"><div class="tooltip"><a href="https://de-de.facebook.com/facebook/"><i class="fab fa-facebook-f"></i></a><span class="tooltiptext">Facebook</span></div></div>
+  	 				<div class="twitter"><div class="tooltip"><a href="https://twitter.com/home?lang=de"><i class="fab fa-twitter"></i></a><span class="tooltiptext">Twitter</span></div></div>
+  	 				<div class="instagram"><div class="tooltip"><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a><span class="tooltiptext">Instagram</span></div></div>
+            <div class="youtube"><div class="tooltip"><a href="https://youtube.com/"><i class="fab fa-youtube"></i></a><span class="tooltiptext">YouTube</span></div></div>
+  	 			</div>
+  	 		</div>
+  	 	</div>
+  	 </div>
+  </footer>
+  
+  </body>
+</html>

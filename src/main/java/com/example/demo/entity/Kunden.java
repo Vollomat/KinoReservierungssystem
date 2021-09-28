@@ -17,6 +17,7 @@ public class Kunden {
 
    private String nachname;
 
+
     public int getId() {
         return id;
     }
@@ -40,4 +41,6 @@ public class Kunden {
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
+
+
 }

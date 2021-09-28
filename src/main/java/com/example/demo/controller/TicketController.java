@@ -29,14 +29,17 @@ public class TicketController {
     @RequestMapping(produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value = "/tickets", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void kundenAnlegen(@RequestBody Tickets ticket) {
+    @ResponseBody
+    public Tickets kundenAnlegen(@RequestBody Tickets ticket) {
         if(existiertTicketSchon(ticket)) {
             System.err.println("Das Ticket existiert schon!");
         } else {
             System.out.println("Es wurde ein Ticket angelegt!");
             ticketRepository.save(ticket);
-            EmailSenden.emailversand();
+            //EmailSenden.emailversand();
+            return ticket;
         }
+        return ticket;
     }
 
 
