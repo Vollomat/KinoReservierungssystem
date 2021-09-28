@@ -15,7 +15,7 @@ import javax.mail.internet.MimeMultipart;
 
 public class EmailSenden {
 
-    private static Message nachrichtVorbereiten(Session session, String myAccount, String empfaenger) throws Exception {
+    private static Message nachrichtVorbereitenFuerTicket(Session session, String myAccount, String empfaenger) throws Exception {
         Message message = new MimeMessage(session);
 
         message.setFrom(new InternetAddress(myAccount));
@@ -96,11 +96,10 @@ public class EmailSenden {
         messageBodyPart.setContent(htmlBody, "text/html");
         multipart.addBodyPart(messageBodyPart);
         message.setContent(multipart);
-
         return message;
     }
 
-    public static boolean emailversand() {
+    public static boolean emailversandFuerTicket() {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -119,7 +118,7 @@ public class EmailSenden {
         });
 
         try {
-            Message message = nachrichtVorbereiten(session, myAccount, empfaenger);
+            Message message = nachrichtVorbereitenFuerTicket(session, myAccount, empfaenger);
             Transport.send(message);
             System.out.println("E-Mail erfolgreich versendet!");
             return true;
