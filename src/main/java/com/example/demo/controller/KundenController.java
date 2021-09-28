@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.EmailSenden;
+import com.example.demo.entity.Einloggdaten;
 import com.example.demo.entity.Kunden;
 import com.example.demo.repository.KundenRepository;
 import org.springframework.http.MediaType;
@@ -36,19 +37,31 @@ public class KundenController {
     @RequestMapping(value = "/passwortvergessen",produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value ="/passwortvergessen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-        public void passwortVergessen(@RequestBody String email) {
-            System.out.println("Der Kunde mit der E-Mail " + email + " hat sein Passwort vergessen!");
-            ArrayList<Kunden> alleKunden = new ArrayList<>();
-            for(int i = 0; i < kundenRepository.findAll().size(); i++) {
-                alleKunden.add(kundenRepository.findAll().get(i));
+    public void passwortVergessen(@RequestBody String email) {
+        System.out.println("Der Kunde mit der E-Mail " + email + " hat sein Passwort vergessen!");
+        ArrayList<Kunden> alleKunden = new ArrayList<>();
+        for(int i = 0; i < kundenRepository.findAll().size(); i++) {
+            alleKunden.add(kundenRepository.findAll().get(i));
+        }
+        for(int j = 0; j < alleKunden.size(); j++) {
+            if(alleKunden.get(j).getEmail().equals(email)){
+                String message = "Ihr Passwort ist: " + alleKunden.get(j).getPasswort();
+                EmailSenden.emailversand(email, message);
             }
-            for(int j = 0; j < alleKunden.size(); j++) {
-                if(alleKunden.get(j).getEmail().equals(email)){
-                    String message = "Ihr Passwort ist: " + alleKunden.get(j).getPasswort();
-                    EmailSenden.emailversand(email, message);
-                }
-            }
+        }
+    }
 
+    @RequestMapping(value = "/login",produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Kunden einloggen(@RequestBody Einloggdaten einloggdaten) {
+        ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) alleKunden();
+        for(int i=0; i<alleKunden.size(); i++) {
+            if(alleKunden.get(i).getPasswort().equals(einloggdaten.getPasswort()) && alleKunden.get(i).getEmail().equals(einloggdaten.getEmail())) {
+                return alleKunden.get(i);
+            }
+        }
+        return null;
     }
 
 }
