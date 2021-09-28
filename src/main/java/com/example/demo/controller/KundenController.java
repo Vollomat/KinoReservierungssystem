@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.EmailSenden;
 import com.example.demo.entity.Kunden;
 import com.example.demo.repository.KundenRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/kunden")
@@ -27,8 +29,26 @@ public class KundenController {
     @PostMapping(value ="/kunden", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void kundenAnlegen(@RequestBody Kunden kunden) {
+        System.out.println("Ein Kunde wurde angelegt!");
         kundenRepository.save(kunden);
     }
 
+    @RequestMapping(value = "/passwortvergessen",produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/passwortvergessen", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+        public void passwortVergessen(@RequestBody String email) {
+            System.out.println("Der Kunde mit der E-Mail " + email + " hat sein Passwort vergessen!");
+            ArrayList<Kunden> alleKunden = new ArrayList<>();
+            for(int i = 0; i < kundenRepository.findAll().size(); i++) {
+                alleKunden.add(kundenRepository.findAll().get(i));
+            }
+            for(int j = 0; j < alleKunden.size(); j++) {
+                if(alleKunden.get(j).getEmail().equals(email)){
+                    String message = "Ihr Passwort ist: " + alleKunden.get(j).getPasswort();
+                    EmailSenden.emailversand(email, message);
+                }
+            }
+
+    }
 
 }

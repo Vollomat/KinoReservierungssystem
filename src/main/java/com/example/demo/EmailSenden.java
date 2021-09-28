@@ -59,7 +59,7 @@ public class EmailSenden {
         properties.put("mail.smtp.port", "587");
 
         String myAccount = "kinoticketreservierungssystem@gmail.com";
-        String myPassword = "kino1234";
+        String myPassword = "#kino1234873490z2jk3804j";
         String empfaenger = "patrick.vollstedt@gmx.de";
 
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -80,6 +80,53 @@ public class EmailSenden {
         }
     }
 
+//############################################################################################################################################################
+
+    private static Message nachrichtVorbereiten(Session session, String myAccount, String empfaenger, String nachricht) throws Exception {
+        Message message = new MimeMessage(session);
+
+        message.setFrom(new InternetAddress(myAccount));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(empfaenger));
+        message.setSubject("Ihr Passwort bei MovieMaxx");
+
+        Multipart multipart = new MimeMultipart();
+        BodyPart messageBodyPart = new MimeBodyPart();
+        // Textteil der E-Mail
+        messageBodyPart.setText(nachricht);
+        multipart.addBodyPart(messageBodyPart);
+        message.setContent(multipart);
+
+        return message;
+    }
+
+    public static boolean emailversand(String emailadresse, String nachricht) {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+
+        String myAccount = "kinoticketreservierungssystem@gmail.com";
+        String myPassword = "#kino1234873490z2jk3804j";
+        String empfaenger = emailadresse;
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(myAccount, myPassword);
+            }
+        });
+
+        try {
+            Message message = nachrichtVorbereiten(session, myAccount, empfaenger, nachricht);
+            Transport.send(message);
+            System.out.println("E-Mail erfolgreich versendet! An: " + emailadresse);
+            return true;
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            return false;
+        }
+    }
 
 
 }
