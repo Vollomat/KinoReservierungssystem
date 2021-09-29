@@ -15,10 +15,6 @@ public class Sitzplaetze {
 
     private int reihe;
 
-    private int platz;
-
-
-
-
+    private int spalte;
 
 }
