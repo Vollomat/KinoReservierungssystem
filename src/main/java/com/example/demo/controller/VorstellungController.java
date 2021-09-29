@@ -79,7 +79,6 @@ public class VorstellungController {
         for(int i = 0; i < alleVorstellungen.size(); i++) {
             if(alleVorstellungen.get(i).getKinosaalNummer() == vorstellungen.getKinosaalNummer() && alleVorstellungen.get(i).getLaengeDerVorstellungInMinuten().equals(vorstellungen.getLaengeDerVorstellungInMinuten()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellungen.getStartuhrzeit())){
                 gewuenschteVorstellungsID = alleVorstellungen.get(i).getVorstellungsid();
-                System.out.println("Geht");
             }
         }
 
