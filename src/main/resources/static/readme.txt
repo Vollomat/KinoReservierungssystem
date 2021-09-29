@@ -15,9 +15,7 @@ Buttons geschrieben werden (und wenn man draufklickt, kommt man auf die Ticket-b
 
 
 Dana:
-- Ausstrahlungszeiten als Buttons auf den Filmseiten ergänzen
 
-- Folgende Seiten im Footer müssen noch ergänzt werden: Über Uns, Karriere, Gutscheine
 
 ______________________________________________________
 
