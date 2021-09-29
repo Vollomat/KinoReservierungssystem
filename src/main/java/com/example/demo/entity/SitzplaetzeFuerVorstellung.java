@@ -20,6 +20,13 @@ public class SitzplaetzeFuerVorstellung {
 
     private String statusVomSitzplatz;
 
+    public SitzplaetzeFuerVorstellung(int sitzplatzID, int reihe, int spalte, int vorstellungsID, String statusVomSitzplatz) {
+        this.sitzplatzID = sitzplatzID;
+        this.reihe = reihe;
+        this.spalte = spalte;
+        this.vorstellungsID = vorstellungsID;
+        this.statusVomSitzplatz = statusVomSitzplatz;
+    }
 
     public int getSitzplatzID() {
         return sitzplatzID;

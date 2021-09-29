@@ -13,9 +13,9 @@ public class Vorstellungen {
     private int vorstellungsid;
 
 
-    private String filmName;
+    private String filmName; //Fremdschlüssel
 
-    private String kinosaalNummer;
+    private int kinosaalNummer; //Fremdschlüssel
 
     private String startuhrzeit;
 
@@ -37,11 +37,11 @@ public class Vorstellungen {
         this.filmName = filmName;
     }
 
-    public String getKinosaalNummer() {
+    public int getKinosaalNummer() {
         return kinosaalNummer;
     }
 
-    public void setKinosaalNummer(String kinosaalNummer) {
+    public void setKinosaalNummer(int kinosaalNummer) {
         this.kinosaalNummer = kinosaalNummer;
     }
 

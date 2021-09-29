@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Sitzplaetze;
+import com.example.demo.entity.SitzplaetzeFuerVorstellung;
 import com.example.demo.entity.Vorstellungen;
+import com.example.demo.repository.SitzplaetzeFuerVorstellungRepository;
+import com.example.demo.repository.SitzplaetzeRepository;
 import com.example.demo.repository.VorstellungRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +17,8 @@ import java.util.List;
 public class VorstellungController {
 
     private VorstellungRepository vorstellungRepository;
+    private SitzplaetzeRepository sitzplaetzeRepository;
+    private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
 
     public VorstellungController(VorstellungRepository vorstellungRepository) {
         this.vorstellungRepository = vorstellungRepository;
@@ -24,15 +30,54 @@ public class VorstellungController {
         return vorstellungRepository.findAll();
     }
 
-    @RequestMapping(produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/vorstellungen", consumes = MediaType.APPLICATION_JSON_VALUE,
+
+    @RequestMapping(value ="/anlegen", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/anlegen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void kundenAnlegen(@RequestBody Vorstellungen vorstellung) {
+    public void vorstellungAnlegen(@RequestBody Vorstellungen vorstellung) {
         if(existiertVorstellungSchon(vorstellung)) {
             System.err.println("Die Vorstellung existiert schon!");
         } else {
             System.out.println("Es wurde eine Vorstellung angelegt!");
+            sitzplanFuerVorstellungAnlegen(vorstellung);
             vorstellungRepository.save(vorstellung);
+        }
+    }
+
+    @RequestMapping(value ="/sitzplaetze", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/sitzplaetze", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ArrayList<SitzplaetzeFuerVorstellung> sitzplaetzeDerVorstellung(@RequestBody Vorstellungen vorstellungen) {
+        Vorstellungen gewuenschteVorstellung = null;
+        ArrayList<SitzplaetzeFuerVorstellung> gewuenschterSitzplan = new ArrayList<>();
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        ArrayList<SitzplaetzeFuerVorstellung> alleSitzplaetzeFuerVorstellung = (ArrayList<SitzplaetzeFuerVorstellung>) sitzplaetzeFuerVorstellungRepository.findAll();
+        for(int i = 0; i < alleVorstellungen.size(); i++) {
+            if(vorstellungen.getFilmName().equals(alleVorstellungen.get(i).getFilmName()) && vorstellungen.getStartuhrzeit().equals(alleVorstellungen.get(i).getStartuhrzeit())){
+                gewuenschteVorstellung = alleVorstellungen.get(i);
+            }
+        }
+        for(int i = 0; i < alleSitzplaetzeFuerVorstellung.size(); i++) {
+            if(gewuenschteVorstellung != null) {
+                if(alleSitzplaetzeFuerVorstellung.get(i).getVorstellungsID() == gewuenschteVorstellung.getVorstellungsid()) {
+                    gewuenschterSitzplan.add(alleSitzplaetzeFuerVorstellung.get(i));
+                }
+            }
+        }
+        return gewuenschterSitzplan;
+    }
+
+
+
+
+    public void sitzplanFuerVorstellungAnlegen(Vorstellungen vorstellungen) {
+        int gewuenschterKinoSaal = vorstellungen.getKinosaalNummer();
+        ArrayList<Sitzplaetze> alleSitzplaetze = (ArrayList<Sitzplaetze>) sitzplaetzeRepository.findAll();
+        for(int i = 0; i < alleSitzplaetze.size(); i++) {
+            if(alleSitzplaetze.get(i).getKinosaalID() == gewuenschterKinoSaal) {
+                SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(alleSitzplaetze.get(i).getSitzplatzID(), alleSitzplaetze.get(i).getReihe(), alleSitzplaetze.get(i).getSpalte(), vorstellungen.getVorstellungsid(), "FREI");
+                sitzplaetzeFuerVorstellungRepository.save(sitzplaetzeFuerVorstellung);
+            }
         }
     }
 
