@@ -21,8 +21,8 @@
         let hausnummer = document.querySelector("#hausnummer").value;
         let plz = document.querySelector("#plz").value;
         let ort = document.querySelector("#ort").value;
-        let username = document.querySelector("#username").value;
         let passwort = document.querySelector("#passwort").value;
+        let passwort2 = document.querySelector("#passwort2").value; //statt username wird das passwort wiederholt
         xhr.send(JSON.stringify({
             vorname:vorname,
             nachname:nachname,
@@ -32,8 +32,8 @@
             hausnummer:hausnummer,
             postleitzahl:plz,
             ort:ort,
-            username:username,
-            passwort:passwort
+            passwort:passwort,
+            passwort2:passwort2
         })); // send the request to the server.
         }
 
@@ -56,19 +56,13 @@
 </head>
 <body>
 
-  <header>
-      <a href="../index.html"> <img class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2FPhoto_1632420527471.png?v=1632561566020" height="65px" alt="logo"></a>
-      <nav>
-          <ul class="nav_links">
-              <li><a href="../subpages/programm.html">Programm</a></li>
-              <li><a href="../subpages/events.html">Events</a></li>
-              <li><a href="../subpages/preise.html">Preise</a></li>
-              <li><a href="../subpages/contact.html">Kontakt</a></li>
-          </ul>
-      </nav> <!-- end navigation --> 
-      <a class="ticket" href="../index.html"><button class="btn btn2">Startseite</button></a>
-  </header> <!-- end header --> 
-  
+<header>
+    <a href="../index.html"> <img class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo"></a>
+
+    <a class="ticket" href="../index.html"><button class="btn btn2">Startseite</button></a>
+</header> <!-- end header -->
+
+<div class="wrapper">
   <h2>
     Registrierung
   </h2>
@@ -76,7 +70,7 @@
 <daten>
   <div class="registrierung">
     <div class="content">
-      <form action="../ticketbuchung/saalplan.html">
+      <form action="../ticketbuchung/bezahlen.html">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Vorname</span>
@@ -92,7 +86,7 @@
           </div>
           <div class="input-box">
             <span class="details">Alter</span>
-            <input type="number" id="alter" placeholder="Gebe dein Alter ein" required>
+            <input type="number" id="alter" min="0" placeholder="Gebe dein Alter ein" required>
           </div>
           <div class="input-box">
             <span class="details">Straße</span>
@@ -111,12 +105,12 @@
             <input type="text" id="ort" placeholder="Gebe deinen Wohnort ein" required>
           </div>
           <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" id="username" placeholder="Wähle einen Usernamen" required>
+            <span class="details">Passwort</span>
+            <input type="text" id="passwort" placeholder="Wähle ein Passwort" required>
           </div>
           <div class="input-box">
-            <span class="details">Passwort</span>
-            <input type="password" id="passwort" placeholder="Wähle ein Passwort" required>
+            <span class="details">Passwort wiederholen</span>
+            <input type="password" id="passwort2" placeholder="Wähle ein Passwort" required>
           </div>
         </div>
         <div class="gender-details">
@@ -140,7 +134,8 @@
           </div>
         </div>
         <div class="button">
-          <button onclick="UserAction()" href="/ticketbuchung/saalplan.html"><input type="submit" value="Bestätigen"></button>
+            <!--<button onclick="UserAction()"><input type="submit" value="Bestätigen"></button>-->
+            <input type="submit" value="Bestätigen" onclick="UserAction()"> <!-- funktioniert das so auch? ansonsten darüber alte Version-->
         </div>
         <p style="font-style:italic; font-size:10px; text-align:center">
           <a href="../ticketbuchung/login.html">Du hast schon ein Konto?  Klicke hier zum Einloggen</a>
@@ -153,7 +148,7 @@
   <p>
     
   </p>
-
+</div>
 
   <footer class="footer">
       <div class="container">

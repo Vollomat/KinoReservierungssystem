@@ -29,6 +29,8 @@ ______________________________________________________
 
 Falls keine Aufgaben mehr, einfach etwas rausnehmen :)
 
+!!! Die Suchleiste muss implementiert werden !!!
+
 - Die Startseite muss noch "dekoriert" werden -> ist aktuell noch sehr leer
 
 

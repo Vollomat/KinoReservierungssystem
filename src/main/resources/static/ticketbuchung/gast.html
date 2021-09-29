@@ -43,48 +43,56 @@
 </script>
 
 <header>
-    <a href="index.html"> <img class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo"></a>
+    <a href="../index.html"> <img class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo"></a>
 
     <a class="ticket" href="../index.html"><button class="btn btn2">Startseite</button></a>
 </header> <!-- end header -->
 
 <div class="wrapper">
-  <h2>
-    Login
-  </h2>
- 
+<h2>
+    Weiter als Gast
+</h2>
+
 <daten>
-  <div class="registrierung">
-    <div class="content">
-      <form action="../ticketbuchung/bezahlen.html">
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">E-Mail</span>
-            <input type="text" id="email" placeholder="Gebe deine E-Mail-Adresse ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Passwort</span>
-            <input type="password" id="passwort" placeholder="Gebe dein Passwort ein" required>
-          </div>
-          <p style="font-style:italic; font-size:10px; text-align:center">
-            <a href="#">Passwort vergessen?</a>
-            <p id="FehlermeldungLogin" > Test Fehlermeldung Login </p>
+    <div class="registrierung">
+        <div class="content">
+            <form action="../ticketbuchung/bezahlen.html">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Vorname</span>
+                        <input type="text" id="vorname" placeholder="Gebe deinen Vornamen ein" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Nachname</span>
+                        <input type="text" id="nachname" placeholder="Gebe deinen Nachnamen ein" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">E-Mail</span>
+                        <input type="text" id="email" placeholder="Gebe deine E-Mail-Adresse ein" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Alter*</span>
+                        <input type="number" id="alter" min="0" placeholder="Gebe dein Alter ein" required>
+                    </div>
+                    <p style="font-style:italic; font-size:12px; text-align:left">
+                    *Dein Alter wird verwendet, um den Preis deines Tickets richtig berechnen
+                    zu können - die vollständige Rabattliste kannst du auf unserer Preis-Seite nachlesen!
+                    </p>
+                </div>
+                <div class="button">
+                    <a href="../ticketbuchung/bezahlen.html"><input type="submit" value="Bestätigen"></a>
+                </div>
+                <p style="font-style:italic; font-size:10px; text-align:center">
+                    <a href="../ticketbuchung/registrierung.html">Du möchtest doch ein Konto erstellen?  Klicke hier zum Registrieren</a>
+                </p>
+            </form>
         </div>
-        <div class="button">
-          <a href="../ticketbuchung/bezahlen.html"><input type="submit" value="Bestätigen"></a>
-        </div>
-        <p style="font-style:italic; font-size:10px; text-align:center">
-          <a href="../ticketbuchung/registrierung.html">Du hast noch kein Konto?  Klicke hier zum Registrieren</a>
-        </p>
-      </form>
     </div>
-  </div>
 </daten>
-  <p>
+<p>
 
-  </p>
+</p>
 </div>
-
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -128,6 +136,6 @@
         </div>
     </div>
 </footer>
-  
-  </body>
+
+</body>
 </html>
