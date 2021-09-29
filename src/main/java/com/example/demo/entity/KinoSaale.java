@@ -12,7 +12,7 @@ public class KinoSaale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int kinoSaalID;
 
-    private int kinoID;
+    private int kinoID; //Fremdschlüssel
 
     public int getKinoSaalID() {
         return kinoSaalID;

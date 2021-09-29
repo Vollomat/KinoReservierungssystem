@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.Bestellungen;
 import com.example.demo.entity.Tickets;
 import com.example.demo.repository.BestellungenRepository;
+import com.example.demo.repository.KundenRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

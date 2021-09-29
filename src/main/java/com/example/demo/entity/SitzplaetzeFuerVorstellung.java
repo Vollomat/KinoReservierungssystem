@@ -1,13 +1,12 @@
 package com.example.demo.entity;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Sitzplaetze {
+public class SitzplaetzeFuerVorstellung {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +16,9 @@ public class Sitzplaetze {
 
     private int spalte;
 
-    private int kinosaalID; //Fremdschlüssel
+    private int vorstellungsID; //Fremdschlüssel
+
+    private String statusVomSitzplatz;
 
 
     public int getSitzplatzID() {
@@ -44,11 +45,19 @@ public class Sitzplaetze {
         this.spalte = spalte;
     }
 
-    public int getKinosaalID() {
-        return kinosaalID;
+    public int getVorstellungsID() {
+        return vorstellungsID;
     }
 
-    public void setKinosaalID(int kinosaalID) {
-        this.kinosaalID = kinosaalID;
+    public void setVorstellungsID(int vorstellungsID) {
+        this.vorstellungsID = vorstellungsID;
+    }
+
+    public String getStatusVomSitzplatz() {
+        return statusVomSitzplatz;
+    }
+
+    public void setStatusVomSitzplatz(String statusVomSitzplatz) {
+        this.statusVomSitzplatz = statusVomSitzplatz;
     }
 }
