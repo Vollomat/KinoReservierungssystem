@@ -761,7 +761,7 @@ input[type=checkbox]:checked:disabled + label:before {
 }
 
 .filmbilder .box .imgBx{
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -770,7 +770,7 @@ input[type=checkbox]:checked:disabled + label:before {
 
 .filmbilder .box .imgBx:before{
   content: '';
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -786,7 +786,7 @@ input[type=checkbox]:checked:disabled + label:before {
 }
 
 .filmbilder .box .imgBx img{
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -795,7 +795,7 @@ input[type=checkbox]:checked:disabled + label:before {
 }
 
 .filmbilder .box .content{
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -850,12 +850,7 @@ textarea{
 
 }
 
-btns{
-  width: 30%;
-  height: 30%;
-  background: #581520;
-  margin-bottom: 1em;
-}
+
 
 #ft-form [type=date],
 #ft-form [type=email],
@@ -883,7 +878,7 @@ btns{
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
-  border-color: #e5e7eb;
+  border-color: white;
   outline: none;
 }
 
@@ -1061,4 +1056,10 @@ btns{
   opacity:1;
   transform: translateY(10px);
   -webkit-transform: translateY(10px);
+}
+
+/*Gutscheine*/
+
+.gutscheintext{
+  text-align: center;
 }
