@@ -41,8 +41,8 @@ public class VorstellungController {
             System.err.println("Die Vorstellung existiert schon!");
         } else {
             System.out.println("Es wurde eine Vorstellung angelegt!");
-            sitzplanFuerVorstellungAnlegen(vorstellung);
             vorstellungRepository.save(vorstellung);
+            sitzplanFuerVorstellungAnlegen(vorstellung);
         }
     }
 
@@ -79,6 +79,7 @@ public class VorstellungController {
         for(int i = 0; i < alleVorstellungen.size(); i++) {
             if(alleVorstellungen.get(i).getKinosaalNummer() == vorstellungen.getKinosaalNummer() && alleVorstellungen.get(i).getLaengeDerVorstellungInMinuten().equals(vorstellungen.getLaengeDerVorstellungInMinuten()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellungen.getStartuhrzeit())){
                 gewuenschteVorstellungsID = alleVorstellungen.get(i).getVorstellungsid();
+                System.out.println("Geht");
             }
         }
 
