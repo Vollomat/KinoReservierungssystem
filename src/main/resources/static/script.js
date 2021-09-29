@@ -67,4 +67,34 @@ container.addEventListener('click', e => {
 });
 
 // Initial count and total set
-updateSelectedCount();
+updateSelectedCount(currentfilm);
+
+//aktuell ausgewählter Film wird mitgegeben und die zugehörigen Vorstellungen werden zurückgeliefert
+function getAndShowVorstellungen(currentfilm) {
+  var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+  xhr.onload = success; // call success function if request is successful
+  xhr.onerror = error;  // call error function if request failed
+  xhr.open('POST', 'http://localhost:8080/Vorstellungen'); // open a POST request
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  var film = currentfilm;
+
+  xhr.send(JSON.stringify({
+    film: film //mitgegebener Film wird in json umgewandelt und gesendet
+  })); // send the request to the server.
+}
+
+function success() {
+  var vorstellungen = JSON.parse(this.responseText.toString()); //parse the string to JSON
+  //hier müssen die zurückgelieferten Vorstellungen in die buttons gespeichert werden
+  var neu = document.getElementById("ersteVorst").innerText = 18;
+  alert(neu);
+}
+
+// function to handle error
+function error(err) {
+  alert('Request Failed');
+}
+
+
+//HIER WERDEN ALLE DATEN EINER BESTELLUNG AN DEN SERVER GESENDET
+
