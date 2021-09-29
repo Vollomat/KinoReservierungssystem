@@ -4,6 +4,8 @@ Elisa:
 
 - Die einzelnen fehlenden Filmseiten müssen nach Vorlage (Free Guy) noch erstellt werden
 
+- Namen der Filme werden nicht mehr angezeigt beim hovern -> beheben
+
 Nandini
 
 - Die Austrahlungszeiten müssen noch festgelegt werden und auf die Filmseiten als
