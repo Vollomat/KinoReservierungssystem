@@ -1063,3 +1063,8 @@ textarea{
 .gutscheintext{
   text-align: center;
 }
+
+.vorstellungtabelle{
+  text-align: center;
+  margin: 0 auto;
+}
