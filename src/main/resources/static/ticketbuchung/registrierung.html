@@ -34,8 +34,11 @@
             postleitzahl:plz,
             ort:ort,
             passwort:passwort,
-            passwort2:passwort2
         })); // send the request to the server.
+
+            //E-Mail wird in sessionstorage gespeichert
+            sessionStorage.setItem('s_email', email);
+            alert(sessionStorage.getItem('s_email'))
         }
 
 
@@ -137,10 +140,10 @@
           </div>
         </div>
           <div class= "button" >
-              <a href="bezahlen.html"><input type="submit" value="Bestätigen" onclick="UserAction()"></a> <!-- funktioniert das so auch? ansonsten darüber alte Version-->
-              <div class="abbrechen">
-                  <input type="submit" value="Abbruch" onclick="abort()">
-              </div>
+              <a href="bezahlen.html"><input type="submit" value="Bestätigen" onclick="UserAction()"></a>
+          </div>
+          <div class="abbrechen">
+              <a href="../index.html"><input type="submit" value="Abbruch" onclick="abort()"></a>
           </div>
         <p style="font-style:italic; font-size:10px; text-align:center">
           <a href="../ticketbuchung/login.html">Du hast schon ein Konto?  Klicke hier zum Einloggen</a>
@@ -153,6 +156,10 @@
   <p>
     
   </p>
+</div>
+
+<div class="button">
+    <a href="../index.html"><input type="submit" value="Abbruch" onclick="abort()"></a>
 </div>
 
   <footer class="footer">

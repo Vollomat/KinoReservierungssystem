@@ -30,7 +30,7 @@ public class TicketController {
     @PostMapping(value = "/tickets", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Tickets kundenAnlegen(@RequestBody Tickets ticket) {
+    public Tickets ticketAnlegen(@RequestBody Tickets ticket) {
         if(existiertTicketSchon(ticket)) {
             System.err.println("Das Ticket existiert schon!");
         } else {

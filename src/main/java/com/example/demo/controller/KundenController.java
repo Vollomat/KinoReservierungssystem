@@ -26,12 +26,20 @@ public class KundenController {
         return kundenRepository.findAll();
     }
 
-    @RequestMapping(produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/kunden", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value ="register", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="register", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void kundenAnlegen(@RequestBody Kunden kunden) {
+    public boolean kundenAnlegen(@RequestBody Kunden kunden) {
+        ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) kundenRepository.findAll();
+        for(int i = 0; i < alleKunden.size(); i++) {
+            if(alleKunden.get(i).getEmail().equals(kunden.getEmail())){
+                System.err.println("Der mitgegebene Kunde mit der E-Mail " + kunden.getEmail() + " existiert schon!");
+                return false;
+            }
+        }
         System.out.println("Ein Kunde wurde angelegt!");
         kundenRepository.save(kunden);
+        return true;
     }
 
     @RequestMapping(value = "/passwortvergessen",produces = "application/json", method = RequestMethod.POST)
@@ -55,15 +63,15 @@ public class KundenController {
     @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Kunden einloggen(@RequestBody Einloggdaten einloggdaten) {
+    public boolean einloggen(@RequestBody Einloggdaten einloggdaten) {
         ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) alleKunden();
         for(int i=0; i<alleKunden.size(); i++) {
             System.out.println("Passwort:" + alleKunden.get(i).getPasswort().equals(einloggdaten.getPasswort()));
             if(alleKunden.get(i).getPasswort().equals(einloggdaten.getPasswort()) && alleKunden.get(i).getEmail().equals(einloggdaten.getEmail())) {
-                return alleKunden.get(i);
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
 }

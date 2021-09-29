@@ -24,6 +24,9 @@
             email:email,
             passwort:passwort,
         })); // send the request to the server.
+
+        //E-Mail wird in sessionstorage gespeichert
+        sessionStorage.setItem('s_email', email);
     }
 
     function success() {
@@ -38,6 +41,10 @@
     // function to handle error
     function error(err) {
         alert('Request Failed');
+    }
+
+    function abort() {
+        sessionStorage.clear();
     }
 
 </script>
@@ -73,7 +80,7 @@
         <div class="button">
           <a href="../ticketbuchung/bezahlen.html"><input type="submit" value="Bestätigen"></a>
             <div class="abbrechen">
-                <a href="index.html"><input type="submit" value="Abbruch" onclick="abort()"></a>
+                <a href="../index.html"><input type="submit" value="Abbruch" onclick="abort()"></a>
             </div>
         </div>
         <p style="font-style:italic; font-size:10px; text-align:center">
@@ -86,6 +93,10 @@
   <p>
 
   </p>
+</div>
+
+<div class="button">
+    <a href="../index.html"><input type="submit" value="Abbruch" onclick="abort()"></a>
 </div>
 
 <footer class="footer">
