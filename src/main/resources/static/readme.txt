@@ -23,7 +23,8 @@ ______________________________________________________
 
 Falls keine Aufgaben mehr, einfach etwas rausnehmen :)
 
-!!! Die Suchleiste muss implementiert werden !!!
+!!! Die Suchleiste muss implementiert werden !!! -> Dafür brauchen wir erstmal ein Interface,
+eine Seite auf der Suchergebnisse aufgelistet werden können
 
 - Die Startseite muss noch "dekoriert" werden -> ist aktuell noch sehr leer
 
