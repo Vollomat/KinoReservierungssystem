@@ -20,8 +20,10 @@ public class VorstellungController {
     private SitzplaetzeRepository sitzplaetzeRepository;
     private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
 
-    public VorstellungController(VorstellungRepository vorstellungRepository) {
+    public VorstellungController(VorstellungRepository vorstellungRepository, SitzplaetzeRepository sitzplaetzeRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository) {
         this.vorstellungRepository = vorstellungRepository;
+        this.sitzplaetzeRepository = sitzplaetzeRepository;
+        this.sitzplaetzeFuerVorstellungRepository = sitzplaetzeFuerVorstellungRepository;
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
@@ -72,11 +74,21 @@ public class VorstellungController {
 
     public void sitzplanFuerVorstellungAnlegen(Vorstellungen vorstellungen) {
         int gewuenschterKinoSaal = vorstellungen.getKinosaalNummer();
-        ArrayList<Sitzplaetze> alleSitzplaetze = (ArrayList<Sitzplaetze>) sitzplaetzeRepository.findAll();
-        for(int i = 0; i < alleSitzplaetze.size(); i++) {
-            if(alleSitzplaetze.get(i).getKinosaalID() == gewuenschterKinoSaal) {
-                SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(alleSitzplaetze.get(i).getSitzplatzID(), alleSitzplaetze.get(i).getReihe(), alleSitzplaetze.get(i).getSpalte(), vorstellungen.getVorstellungsid(), "FREI");
-                sitzplaetzeFuerVorstellungRepository.save(sitzplaetzeFuerVorstellung);
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        int gewuenschteVorstellungsID = 0;
+        for(int i = 0; i < alleVorstellungen.size(); i++) {
+            if(alleVorstellungen.get(i).getKinosaalNummer() == vorstellungen.getKinosaalNummer() && alleVorstellungen.get(i).getLaengeDerVorstellungInMinuten().equals(vorstellungen.getLaengeDerVorstellungInMinuten()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellungen.getStartuhrzeit())){
+                gewuenschteVorstellungsID = alleVorstellungen.get(i).getVorstellungsid();
+            }
+        }
+
+        if (sitzplaetzeRepository.findAll() != null) {
+            ArrayList<Sitzplaetze> alleSitzplaetze = (ArrayList<Sitzplaetze>) sitzplaetzeRepository.findAll();
+            for (int i = 0; i < alleSitzplaetze.size(); i++) {
+                if (alleSitzplaetze.get(i).getKinosaalID() == gewuenschterKinoSaal) {
+                    SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(alleSitzplaetze.get(i).getSitzplatzID(), alleSitzplaetze.get(i).getReihe(), alleSitzplaetze.get(i).getSpalte(), gewuenschteVorstellungsID, "FREI");
+                    sitzplaetzeFuerVorstellungRepository.save(sitzplaetzeFuerVorstellung);
+                }
             }
         }
     }

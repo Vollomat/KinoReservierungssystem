@@ -28,6 +28,10 @@ public class SitzplaetzeFuerVorstellung {
         this.statusVomSitzplatz = statusVomSitzplatz;
     }
 
+    public SitzplaetzeFuerVorstellung() {
+
+    }
+
     public int getSitzplatzID() {
         return sitzplatzID;
     }
