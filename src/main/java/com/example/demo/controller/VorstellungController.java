@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.OMDBFilme;
 import com.example.demo.entity.Sitzplaetze;
 import com.example.demo.entity.SitzplaetzeFuerVorstellung;
 import com.example.demo.entity.Vorstellungen;
@@ -27,7 +28,8 @@ public class VorstellungController {
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
-    public List<Vorstellungen> alleVorstellungen(@RequestBody String filmname) {
+    public ArrayList<Vorstellungen> alleVorstellungen(@RequestBody OMDBFilme filmname) {
+        System.out.println(filmname.getTitel());
         System.out.println("GET wurde ausgeführt für alle Vorstellungen");
         ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
@@ -39,6 +41,25 @@ public class VorstellungController {
 
         return benoetigteVorstellungen;
     }
+
+    @RequestMapping(value ="/filmbekommen", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/filmbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Vorstellungen> alleZVorstellungen(@RequestBody String filmname) {
+        System.out.println("POST wurde ausgeführt für alle Vorstellungen");
+        ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        for(int i = 0; i < alleVorstellungen.size(); i++) {
+            System.out.println(alleVorstellungen.get(i).getFilmName());
+            if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
+                benoetigteVorstellungen.add(alleVorstellungen.get(i));
+                System.out.println("Hat geklappt");
+            }
+        }
+
+        return (List<Vorstellungen>) benoetigteVorstellungen;
+    }
+
 
 
     @RequestMapping(value ="/anlegen", produces = "application/json", method = RequestMethod.POST)

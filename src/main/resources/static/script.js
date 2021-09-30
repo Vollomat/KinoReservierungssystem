@@ -72,30 +72,32 @@ updateSelectedCount(currentfilm);
 
 
 //aktuell ausgewählter Film wird mitgegeben und die zugehörigen Vorstellungen werden zurückgeliefert
-function getAndShowVorstellungen(currentfilm){
+async function getAndShowVorstellungen(currentfilm){
 
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
     xhr.onload = success; // call success function if request is successful
     xhr.onerror = error;  // call error function if request failed
-    xhr.open('GET', 'http://localhost:8080/vorstellungen'); // open a POST request
+    xhr.open('POST', 'http://localhost:8080/vorstellungen/filmbekommen/'); // open a GET request
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.responseType
-    var film = currentfilm;
-    xhr.send(film); // send the request to the server.
-    var text = xhr.responseText;
-    console.log(text);
-    alert(text);
+    xhr.send("Transformers");  // send the request to the server.
+    var data = JSON.parse(xhr.responseText.toString()); //parse the string to JSON
+    console.log(data);
+    alert(data);
 }
 
 function success() {
     //hier müssen die zurückgelieferten Vorstellungen in die buttons gespeichert werden
     //var film = 'freeguy';
-    if(film == 'freeguy') {}
-    document.getElementById("ersteVorst").innerText = vorstellungen[0];
-    document.getElementById("zweiteVorst").innerText = vorstellungen[1];
-    document.getElementById("dritteVorst").innerText = vorstellungen[2];
-    document.getElementById("vierteVorst").innerText = vorstellungen[3];
-    document.getElementById("fünfteVorst").innerText = vorstellungen[4];
+    var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
+    console.log(data);
+    alert(data);
+    //if(film == 'freeguy') {}
+    //document.getElementById("ersteVorst").innerText = vorstellungen[0];
+    //document.getElementById("zweiteVorst").innerText = vorstellungen[1];
+    //document.getElementById("dritteVorst").innerText = vorstellungen[2];
+    //document.getElementById("vierteVorst").innerText = vorstellungen[3];
+    //document.getElementById("fünfteVorst").innerText = vorstellungen[4];
+
 }
 
 // function to handle error
