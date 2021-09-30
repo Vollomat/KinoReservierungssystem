@@ -79,48 +79,12 @@ function getAndShowVorstellungen(currentfilm){
     xhr.onerror = error;  // call error function if request failed
     xhr.open('GET', 'http://localhost:8080/vorstellungen'); // open a POST request
     xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType
     var film = currentfilm;
     xhr.send(film); // send the request to the server.
-    var vorstellungen = [
-        {
-            "vorstellungsid": 1,
-            "filmName": "Terminator",
-            "kinosaalNummer": 2,
-            "startuhrzeit": "18:00",
-            "laengeDerVorstellungInMinuten": "174"
-        },
-        {
-            "vorstellungsid": 2,
-            "filmName": "Terminator",
-            "kinosaalNummer": 3,
-            "startuhrzeit": "20:00",
-            "laengeDerVorstellungInMinuten": "174"
-        },
-        {
-            "vorstellungsid": 3,
-            "filmName": "Terminator",
-            "kinosaalNummer": 4,
-            "startuhrzeit": "22:00",
-            "laengeDerVorstellungInMinuten": "174"
-        },
-        {
-            "vorstellungsid": 2,
-            "filmName": "Terminator",
-            "kinosaalNummer": 3,
-            "startuhrzeit": "20:00",
-            "laengeDerVorstellungInMinuten": "174"
-        },
-        {
-            "vorstellungsid": 3,
-            "filmName": "Terminator",
-            "kinosaalNummer": 4,
-            "startuhrzeit": "22:00",
-            "laengeDerVorstellungInMinuten": "174"
-        }
-    ];
-    alert((this.responseText.toString())); //parse the string to JSON);
-    JSON.parse(vorstellungen.toString());
-    console.log(vorstellungen);
+    var text = xhr.responseText;
+    console.log(text);
+    alert(text);
 }
 
 function success() {
@@ -132,7 +96,6 @@ function success() {
     document.getElementById("dritteVorst").innerText = vorstellungen[2];
     document.getElementById("vierteVorst").innerText = vorstellungen[3];
     document.getElementById("fünfteVorst").innerText = vorstellungen[4];
-
 }
 
 // function to handle error
