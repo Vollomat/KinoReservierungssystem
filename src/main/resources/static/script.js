@@ -90,7 +90,7 @@ function success() {
     console.log(vorstellungen);
     alert("success funktion aufgerufen")
     console.log(vorstellungen);
-    if (film == 'Transformers') {
+    /*if (film == 'Transformers') {
         document.getElementById("ersteVorst_transf").innerText = vorstellungen[0];
         document.getElementById("zweiteVorst_transf").innerText = vorstellungen[1];
         document.getElementById("dritteVorst_transf").innerText = vorstellungen[2];
@@ -150,7 +150,7 @@ function success() {
         document.getElementById("zweiteVorst_t2jd").innerText = vorstellungen[1];
         document.getElementById("dritteVorst_t2jd").innerText = vorstellungen[2];
         document.getElementById("vierteVorst_t2jd").innerText = vorstellungen[3];
-    }
+    }*/
 }
 
 // function to handle error
