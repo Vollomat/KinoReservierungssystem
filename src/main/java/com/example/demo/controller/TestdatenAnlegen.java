@@ -57,9 +57,7 @@ public class TestdatenAnlegen {
                 produces = MediaType.APPLICATION_JSON_VALUE)
         public void testdatenVorstellungenAnlegen() {
             VorstellungController vorstellungController = new VorstellungController(vorstellungRepository, sitzplaetzeRepository, sitzplaetzeFuerVorstellungRepository);
-            int kinosaalnummer;
-            String uhrzeit;
-            for(int j = 0; j < omdbRepository.findAll().size(); j++) {
+            for(int j = 0; j < omdbRepository.findAll().size()-8; j++) {
                 for (int i = 1; i < 5; i++) {
                     Vorstellungen vorstellung = new Vorstellungen();
                     vorstellung.setFilmName(omdbRepository.findAll().get(j).getTitel());

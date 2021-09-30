@@ -28,30 +28,19 @@ public class VorstellungController {
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
-    public ArrayList<Vorstellungen> alleVorstellungen(@RequestBody OMDBFilme filmname) {
-        System.out.println(filmname.getTitel());
-        System.out.println("GET wurde ausgeführt für alle Vorstellungen");
-        ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
-        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
-        for(int i = 0; i < alleVorstellungen.size(); i++) {
-            if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
-                benoetigteVorstellungen.add(alleVorstellungen.get(i));
-            }
-        }
-
-        return benoetigteVorstellungen;
+    public List<Vorstellungen> alleVorstellungen() {
+        return vorstellungRepository.findAll();
     }
 
     @RequestMapping(value ="/filmbekommen", produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value ="/filmbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Vorstellungen[] alleZVorstellungen(@RequestBody String filmname) {
-        ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
         Vorstellungen[] vorstellungenzurueck = new Vorstellungen[4];
         int gefundeneElemente = 0;
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        System.out.println(filmname);
         for(int i = 0; i < alleVorstellungen.size(); i++) {
-            System.out.println(alleVorstellungen.get(i).getFilmName());
             if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
                 if(gefundeneElemente < 4) {
                     vorstellungenzurueck[gefundeneElemente] = alleVorstellungen.get(i);

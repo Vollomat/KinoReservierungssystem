@@ -75,13 +75,12 @@ updateSelectedCount();
 
 //aktuell ausgewählter Film wird mitgegeben und die zugehörigen Vorstellungen werden zurückgeliefert
 async function getAndShowVorstellungen(currentfilm){
-
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
     xhr.onload = success; // call success function if request is successful
     xhr.onerror = error;  // call error function if request failed
     xhr.open('POST', 'http://localhost:8080/vorstellungen/filmbekommen/'); // open a GET request
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send("Transformers");  // send the request to the server.
+    xhr.send(currentfilm);  // send the request to the server.
 }
 
 function success() {
