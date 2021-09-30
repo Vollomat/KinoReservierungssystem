@@ -26,7 +26,7 @@ public class KinoSaale {
         return kinoID;
     }
 
-    public void setKino(int kino) {
-        this.kinoID = kino;
+    public void setKinoID(int kinoID) {
+        this.kinoID = kinoID;
     }
 }

@@ -10,8 +10,10 @@ public class OMDBFilme {
 
 
     @Id
-    private String titel;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int filmID;
 
+    private String titel;
 
     private String jahr;
 
@@ -19,7 +21,9 @@ public class OMDBFilme {
 
     private String urlBild;
 
-    public OMDBFilme(String titel, String jahr, String imdbID, String urlBild) {
+
+    public OMDBFilme(int filmID, String titel, String jahr, String imdbID, String urlBild) {
+        this.filmID = filmID;
         this.titel = titel;
         this.jahr = jahr;
         this.imdbID = imdbID;
@@ -62,4 +66,11 @@ public class OMDBFilme {
         this.urlBild = urlBild;
     }
 
+    public int getFilmID() {
+        return filmID;
+    }
+
+    public void setFilmID(int filmID) {
+        this.filmID = filmID;
+    }
 }
