@@ -47,13 +47,13 @@ public class VorstellungController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Vorstellungen[] alleZVorstellungen(@RequestBody String filmname) {
         ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
-        Vorstellungen[] vorstellungenzurueck = new Vorstellungen[5];
+        Vorstellungen[] vorstellungenzurueck = new Vorstellungen[4];
         int gefundeneElemente = 0;
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         for(int i = 0; i < alleVorstellungen.size(); i++) {
             System.out.println(alleVorstellungen.get(i).getFilmName());
             if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
-                if(gefundeneElemente < 5) {
+                if(gefundeneElemente < 4) {
                     vorstellungenzurueck[gefundeneElemente] = alleVorstellungen.get(i);
                     gefundeneElemente++;
                 }
