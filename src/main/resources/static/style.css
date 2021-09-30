@@ -759,7 +759,7 @@ input[type=checkbox]:checked:disabled + label:before {
 }
 
 .filmbilder .box .imgBx{
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -768,7 +768,7 @@ input[type=checkbox]:checked:disabled + label:before {
 
 .filmbilder .box .imgBx:before{
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -784,7 +784,7 @@ input[type=checkbox]:checked:disabled + label:before {
 }
 
 .filmbilder .box .imgBx img{
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -793,7 +793,7 @@ input[type=checkbox]:checked:disabled + label:before {
 }
 
 .filmbilder .box .content{
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -847,8 +847,6 @@ textarea{
   height: 100px;
 
 }
-
-
 
 #ft-form [type=date],
 #ft-form [type=email],
@@ -1011,7 +1009,6 @@ textarea{
   background: rgb(46, 45, 45); /*box-Farbe*/
 }
 
-
 /*Events Hover*/
 .eventone{
   align: center;
@@ -1024,7 +1021,6 @@ textarea{
   background-position: center center;
   margin: 25px auto auto;
 }
-
 
 .hoverinhalt {
   opacity:0;
