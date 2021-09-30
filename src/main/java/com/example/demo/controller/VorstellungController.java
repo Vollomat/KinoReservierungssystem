@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.OMDBFilme;
 import com.example.demo.entity.Sitzplaetze;
 import com.example.demo.entity.SitzplaetzeFuerVorstellung;
 import com.example.demo.entity.Vorstellungen;
@@ -27,10 +28,40 @@ public class VorstellungController {
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
-    public List<Vorstellungen> alleVorstellungen() {
+    public ArrayList<Vorstellungen> alleVorstellungen(@RequestBody OMDBFilme filmname) {
+        System.out.println(filmname.getTitel());
         System.out.println("GET wurde ausgeführt für alle Vorstellungen");
-        return vorstellungRepository.findAll();
+        ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        for(int i = 0; i < alleVorstellungen.size(); i++) {
+            if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
+                benoetigteVorstellungen.add(alleVorstellungen.get(i));
+            }
+        }
+
+        return benoetigteVorstellungen;
     }
+
+    @RequestMapping(value ="/filmbekommen", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/filmbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Vorstellungen[] alleZVorstellungen(@RequestBody String filmname) {
+        ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
+        Vorstellungen[] vorstellungenzurueck = new Vorstellungen[5];
+        int gefundeneElemente = 0;
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        for(int i = 0; i < alleVorstellungen.size(); i++) {
+            System.out.println(alleVorstellungen.get(i).getFilmName());
+            if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
+                if(gefundeneElemente < 5) {
+                    vorstellungenzurueck[gefundeneElemente] = alleVorstellungen.get(i);
+                    gefundeneElemente++;
+                }
+            }
+        }
+        return vorstellungenzurueck;
+    }
+
 
 
     @RequestMapping(value ="/anlegen", produces = "application/json", method = RequestMethod.POST)
@@ -98,7 +129,7 @@ public class VorstellungController {
 
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         for(int i = 0; i < alleVorstellungen.size(); i++) {
-            if(alleVorstellungen.get(i).getFilmName().equals(vorstellung.getFilmName()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellung.getStartuhrzeit())) {
+            if(alleVorstellungen.get(i).getFilmName().equals(vorstellung.getFilmName()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellung.getStartuhrzeit()) && alleVorstellungen.get(i).getKinosaalNummer() == vorstellung.getKinosaalNummer()) {
                 ergebnis = true;
             }
         }

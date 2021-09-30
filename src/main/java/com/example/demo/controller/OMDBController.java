@@ -37,7 +37,7 @@ public class OMDBController {
         omdbAPIAbfragen[11] = "https://www.omdbapi.com/?s=joker&type=movie&apikey=96cfc15e";
 
         for(int i = 0; i < omdbAPIAbfragen.length; i++) {
-            OMDBFilme omdbFilm = KinoticketReservierungssystem.datenbankEintrag(KinoticketReservierungssystem.datenbankAbfrageOMDBAPI(omdbAPIAbfragen[i]));
+            OMDBFilme omdbFilm = KinoticketReservierungssystem.datenbankEintrag(KinoticketReservierungssystem.datenbankAbfrageOMDBAPI(omdbAPIAbfragen[i]), i);
             omdbRepository.save(omdbFilm);
         }
     }
