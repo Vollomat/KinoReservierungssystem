@@ -6,7 +6,7 @@ const movieSelect = document.getElementById('movie');
 
 populateUI();
 
-let ticketPrice = +movieSelect.value;
+//let ticketPrice = +movieSelect.value;
 
 // Save selected movie index and price
 function setMovieData(movieIndex, moviePrice) {
@@ -48,7 +48,7 @@ function populateUI() {
 }
 
 // Movie select event
-movieSelect.addEventListener('change', e => {
+/*movieSelect.addEventListener('change', e => {
   ticketPrice = +e.target.value;
   setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount();
@@ -68,26 +68,71 @@ container.addEventListener('click', e => {
 
 // Initial count and total set
 updateSelectedCount(currentfilm);
+ */
+
 
 //aktuell ausgewählter Film wird mitgegeben und die zugehörigen Vorstellungen werden zurückgeliefert
-function getAndShowVorstellungen(currentfilm) {
-  var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
-  xhr.onload = success; // call success function if request is successful
-  xhr.onerror = error;  // call error function if request failed
-  xhr.open('POST', 'http://localhost:8080/Vorstellungen'); // open a POST request
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  var film = currentfilm;
+function getAndShowVorstellungen(currentfilm){
 
-  xhr.send(JSON.stringify({
-    film: film //mitgegebener Film wird in json umgewandelt und gesendet
-  })); // send the request to the server.
+    var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+    xhr.onload = success; // call success function if request is successful
+    xhr.onerror = error;  // call error function if request failed
+    xhr.open('GET', 'http://localhost:8080/vorstellungen'); // open a POST request
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    var film = currentfilm;
+    xhr.send(film); // send the request to the server.
+    var vorstellungen = [
+        {
+            "vorstellungsid": 1,
+            "filmName": "Terminator",
+            "kinosaalNummer": 2,
+            "startuhrzeit": "18:00",
+            "laengeDerVorstellungInMinuten": "174"
+        },
+        {
+            "vorstellungsid": 2,
+            "filmName": "Terminator",
+            "kinosaalNummer": 3,
+            "startuhrzeit": "20:00",
+            "laengeDerVorstellungInMinuten": "174"
+        },
+        {
+            "vorstellungsid": 3,
+            "filmName": "Terminator",
+            "kinosaalNummer": 4,
+            "startuhrzeit": "22:00",
+            "laengeDerVorstellungInMinuten": "174"
+        },
+        {
+            "vorstellungsid": 2,
+            "filmName": "Terminator",
+            "kinosaalNummer": 3,
+            "startuhrzeit": "20:00",
+            "laengeDerVorstellungInMinuten": "174"
+        },
+        {
+            "vorstellungsid": 3,
+            "filmName": "Terminator",
+            "kinosaalNummer": 4,
+            "startuhrzeit": "22:00",
+            "laengeDerVorstellungInMinuten": "174"
+        }
+    ];
+    alert((this.responseText.toString())); //parse the string to JSON);
+    JSON.parse(vorstellungen.toString());
+    console.log(vorstellungen);
 }
 
 function success() {
-  var vorstellungen = JSON.parse(this.responseText.toString()); //parse the string to JSON
-  //hier müssen die zurückgelieferten Vorstellungen in die buttons gespeichert werden
-  var neu = document.getElementById("ersteVorst").innerText = 18;
-  alert(neu);
+    //hier müssen die zurückgelieferten Vorstellungen in die buttons gespeichert werden
+    //var film = 'freeguy';
+    if(film == 'freeguy') {}
+    document.getElementById("ersteVorst").innerText = vorstellungen[0];
+    document.getElementById("zweiteVorst").innerText = vorstellungen[1];
+    document.getElementById("dritteVorst").innerText = vorstellungen[2];
+    document.getElementById("vierteVorst").innerText = vorstellungen[3];
+    document.getElementById("fünfteVorst").innerText = vorstellungen[4];
+
 }
 
 // function to handle error
