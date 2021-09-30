@@ -45,19 +45,20 @@ public class VorstellungController {
     @RequestMapping(value ="/filmbekommen", produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value ="/filmbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Vorstellungen> alleZVorstellungen(@RequestBody String filmname) {
+    public Vorstellungen[] alleZVorstellungen(@RequestBody String filmname) {
         System.out.println("POST wurde ausgeführt für alle Vorstellungen");
         ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
+        Vorstellungen[] vorstellungenzurueck = new Vorstellungen[5];
+        int gefundeneElemente = 0;
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         for(int i = 0; i < alleVorstellungen.size(); i++) {
             System.out.println(alleVorstellungen.get(i).getFilmName());
             if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
-                benoetigteVorstellungen.add(alleVorstellungen.get(i));
-                System.out.println("Hat geklappt");
+                vorstellungenzurueck[gefundeneElemente] = alleVorstellungen.get(i);
+                gefundeneElemente++;
             }
         }
-
-        return (List<Vorstellungen>) benoetigteVorstellungen;
+        return vorstellungenzurueck;
     }
 
 

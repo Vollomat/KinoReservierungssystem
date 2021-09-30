@@ -80,9 +80,6 @@ async function getAndShowVorstellungen(currentfilm){
     xhr.open('POST', 'http://localhost:8080/vorstellungen/filmbekommen/'); // open a GET request
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send("Transformers");  // send the request to the server.
-    var data = JSON.parse(xhr.responseText.toString()); //parse the string to JSON
-    console.log(data);
-    alert(data);
 }
 
 function success() {
