@@ -27,9 +27,17 @@ public class VorstellungController {
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
-    public List<Vorstellungen> alleVorstellungen() {
+    public List<Vorstellungen> alleVorstellungen(@RequestBody String filmname) {
         System.out.println("GET wurde ausgeführt für alle Vorstellungen");
-        return vorstellungRepository.findAll();
+        ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        for(int i = 0; i < alleVorstellungen.size(); i++) {
+            if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
+                benoetigteVorstellungen.add(alleVorstellungen.get(i));
+            }
+        }
+
+        return benoetigteVorstellungen;
     }
 
 
