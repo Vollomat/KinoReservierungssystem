@@ -46,7 +46,6 @@ public class VorstellungController {
     @PostMapping(value ="/filmbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Vorstellungen[] alleZVorstellungen(@RequestBody String filmname) {
-        System.out.println("POST wurde ausgeführt für alle Vorstellungen");
         ArrayList<Vorstellungen> benoetigteVorstellungen = new ArrayList<>();
         Vorstellungen[] vorstellungenzurueck = new Vorstellungen[5];
         int gefundeneElemente = 0;
@@ -54,8 +53,10 @@ public class VorstellungController {
         for(int i = 0; i < alleVorstellungen.size(); i++) {
             System.out.println(alleVorstellungen.get(i).getFilmName());
             if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
-                vorstellungenzurueck[gefundeneElemente] = alleVorstellungen.get(i);
-                gefundeneElemente++;
+                if(gefundeneElemente < 5) {
+                    vorstellungenzurueck[gefundeneElemente] = alleVorstellungen.get(i);
+                    gefundeneElemente++;
+                }
             }
         }
         return vorstellungenzurueck;
@@ -128,7 +129,7 @@ public class VorstellungController {
 
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         for(int i = 0; i < alleVorstellungen.size(); i++) {
-            if(alleVorstellungen.get(i).getFilmName().equals(vorstellung.getFilmName()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellung.getStartuhrzeit())) {
+            if(alleVorstellungen.get(i).getFilmName().equals(vorstellung.getFilmName()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellung.getStartuhrzeit()) && alleVorstellungen.get(i).getKinosaalNummer() == vorstellung.getKinosaalNummer()) {
                 ergebnis = true;
             }
         }

@@ -57,40 +57,18 @@ public class TestdatenAnlegen {
                 produces = MediaType.APPLICATION_JSON_VALUE)
         public void testdatenVorstellungenAnlegen() {
             VorstellungController vorstellungController = new VorstellungController(vorstellungRepository, sitzplaetzeRepository, sitzplaetzeFuerVorstellungRepository);
-                Vorstellungen vorstellung = new Vorstellungen();
-                vorstellung.setFilmName(omdbRepository.findAll().get(0).getTitel());
-                vorstellung.setLaengeDerVorstellungInMinuten("175");
-                vorstellung.setStartuhrzeit("18:00");
-                vorstellung.setKinosaalNummer(2);
-                vorstellungController.vorstellungAnlegen(vorstellung);
-
-            Vorstellungen vorstellung2 = new Vorstellungen();
-            vorstellung2.setFilmName(omdbRepository.findAll().get(0).getTitel());
-            vorstellung2.setLaengeDerVorstellungInMinuten("171");
-            vorstellung2.setStartuhrzeit("22:00");
-            vorstellung2.setKinosaalNummer(2);
-            vorstellungController.vorstellungAnlegen(vorstellung2);
-
-            Vorstellungen vorstellung3 = new Vorstellungen();
-            vorstellung3.setFilmName(omdbRepository.findAll().get(0).getTitel());
-            vorstellung3.setLaengeDerVorstellungInMinuten("172");
-            vorstellung3.setStartuhrzeit("19:00");
-            vorstellung3.setKinosaalNummer(2);
-            vorstellungController.vorstellungAnlegen(vorstellung3);
-
-            Vorstellungen vorstellung4 = new Vorstellungen();
-            vorstellung4.setFilmName(omdbRepository.findAll().get(0).getTitel());
-            vorstellung4.setLaengeDerVorstellungInMinuten("190");
-            vorstellung4.setStartuhrzeit("10:00");
-            vorstellung4.setKinosaalNummer(2);
-            vorstellungController.vorstellungAnlegen(vorstellung4);
-
-            Vorstellungen vorstellung5 = new Vorstellungen();
-            vorstellung5.setFilmName(omdbRepository.findAll().get(0).getTitel());
-            vorstellung5.setLaengeDerVorstellungInMinuten("195");
-            vorstellung5.setStartuhrzeit("17:00");
-            vorstellung5.setKinosaalNummer(2);
-            vorstellungController.vorstellungAnlegen(vorstellung5);
+            int kinosaalnummer;
+            String uhrzeit;
+            for(int j = 0; j < omdbRepository.findAll().size(); j++) {
+                for (int i = 1; i < 5; i++) {
+                    Vorstellungen vorstellung = new Vorstellungen();
+                    vorstellung.setFilmName(omdbRepository.findAll().get(j).getTitel());
+                    vorstellung.setLaengeDerVorstellungInMinuten("175");
+                    vorstellung.setStartuhrzeit("18:00");
+                    vorstellung.setKinosaalNummer(i);
+                    vorstellungController.vorstellungAnlegen(vorstellung);
+                }
+            }
 
             System.out.println("Vorstellung (und Sitzplan für die Vorstellung) eingefügt");
         }
