@@ -53,7 +53,29 @@
         </movies> <!-- end movies1 -->
     </div> <!-- end suggestionarea -->
 
-    <a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a>
+    <!---------------------------------- VORSTELLUNGEN --------------------------------->
+
+    <br>
+    <h3>Vorstellungen</h3>
+    <table>
+        <tr class="button">
+            <td><button id="ersteVorst_transf" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_transf').value)" >15 Uhr</button></td>
+            <td><button id="zweiteVorst_transf" value="18" onclick="setSStorageVorst(document.getElementById('zweiteVorst_transf').value)" >15 Uhr</button></td>
+            <td><button id="dritteVorst_transf" value="20" onclick="setSStorageVorst(document.getElementById('dritteVorst_transf').value)" >15 Uhr</button></td>
+            <td><button id="vierteVorst_transf" value="22" onclick="setSStorageVorst(document.getElementById('vierteVorst_transf').value)" >15 Uhr</button></td>
+        </tr>
+    </table>
+
+    <script>
+        // speichert die ausgewählte Vorstellung in einer SessionVariable
+        function setSStorageVorst(time) {
+            sessionStorage.setItem('s_Vorst', time);
+            sessionStorage.setItem('s_Film', 'Transformers');
+        }
+
+    </script>
+
+    <!------------------------- VORSTELLUNGEN ENDE ----------------------------->
 
     <div>
         <p>
@@ -61,7 +83,6 @@
         </p>
     </div>
 </div>
-
 
 <h3>Vorstellungen</h3>
 

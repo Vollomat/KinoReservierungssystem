@@ -43,6 +43,30 @@
     </movies1> <!-- end movies1 -->
 </div> <!-- end suggestionarea -->
 
+<!---------------------------------- VORSTELLUNGEN --------------------------------->
+
+<br>
+<h3>Vorstellungen</h3>
+<table>
+    <tr class="button">
+        <td><button id="ersteVorst_creed" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_creed').value)" >15 Uhr</button></td>
+        <td><button id="zweiteVorst_creed" value="18" onclick="setSStorageVorst(document.getElementById('zweiteVorst_creed').value)" >15 Uhr</button></td>
+        <td><button id="dritteVorst_creed" value="20" onclick="setSStorageVorst(document.getElementById('dritteVorst_creed').value)" >15 Uhr</button></td>
+        <td><button id="vierteVorst_creed" value="22" onclick="setSStorageVorst(document.getElementById('vierteVorst_creed').value)" >15 Uhr</button></td>
+    </tr>
+</table>
+
+<script>
+    // speichert die ausgewählte Vorstellung in einer SessionVariable
+    function setSStorageVorst(time) {
+        sessionStorage.setItem('s_Vorst', time);
+        sessionStorage.setItem('s_Film', 'creed');
+    }
+
+</script>
+
+<!------------------------- VORSTELLUNGEN ENDE ----------------------------->
+
 <h3>Vorstellungen</h3>
 
 <div class="vorstellungtabelle">

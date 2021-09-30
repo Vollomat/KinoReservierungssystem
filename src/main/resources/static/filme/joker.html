@@ -40,8 +40,32 @@
         </p>
         <img class="fsk" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2FFSK-16J-KNZ-Print-1200-4c.png?v=1632734052910">
         <figcaption>FSK16</figcaption>
-        </movies1> <!-- end movies1 -->
+    </movies1> <!-- end movies1 -->
 </div> <!-- end suggestionarea -->
+
+<!---------------------------------- VORSTELLUNGEN --------------------------------->
+
+<br>
+<h3>Vorstellungen</h3>
+<table>
+    <tr class="button">
+        <td><button id="ersteVorst_joker" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_joker').value)" >15 Uhr</button></td>
+        <td><button id="zweiteVorst_joker" value="18" onclick="setSStorageVorst(document.getElementById('zweiteVorst_joker').value)" >15 Uhr</button></td>
+        <td><button id="dritteVorst_joker" value="20" onclick="setSStorageVorst(document.getElementById('dritteVorst_joker').value)" >15 Uhr</button></td>
+        <td><button id="vierteVorst_joker" value="22" onclick="setSStorageVorst(document.getElementById('vierteVorst_joker').value)" >15 Uhr</button></td>
+    </tr>
+</table>
+
+<script>
+    // speichert die ausgewählte Vorstellung in einer SessionVariable
+    function setSStorageVorst(time) {
+        sessionStorage.setItem('s_Vorst', time);
+        sessionStorage.setItem('s_Film', 'Joker');
+    }
+
+</script>
+
+<!------------------------- VORSTELLUNGEN ENDE ----------------------------->
 
 
 <h3>Vorstellungen</h3>
@@ -126,7 +150,7 @@
         </div>
     </div>
 </footer>
-</div>
+
 
 </body>
 </html>

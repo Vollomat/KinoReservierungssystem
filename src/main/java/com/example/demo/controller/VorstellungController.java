@@ -48,6 +48,7 @@ public class VorstellungController {
                 }
             }
         }
+        System.out.println("function aufgerufen");
         return vorstellungenzurueck;
     }
 
