@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.KinoSaale;
-import com.example.demo.entity.Kinos;
-import com.example.demo.entity.Sitzplaetze;
-import com.example.demo.entity.Vorstellungen;
+import com.example.demo.entity.*;
 import com.example.demo.repository.*;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 @RequestMapping("/testdaten")
 @RestController
@@ -57,12 +55,20 @@ public class TestdatenAnlegen {
                 produces = MediaType.APPLICATION_JSON_VALUE)
         public void testdatenVorstellungenAnlegen() {
             VorstellungController vorstellungController = new VorstellungController(vorstellungRepository, sitzplaetzeRepository, sitzplaetzeFuerVorstellungRepository);
-            for(int j = 0; j < omdbRepository.findAll().size()-8; j++) {
+            for(int j = 0; j < omdbRepository.findAll().size(); j++) {
                 for (int i = 1; i < 5; i++) {
                     Vorstellungen vorstellung = new Vorstellungen();
+                    if(i == 1) {
+                        vorstellung.setStartuhrzeit("12:00");
+                    } if(i == 2) {
+                        vorstellung.setStartuhrzeit("15:00");
+                    } if(i == 3) {
+                        vorstellung.setStartuhrzeit("18:00");
+                    } if(i == 4) {
+                        vorstellung.setStartuhrzeit("21:00");
+                    }
                     vorstellung.setFilmName(omdbRepository.findAll().get(j).getTitel());
                     vorstellung.setLaengeDerVorstellungInMinuten("175");
-                    vorstellung.setStartuhrzeit("18:00");
                     vorstellung.setKinosaalNummer(i);
                     vorstellungController.vorstellungAnlegen(vorstellung);
                 }
@@ -132,6 +138,27 @@ public class TestdatenAnlegen {
         testdatenkinoSaalAnlegen();
         testdatenFilmeAnlegen();
         testdatenVorstellungenAnlegen();
+        sitzplanFuerSitzplaetzeAnlegen();
+        System.err.println("TESTDATEN ANGELEGT!");
+    }
+
+
+    public void sitzplanFuerSitzplaetzeAnlegen() {
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        ArrayList<Sitzplaetze> alleSitzplaetze = (ArrayList<Sitzplaetze>) sitzplaetzeRepository.findAll();
+        ArrayList<KinoSaale> alleKinosaale = (ArrayList<KinoSaale>) kinoSaalRepository.findAll();
+        sitzplaetzeFuerVorstellungRepository.deleteAll();
+        for(int i = 0; i < alleVorstellungen.size(); i++) {
+            int kinosaalnummer = alleVorstellungen.get(i).getKinosaalNummer();
+            for(int j = 0; j < alleSitzplaetze.size(); j++) {
+                ArrayList<Sitzplaetze> benoetigteSitzplaetze = new ArrayList<>();
+                if(alleSitzplaetze.get(j).getKinosaalID() == kinosaalnummer) {
+                    SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(0, alleSitzplaetze.get(j).getReihe(), alleSitzplaetze.get(j).getSpalte(), alleVorstellungen.get(i).getVorstellungsid(), "FREI");
+                    sitzplaetzeFuerVorstellungRepository.save(sitzplaetzeFuerVorstellung);
+                }
+            }
+        }
+
     }
 
 
