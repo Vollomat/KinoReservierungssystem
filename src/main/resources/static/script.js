@@ -71,6 +71,15 @@ container.addEventListener('click', e => {
 // Initial count and total set
 updateSelectedCount();
 
+//
+function abbruchStartseite() {
+    var r = confirm("Dein Ticketbuchungsprozess wird nicht gespeichert, wenn du diese Seite verlässt. " +
+    "Möchtest du trotzdem zurück zur Startseite?");
+    if (r == true) {
+    window.location.href="../index.html";
+    }
+}
+
 //aktuell ausgewählter Film wird mitgegeben und die zugehörigen Vorstellungen werden zurückgeliefert
 async function getAndShowVorstellungen(currentfilm){
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
