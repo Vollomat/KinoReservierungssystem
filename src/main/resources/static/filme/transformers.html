@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovieMaxx</title>
     <script src="https://kit.fontawesome.com/57d79c9300.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../script.js"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -60,12 +61,13 @@
 
     <br>
     <h3>Vorstellungen</h3>
+    <br>
     <table>
-        <tr class="button">
-            <td><button id="ersteVorst_transf" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_transf').value)" >15 Uhr</button></td>
-            <td><button id="zweiteVorst_transf" value="18" onclick="setSStorageVorst(document.getElementById('zweiteVorst_transf').value)" >15 Uhr</button></td>
-            <td><button id="dritteVorst_transf" value="20" onclick="setSStorageVorst(document.getElementById('dritteVorst_transf').value)" >15 Uhr</button></td>
-            <td><button id="vierteVorst_transf" value="22" onclick="setSStorageVorst(document.getElementById('vierteVorst_transf').value)" >15 Uhr</button></td>
+        <tr>
+            <td><a href="../ticketbuchung/saalplan.html"  ><button id="ersteVorst_transf" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_transf').value)" >15 Uhr</button></a></td>
+            <td><a href="../ticketbuchung/saalplan.html"  ><button id="zweiteVorst_transf" value="18" onclick="setSStorageVorst(document.getElementById('zweiteVorst_transf').value)" >15 Uhr</button></a></td>
+            <td><a href="../ticketbuchung/saalplan.html"  ><button id="dritteVorst_transf" value="20" onclick="setSStorageVorst(document.getElementById('dritteVorst_transf').value)" >15 Uhr</button></a></td>
+            <td><a href="../ticketbuchung/saalplan.html"  ><button id="vierteVorst_transf" value="22" onclick="setSStorageVorst(document.getElementById('vierteVorst_transf').value)" >15 Uhr</button></a></td>
         </tr>
     </table>
 
@@ -75,57 +77,52 @@
             sessionStorage.setItem('s_Vorst', time);
             sessionStorage.setItem('s_Film', 'Transformers');
         }
+        alert("blubb");
+        getAndShowVorstellungen('Transformers');
 
     </script>
 
+    <!--
+    <div class="vorstellungtabelle">
+        <table align="center">
+            <tr>
+                <td>Montag</td>
+                <td>Saal 2</td>
+                <td>21 Uhr</td>
+                <td><button id="ersteVorst_transf" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_transf').value)" ></button></td>
+            </tr>
+            <tr>
+                <td>Dienstag</td>
+                <td>Saal 2</td>
+                <td>18 Uhr</td>
+                <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
+            </tr>
+            <tr>
+                <td>Mittwoch</td>
+                <td>Saal 4</td>
+                <td>21 Uhr</td>
+                <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
+            </tr>
+            <tr>
+                <td>Freitag</td>
+                <td>Saal 2</td>
+                <td>18 Uhr</td>
+                <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
+            </tr>
+            <tr>
+                <td>Samstag</td>
+                <td>Saal 3</td>
+                <td>18 Uhr</td>
+                <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
+            </tr>
+        </table>
+        -->
+    <br>
     <!------------------------- VORSTELLUNGEN ENDE ----------------------------->
 
-    <div>
-        <p>
-
-        </p>
-    </div>
 </div>
 
-<h3>Vorstellungen</h3>
 
-<div class="vorstellungtabelle">
-    <table align="center">
-        <tr>
-            <td>Montag</td>
-            <td>Saal 2</td>
-            <td>21 Uhr</td>
-            <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-        </tr>
-        <tr>
-            <td>Dienstag</td>
-            <td>Saal 2</td>
-            <td>18 Uhr</td>
-            <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-
-        </tr>
-        <tr>
-            <td>Mittwoch</td>
-            <td>Saal 4</td>
-            <td>21 Uhr</td>
-            <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-
-        </tr>
-        <tr>
-            <td>Freitag</td>
-            <td>Saal 2</td>
-            <td>18 Uhr</td>
-            <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-
-        </tr>
-        <tr>
-            <td>Samstag</td>
-            <td>Saal 3</td>
-            <td>18 Uhr</td>
-            <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-
-        </tr>
-    </table>
 <footer class="footer">
     <div class="container">
         <div class="row">
