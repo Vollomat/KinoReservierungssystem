@@ -7,6 +7,7 @@
     <title>MovieMaxx</title>
     <script src="https://kit.fontawesome.com/57d79c9300.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
 </head>
 <body>
 
@@ -60,10 +61,10 @@
     <h3>Vorstellungen</h3>
     <table>
         <tr class="button">
-            <td><button id="ersteVorst_avengers" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_avengers').value)" >15 Uhr</button></td>
-            <td><button id="zweiteVorst_avengers" value="18" onclick="setSStorageVorst(document.getElementById('zweiteVorst_avengers').value)" >15 Uhr</button></td>
-            <td><button id="dritteVorst_avengers" value="20" onclick="setSStorageVorst(document.getElementById('dritteVorst_avengers').value)" >15 Uhr</button></td>
-            <td><button id="vierteVorst_avengers" value="22" onclick="setSStorageVorst(document.getElementById('vierteVorst_avengers').value)" >15 Uhr</button></td>
+            <td><a href="../ticketbuchung/saalplan.html"  ><button id="ersteVorst_avengers" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_avengers').value)" >15 Uhr</button></a></td>
+            <td><a href="../ticketbuchung/saalplan.html"  ><button id="zweiteVorst_avengers" value="18" onclick="setSStorageVorst(document.getElementById('zweiteVorst_avengers').value)" >15 Uhr</button></a></td>
+            <td><a href="../ticketbuchung/saalplan.html"  ><button id="dritteVorst_avengers" value="20" onclick="setSStorageVorst(document.getElementById('dritteVorst_avengers').value)" >15 Uhr</button></a></td>
+            <td><a href="../ticketbuchung/saalplan.html"  ><button id="vierteVorst_avengers" value="22" onclick="setSStorageVorst(document.getElementById('vierteVorst_avengers').value)" >15 Uhr</button></a></td>
         </tr>
     </table>
 
@@ -74,56 +75,48 @@
             sessionStorage.setItem('s_Film', 'The Avengers');
         }
 
+        getAndShowVorstellungen('The Avengers');
+
     </script>
 
-    <!------------------------- VORSTELLUNGEN ENDE ----------------------------->
-
-    <h3>Vorstellungen</h3>
-
+    <!--
     <div class="vorstellungtabelle">
         <table align="center">
             <tr>
+                <td>Montag</td>
+                <td>Saal 2</td>
+                <td>21 Uhr</td>
+                <td><button id="ersteVorst_transf" value="15" onclick="setSStorageVorst(document.getElementById('ersteVorst_transf').value)" ></button></td>
+            </tr>
+            <tr>
                 <td>Dienstag</td>
-                <td>Saal 1</td>
-                <td>15 Uhr</td>
+                <td>Saal 2</td>
+                <td>18 Uhr</td>
                 <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
             </tr>
             <tr>
                 <td>Mittwoch</td>
-                <td>Saal 3</td>
-                <td>15 Uhr</td>
+                <td>Saal 4</td>
+                <td>21 Uhr</td>
                 <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-
             </tr>
             <tr>
                 <td>Freitag</td>
-                <td>Saal 1</td>
-                <td>18 Uhr</td>
-                <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-
-            </tr>
-            <tr>
-                <td>Samstag</td>
                 <td>Saal 2</td>
                 <td>18 Uhr</td>
                 <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-
             </tr>
             <tr>
-                <td>Sonntag</td>
+                <td>Samstag</td>
                 <td>Saal 3</td>
                 <td>18 Uhr</td>
                 <td><a class="cta" href="../ticketbuchung/saalplan.html"><button class="btn btn2">Ticket buchen</button></a></td>
-
             </tr>
         </table>
+        -->
+    <br>
+    <!------------------------- VORSTELLUNGEN ENDE ----------------------------->
 
-
-    <div>
-        <p>
-
-        </p>
-    </div>
 </div>
 
 <footer class="footer">
