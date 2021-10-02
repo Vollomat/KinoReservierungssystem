@@ -2,8 +2,6 @@ WAS NOCH ZU MACHEN IST:
 
 Elisa:
 
-- Die Startseite muss noch "dekoriert" werden -> ist aktuell noch sehr leer
-
 - Footer während Buchungsprozess muss noch gelehrt werden (einfach mit Logo/Schriftzug eventuell)
 
 Nandini
