@@ -25,4 +25,3 @@ Falls keine Aufgaben mehr, einfach etwas rausnehmen :)
 
 !!! Die Suchleiste muss implementiert werden !!!
 
-- eventuell Bewertungen für die Filme einfügen?
