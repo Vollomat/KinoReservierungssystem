@@ -202,6 +202,21 @@ figcaption {
   outline: none;
 }
 
+.boxsuche{
+  float: left;
+  margin-right: 5px;
+  padding: 15px;
+  height: 260px;
+  box-sizing: border-box;
+  border-bottom: 5px dotted white;
+}
+
+.suchergebnisse{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 table {
   background-color: transparent;
   border-collapse: collapse;
