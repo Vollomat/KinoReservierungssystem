@@ -40,6 +40,8 @@ public class OMDBController {
             OMDBFilme omdbFilm = KinoticketReservierungssystem.datenbankEintrag(KinoticketReservierungssystem.datenbankAbfrageOMDBAPI(omdbAPIAbfragen[i]), i);
             omdbRepository.save(omdbFilm);
         }
+        OMDBFilme omdbFilm = KinoticketReservierungssystem.datenbankEintrag(KinoticketReservierungssystem.datenbankAbfrageOMDBAPI(omdbAPIAbfragen[0]), 0);
+        omdbRepository.save(omdbFilm);
     }
 
 
