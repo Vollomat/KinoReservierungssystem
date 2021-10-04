@@ -2,14 +2,13 @@ WAS NOCH ZU MACHEN IST:
 
 Elisa:
 
-- Footer während Buchungsprozess muss noch gelehrt werden (einfach mit Logo/Schriftzug eventuell)
+- Footer während Buchungsprozess muss noch geleert werden (einfach mit Logo/Schriftzug eventuell)
 
-- User Interface fürs Vorstellungen anlegen (Filmname, Kinosaalnummer, Startuhrzeit, Länge der Vorstellung in Minuten)
+- Hover Effekt für Filme auf Startseite wieder drüberlegen
+
 
 Nandini
 
-- Die Austrahlungszeiten müssen noch festgelegt werden und auf die Filmseiten als
-Buttons geschrieben werden (und wenn man draufklickt, kommt man auf die Ticket-buchen-Seite)
 -login/register: für jedes wird ein eigenes Mapping! benötigt
 
 - Wenn man sich eingeloggt hat, sollte man seinen Bestellstatus einsehen können
@@ -18,9 +17,16 @@ Buttons geschrieben werden (und wenn man draufklickt, kommt man auf die Ticket-b
 
 Dana:
 
-
 ______________________________________________________
 
 Falls keine Aufgaben mehr, einfach etwas rausnehmen :)
 
-!!! Die Suchleiste muss implementiert werden !!!
+- Die Suchleiste muss implementiert werden
+
+- Login2 muss upgedatet werden (Username -> E-Mail)
+
+- Funktion: gebuchte Sitze müssen nach Bestellung rot werden
+
+- Footer muss auf allen Seiten aktualisiert werden
+
+- Die Karte auf der Anfahrtsseite muss erneuert werden (was für Warendingens???)
