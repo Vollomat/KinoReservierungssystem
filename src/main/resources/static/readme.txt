@@ -4,6 +4,8 @@ Elisa:
 
 - Footer während Buchungsprozess muss noch gelehrt werden (einfach mit Logo/Schriftzug eventuell)
 
+- User Interface fürs Vorstellungen anlegen (Filmname, Kinosaalnummer, Startuhrzeit, Länge der Vorstellung in Minuten)
+
 Nandini
 
 - Die Austrahlungszeiten müssen noch festgelegt werden und auf die Filmseiten als
@@ -22,4 +24,3 @@ ______________________________________________________
 Falls keine Aufgaben mehr, einfach etwas rausnehmen :)
 
 !!! Die Suchleiste muss implementiert werden !!!
-
