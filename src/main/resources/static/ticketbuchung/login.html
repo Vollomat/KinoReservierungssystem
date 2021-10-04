@@ -32,8 +32,9 @@
 
     function success() {
         var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
-        if (data == false){
+        if (data == false) {
             document.getElementById('FehlermeldungLogin').innerHTML = "Ihre Login-Daten sind falsch!";
+            //sessionStorage.setItem('s_email', email);
         }
         console.log(data);
         alert(data);
@@ -76,7 +77,7 @@
           </div>
           <p style="font-style:italic; font-size:10px; text-align:center">
             <a href="#">Passwort vergessen?</a>
-            <p id="FehlermeldungLogin" > Test Fehlermeldung Login </p>
+            <p id="FehlermeldungLogin" ></p>
         </div>
         <div class="button">
           <a href="../ticketbuchung/bezahlen.html"><input type="submit" value="Bestätigen"></a>
