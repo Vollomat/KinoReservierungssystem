@@ -26,8 +26,8 @@ public class KundenController {
         return kundenRepository.findAll();
     }
 
-    @RequestMapping(value ="register", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="register", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value ="/register", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/register", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean kundenAnlegen(@RequestBody Kunden kunden) {
         ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) kundenRepository.findAll();
