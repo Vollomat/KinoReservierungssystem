@@ -51,9 +51,9 @@
 </script>
 
 <header>
-    <img onclick="abbruchStartseite()" class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo">
+    <img onclick="abbruchStartseite(), abort()" class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo">
 
-    <button onclick="abbruchStartseite()" >Startseite</button>
+    <button onclick="abbruchStartseite(), abort()" >Startseite</button>
 </header> <!-- end header -->
 
 <div class="wrapper">
@@ -82,9 +82,6 @@
           <a href="../ticketbuchung/bezahlen.html"><input type="submit" value="Bestätigen"></a>
       </form>
     </div>
-            <div class="abbrechen">
-                <a href="../index.html"><input type="submit" value="Abbruch" onclick="abort()"></a>
-            </div>
         </div>
         <p style="font-style:italic; font-size:10px; text-align:center">
           <a href="../ticketbuchung/registrierung.html">Du hast noch kein Konto?  Klicke hier zum Registrieren</a>
