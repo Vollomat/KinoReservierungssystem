@@ -29,8 +29,6 @@ public class Kunden {
 
    private String ort;
 
-   private String username;
-
    private String passwort;
 
 
@@ -58,14 +56,6 @@ public class Kunden {
 
     public void setNachname(String nachname) {
         this.nachname = nachname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPasswort() {
