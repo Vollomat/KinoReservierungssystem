@@ -270,8 +270,9 @@ ul {
 }
 
 .footer-col {
-  width: 25%;
+  width: 22%;
   padding: 0 15px;
+  margin-left: 40px;
 }
 
 .footer-col h4 {
