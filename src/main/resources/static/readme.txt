@@ -4,10 +4,6 @@ ________________________________________________________________________________
 
 Elisa:
 
-- Footer während Buchungsprozess muss noch geleert werden (einfach mit Logo/Schriftzug eventuell)
-
-- Footer muss auf allen Seiten aktualisiert werden
-
 - Hover Effekt für Filme auf Startseite wieder drüberlegen
 
 
@@ -29,9 +25,7 @@ ________________________________________________________________________________
 Falls keine Aufgaben mehr, einfach etwas rausnehmen :)
 ________________________________________________________________________________________________________________________
 
-- Die Suchleiste muss implementiert werden
-
-- Funktion: gebuchte Sitze müssen nach Bestellung rot werden
+- Die Suchleiste muss implementiert werden (oder lassen wir die lieber ganz weg?)
 
 - Die Karte auf der Anfahrtsseite muss erneuert werden (was für Warendingens???)
 
