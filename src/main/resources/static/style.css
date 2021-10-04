@@ -844,6 +844,99 @@ input[type=checkbox]:checked:disabled + label:before {
   transition-delay: 0.2s;
 }
 
+/*Hover-Effekt Filme STARTSEITE*/----------------------------------------------
+.filmbilderindex{
+  width: 900px;
+}
+
+.filmbilderindex .box{
+  position: relative;
+  width: 220px;
+  height: 325px;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.filmbilderindex .box:hover{
+  z-index: 1;
+  transform: scale(1.1);
+  box-shadow: 0 25px 40px rgba(0,0,0,.5);
+}
+
+.filmbilderindex .box .imgBx{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%
+}
+
+.filmbilderindex .box .imgBx:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: black;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.filmbilderindex .box:hover .imgBx:before{
+  opacity: 0.75;
+}
+
+.filmbilderindex .box .imgBx img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.filmbilderindex .box .content{
+  position: absolute;
+  margin-top: 0;
+  margin-left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  padding: 20px;
+  align-items: flex-end;
+}
+
+.filmbilderindex .box .content h2{
+  color: #fff;
+  transition: 0.5s;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-size: 20px;
+  -webkit-transform: translateY(200px);
+}
+
+.filmbilderindex .box:hover .content h2{
+  -webkit-transform:  translateY(0);
+  transition-delay: 0.1s;
+}
+
+.filmbilderindex .box .content p{
+  color: #fff;
+  -webkit-transform: translateY(200px);
+  transition: 0.5s;
+  font-size: 14px;
+}
+
+.filmbilderindex .box:hover .content p{
+  -webkit-transform:  translateY(0);
+  transition-delay: 0.2s;
+}
+
 /*Kontaktformular*/----------------------------------------------
 details {
   font-size: 20px;
