@@ -13,10 +13,10 @@
 
     <script>
         async function UserAction() {
-        var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+            var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
         xhr.onload = success; // call success function if request is successful
         xhr.onerror = error;  // call error function if request failed
-        xhr.open('POST', 'http://localhost:8080/kunden/'); // open a GET request
+        xhr.open('POST', 'http://localhost:8080/kunden/register/'); // open a GET request
         xhr.setRequestHeader('Content-Type', 'application/json');
         let vorname = document.querySelector("#vorname").value;
         let nachname = document.querySelector("#nachname").value;
@@ -36,7 +36,7 @@
             hausnummer:hausnummer,
             postleitzahl:plz,
             ort:ort,
-            passwort:passwort,
+            passwort:passwort
         })); // send the request to the server.
 
             //E-Mail wird in sessionstorage gespeichert
