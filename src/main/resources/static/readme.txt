@@ -4,8 +4,7 @@ ________________________________________________________________________________
 
 Elisa:
 
-- Hover Effekt Zusammenfassung bei Programm: Text hinzufügen
-
+- Header muss ganz am Ende auf allen Seiten (außer Ticketbuchung) gleich sein (siehe Index)
 
 Nandini
 
@@ -20,14 +19,6 @@ Nandini
 Dana:
 
 - User Interface für die Mail erstellen, die der User erhält, wenn er sein Passwort vergessen hat
-
-________________________________________________________________________________________________________________________
-Falls keine Aufgaben mehr, einfach etwas rausnehmen :)
-________________________________________________________________________________________________________________________
-
-- Die Suchleiste muss implementiert werden (oder lassen wir die lieber ganz weg?)
-
-- Die Karte auf der Anfahrtsseite muss erneuert werden (was für Warendingens???)
 
 ________________________________________________________________________________________________________________________
 WAS AUF DEN EINZELNEN SEITEN NOCH ZU TUN IST:
@@ -72,3 +63,11 @@ ______________________________________________________
 bestellungen.html:
 - man hat sich zuvor mit login2.html eingeloggt -> die entsprechende Mailadresse muss gespeichert werden
 - die zugehörigen Bestellungen müssen dann auf dieser Seite angezeigt werden
+
+________________________________________________________________________________________________________________________
+Was bei Langeweile gemacht werden kann, wenn ALLES ANDERE fertig ist :)
+________________________________________________________________________________________________________________________
+
+- Die Suchleiste muss implementiert werden
+
+- Für Karriere könnte man sich eine offene Stelle ausdenken (z.B. Aushilfe als Ticketverkäufer an der Kasse oder so)
