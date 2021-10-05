@@ -4,7 +4,7 @@ ________________________________________________________________________________
 
 Elisa:
 
-- Hover Effekt für Filme auf Startseite wieder drüberlegen
+- Hover Effekt Zusammenfassung bei Programm: Text hinzufügen
 
 
 Nandini
