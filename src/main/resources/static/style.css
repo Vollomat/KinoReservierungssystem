@@ -911,10 +911,6 @@ input[type=checkbox]:checked:disabled + label:before {
   align-items: flex-end;
 }
 
-.filmbilderindex .box .content .freeguy{
-
-}
-
 .filmbilderindex .box .content h2{
   color: #fff;
   transition: 0.5s;
@@ -953,7 +949,13 @@ details[open] summary {
   margin-bottom: 1em;
 }
 
-textarea{
+.contactname {
+  width: 400px;
+  height: 50px;
+
+}
+
+.contactnachricht {
   width: 400px;
   height: 100px;
 
