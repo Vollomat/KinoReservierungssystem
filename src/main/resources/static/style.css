@@ -902,13 +902,17 @@ input[type=checkbox]:checked:disabled + label:before {
 .filmbilderindex .box .content{
   position: absolute;
   margin-top: 0;
-  margin-left: 0;
+  margin-left: 15%;
   width: 100%;
   height: 100%;
   z-index: 1;
   display: flex;
   padding: 20px;
   align-items: flex-end;
+}
+
+.filmbilderindex .box .content .freeguy{
+
 }
 
 .filmbilderindex .box .content h2{
