@@ -2,6 +2,6 @@ package com.example.demo.javaklassen;
 
 public enum Zustaende {
 
-    PRAESENT, GEBUCHT, RESERVIERT, UNGUELTIG
+    PRAESENT, GEBUCHT, RESERVIERT, IN_BESTELLUNG
 
 }
