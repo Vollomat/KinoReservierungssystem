@@ -35,18 +35,13 @@ public class KinoticketReservierungssystem {
         return ergebnis.toString();
     }
 
-    public static OMDBFilme datenbankEintrag(String omdbErgebnis, int filmID) throws JsonProcessingException {
-        boolean geklappt = false;
+    public static OMDBFilme datenbankEintrag(String omdbErgebnis, int filmID) {
         String[] strings = omdbErgebnis.split("\"");
         String titel = strings[5];
         String jahr = strings[5 + 4];
         String imdbID = strings[5 + 4 + 4];
         String urlfuerBild = strings[5 + 4 + 4 + 8];
-        //System.out.println("Folgender Film wird in die Datenbank testdatenbank eingefügt:");
-        //System.out.println("titel: " + titel + ", jahr: " + jahr + ", imdbID: " + imdbID + ", urlBild:" + urlfuerBild);
-        //System.out.println();
-        OMDBFilme omdbFilm = new OMDBFilme(filmID, titel, jahr, imdbID, urlfuerBild);
-        return omdbFilm;
+        return new OMDBFilme(filmID, titel, jahr, imdbID, urlfuerBild);
     }
 
 }
