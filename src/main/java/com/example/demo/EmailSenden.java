@@ -30,7 +30,7 @@ public class EmailSenden {
         return message;
     }
 
-    public static boolean emailversand(String emailadresse, String nachricht) {
+    public static void emailversand(String emailadresse, String nachricht) {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -48,10 +48,8 @@ public class EmailSenden {
             Message message = nachrichtVorbereiten(session, myAccount, emailadresse, nachricht);
             Transport.send(message);
             System.out.println("E-Mail erfolgreich versendet! An: " + emailadresse);
-            return true;
         } catch (Exception e1) {
             e1.printStackTrace();
-            return false;
         }
     }
 
