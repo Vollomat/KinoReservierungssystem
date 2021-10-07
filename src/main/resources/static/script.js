@@ -91,6 +91,17 @@ function checkbox1() {
     }
 }
 
+// Saalplan: man kann nur weiter, wenn min. 1 Sitz ausgewählt ist
+function sitzgewaehlt() {
+    const selectedSeats = document.querySelectorAll('.row .seat.selected');
+    const selectedSeatsCount = selectedSeats.length;
+    if(selectedSeatsCount < 1) {
+        alert("Du musst mindestens einen Sitz auswählen, um die Buchung fortsetzen zu können.");
+    }else{
+        window.location.href="../ticketbuchung/registrierung.html";
+    }
+}
+
 function checkbox2() {
     var checkBox = document.getElementById("input2");
     var text = document.getElementById("anzahl2");

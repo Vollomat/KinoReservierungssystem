@@ -47,7 +47,6 @@ ________________________________________________________________________________
 saalplan.html:
 Es müssen Funktionen geschrieben werden für:
 
-- dass man nur auf Bestätigen klicken kann, wenn mindestens ein Sitz ausgewählt ist
 - dass nur so viele Zahlen unten eingegeben werden können, wie Sitze ausgewählt wurden
 - dass ausgewählte Sitze den Status "occupied" (belegt) bekommen, wenn das Ticket gebucht wurde
 -> eventuell muss jedem Sitz eine ID gegeben werden -> mit Patrick absprechen
