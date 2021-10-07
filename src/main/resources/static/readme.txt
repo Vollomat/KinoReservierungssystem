@@ -1,22 +1,41 @@
 Information für Frontend:
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Zusammengefasst: Erst Bestellung anlegen, dann BestellungID verwenden und einzelne Tickets je Sitzplatz anlegen.
+
+Pro Sitzplatz wird ein Ticket angelegt!!! BestellungsID bekommt man indem man zuvor:
+POST an: http://localhost:8080/bestellungen
+
+Beispiel JSON:
+{
+"email":"patrick.vollstedt@gmx.de",
+"bezahlart":"Kasse im Kino"
+}
+
+return vom Server--> BestellungsID
+
+
+
 Wenn ihr das Ticket mit POST an den Spring Boot Server sendet dann wie folgt:
 POST an: http://localhost:8080/tickets
 
 Beispiel JSON:
 {
-"email":"patrick.vollstedt2@gmx.de",
-"startuhrzeit":"18:00",
-"kinosaalNummer":2,
-"filmName":"Terminator Genisys",
+"email":"patrick.vollstedt@gmx.de",
+"startuhrzeit":"23:00",
+"kinosaalNummer":4,
+"filmName":"James Bond",
 "preis":"22,50",
-"status":"BEZAHLT"
+"bezahlStatus":"BEZAHLT",
+"sitzplatzreihe":"2",
+"sitzplatzspalte":"3",
+"bestellungID":1
 }
 
---> Preis mit drinnen da zuvor ja schon vom Server der Preis angefragt werden kann
-
-Aktuelles Problem: Mehrere Sitzplätze abspeichern im Ticket
+--> Preis muss danach noch gelöst werden
 
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ________________________________________________________________________________________________________________________
 WAS NOCH ZU TUN IST:
