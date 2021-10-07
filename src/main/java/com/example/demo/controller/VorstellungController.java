@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.OMDBFilme;
 import com.example.demo.entity.Sitzplaetze;
 import com.example.demo.entity.SitzplaetzeFuerVorstellung;
 import com.example.demo.entity.Vorstellungen;
@@ -40,10 +39,10 @@ public class VorstellungController {
         int gefundeneElemente = 0;
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         System.out.println(filmname);
-        for(int i = 0; i < alleVorstellungen.size(); i++) {
-            if(alleVorstellungen.get(i).getFilmName().equals(filmname)) {
-                if(gefundeneElemente < 4) {
-                    vorstellungenzurueck[gefundeneElemente] = alleVorstellungen.get(i);
+        for (Vorstellungen vorstellungen : alleVorstellungen) {
+            if (vorstellungen.getFilmName().equals(filmname)) {
+                if (gefundeneElemente < 4) {
+                    vorstellungenzurueck[gefundeneElemente] = vorstellungen;
                     gefundeneElemente++;
                 }
             }
@@ -75,15 +74,15 @@ public class VorstellungController {
         ArrayList<SitzplaetzeFuerVorstellung> gewuenschterSitzplan = new ArrayList<>();
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         ArrayList<SitzplaetzeFuerVorstellung> alleSitzplaetzeFuerVorstellung = (ArrayList<SitzplaetzeFuerVorstellung>) sitzplaetzeFuerVorstellungRepository.findAll();
-        for(int i = 0; i < alleVorstellungen.size(); i++) {
-            if(vorstellungen.getFilmName().equals(alleVorstellungen.get(i).getFilmName()) && vorstellungen.getStartuhrzeit().equals(alleVorstellungen.get(i).getStartuhrzeit())){
-                gewuenschteVorstellung = alleVorstellungen.get(i);
+        for (Vorstellungen value : alleVorstellungen) {
+            if (vorstellungen.getFilmName().equals(value.getFilmName()) && vorstellungen.getStartuhrzeit().equals(value.getStartuhrzeit())) {
+                gewuenschteVorstellung = value;
             }
         }
-        for(int i = 0; i < alleSitzplaetzeFuerVorstellung.size(); i++) {
-            if(gewuenschteVorstellung != null) {
-                if(alleSitzplaetzeFuerVorstellung.get(i).getVorstellungsID() == gewuenschteVorstellung.getVorstellungsid()) {
-                    gewuenschterSitzplan.add(alleSitzplaetzeFuerVorstellung.get(i));
+        for (SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung : alleSitzplaetzeFuerVorstellung) {
+            if (gewuenschteVorstellung != null) {
+                if (sitzplaetzeFuerVorstellung.getVorstellungsID() == gewuenschteVorstellung.getVorstellungsid()) {
+                    gewuenschterSitzplan.add(sitzplaetzeFuerVorstellung);
                 }
             }
         }
@@ -97,17 +96,17 @@ public class VorstellungController {
         int gewuenschterKinoSaal = vorstellungen.getKinosaalNummer();
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         int gewuenschteVorstellungsID = 0;
-        for(int i = 0; i < alleVorstellungen.size(); i++) {
-            if(alleVorstellungen.get(i).getKinosaalNummer() == vorstellungen.getKinosaalNummer() && alleVorstellungen.get(i).getLaengeDerVorstellungInMinuten().equals(vorstellungen.getLaengeDerVorstellungInMinuten()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellungen.getStartuhrzeit())){
-                gewuenschteVorstellungsID = alleVorstellungen.get(i).getVorstellungsid();
+        for (Vorstellungen value : alleVorstellungen) {
+            if (value.getKinosaalNummer() == vorstellungen.getKinosaalNummer() && value.getLaengeDerVorstellungInMinuten().equals(vorstellungen.getLaengeDerVorstellungInMinuten()) && value.getStartuhrzeit().equals(vorstellungen.getStartuhrzeit())) {
+                gewuenschteVorstellungsID = value.getVorstellungsid();
             }
         }
 
-        if (sitzplaetzeRepository.findAll() != null) {
+        if (sitzplaetzeRepository.findAll().size() > 0) {
             ArrayList<Sitzplaetze> alleSitzplaetze = (ArrayList<Sitzplaetze>) sitzplaetzeRepository.findAll();
-            for (int i = 0; i < alleSitzplaetze.size(); i++) {
-                if (alleSitzplaetze.get(i).getKinosaalID() == gewuenschterKinoSaal) {
-                    SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(alleSitzplaetze.get(i).getSitzplatzID(), alleSitzplaetze.get(i).getReihe(), alleSitzplaetze.get(i).getSpalte(), gewuenschteVorstellungsID, "FREI");
+            for (Sitzplaetze sitzplaetze : alleSitzplaetze) {
+                if (sitzplaetze.getKinosaalID() == gewuenschterKinoSaal) {
+                    SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(sitzplaetze.getSitzplatzID(), sitzplaetze.getReihe(), sitzplaetze.getSpalte(), gewuenschteVorstellungsID, "FREI");
                     sitzplaetzeFuerVorstellungRepository.save(sitzplaetzeFuerVorstellung);
                 }
             }
@@ -115,16 +114,13 @@ public class VorstellungController {
     }
 
     public boolean existiertVorstellungSchon(Vorstellungen vorstellung) {
-        boolean ergebnis = false;
-
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
-        for(int i = 0; i < alleVorstellungen.size(); i++) {
-            if(alleVorstellungen.get(i).getFilmName().equals(vorstellung.getFilmName()) && alleVorstellungen.get(i).getStartuhrzeit().equals(vorstellung.getStartuhrzeit()) && alleVorstellungen.get(i).getKinosaalNummer() == vorstellung.getKinosaalNummer()) {
-                ergebnis = true;
+        for (Vorstellungen vorstellungen : alleVorstellungen) {
+            if (vorstellungen.getFilmName().equals(vorstellung.getFilmName()) && vorstellungen.getStartuhrzeit().equals(vorstellung.getStartuhrzeit()) && vorstellungen.getKinosaalNummer() == vorstellung.getKinosaalNummer()) {
+                return true;
             }
         }
-
-        return ergebnis;
+        return false;
     }
 
 

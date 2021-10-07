@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.KinoticketReservierungssystem;
 import com.example.demo.entity.OMDBFilme;
 import com.example.demo.repository.OMDBRepository;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

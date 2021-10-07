@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.EmailSenden;
-import com.example.demo.entity.Kunden;
 import com.example.demo.entity.Tickets;
-import com.example.demo.repository.KundenRepository;
 import com.example.demo.repository.TicketRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +14,9 @@ import java.util.List;
 public class TicketController {
 
     private TicketRepository ticketRepository;
-    private KundenRepository kundenRepository;
 
-    public TicketController(TicketRepository ticketRepository, KundenRepository kundenRepository) {
+    public TicketController(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
-        this.kundenRepository = kundenRepository;
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)

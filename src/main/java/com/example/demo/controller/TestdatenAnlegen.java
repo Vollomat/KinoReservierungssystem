@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 @RequestMapping("/testdaten")
 @RestController
@@ -113,9 +112,9 @@ public class TestdatenAnlegen {
     public void testdatenkinoSaalAnlegen() {
         int gewuenschteKinoID = 0;
         ArrayList<Kinos> alleKinos = (ArrayList<Kinos>) kinoRepository.findAll();
-        for(int i = 0; i < alleKinos.size(); i++) {
-            if(alleKinos.get(i).getStrasse().equals("N7") && alleKinos.get(i).getHausnummer().equals("17")){
-                gewuenschteKinoID = alleKinos.get(i).getKinoID();
+        for (Kinos alleKino : alleKinos) {
+            if (alleKino.getStrasse().equals("N7") && alleKino.getHausnummer().equals("17")) {
+                gewuenschteKinoID = alleKino.getKinoID();
             }
         }
         for(int j = 1; j <= 4; j++) {
@@ -146,14 +145,12 @@ public class TestdatenAnlegen {
     public void sitzplanFuerSitzplaetzeAnlegen() {
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         ArrayList<Sitzplaetze> alleSitzplaetze = (ArrayList<Sitzplaetze>) sitzplaetzeRepository.findAll();
-        ArrayList<KinoSaale> alleKinosaale = (ArrayList<KinoSaale>) kinoSaalRepository.findAll();
         sitzplaetzeFuerVorstellungRepository.deleteAll();
-        for(int i = 0; i < alleVorstellungen.size(); i++) {
-            int kinosaalnummer = alleVorstellungen.get(i).getKinosaalNummer();
-            for(int j = 0; j < alleSitzplaetze.size(); j++) {
-                ArrayList<Sitzplaetze> benoetigteSitzplaetze = new ArrayList<>();
-                if(alleSitzplaetze.get(j).getKinosaalID() == kinosaalnummer) {
-                    SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(0, alleSitzplaetze.get(j).getReihe(), alleSitzplaetze.get(j).getSpalte(), alleVorstellungen.get(i).getVorstellungsid(), "FREI");
+        for (Vorstellungen vorstellungen : alleVorstellungen) {
+            int kinosaalnummer = vorstellungen.getKinosaalNummer();
+            for (Sitzplaetze sitzplaetze : alleSitzplaetze) {
+                if (sitzplaetze.getKinosaalID() == kinosaalnummer) {
+                    SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(0, sitzplaetze.getReihe(), sitzplaetze.getSpalte(), vorstellungen.getVorstellungsid(), "FREI");
                     sitzplaetzeFuerVorstellungRepository.save(sitzplaetzeFuerVorstellung);
                 }
             }

@@ -31,8 +31,8 @@ public class KundenController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean kundenAnlegen(@RequestBody Kunden kunden) {
         ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) kundenRepository.findAll();
-        for(int i = 0; i < alleKunden.size(); i++) {
-            if(alleKunden.get(i).getEmail().equals(kunden.getEmail())){
+        for (Kunden value : alleKunden) {
+            if (value.getEmail().equals(kunden.getEmail())) {
                 System.err.println("Der mitgegebene Kunde mit der E-Mail " + kunden.getEmail() + " existiert schon!");
                 return false;
             }
@@ -47,13 +47,10 @@ public class KundenController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void passwortVergessen(@RequestBody String email) {
         System.out.println("Der Kunde mit der E-Mail " + email + " hat sein Passwort vergessen!");
-        ArrayList<Kunden> alleKunden = new ArrayList<>();
-        for(int i = 0; i < kundenRepository.findAll().size(); i++) {
-            alleKunden.add(kundenRepository.findAll().get(i));
-        }
-        for(int j = 0; j < alleKunden.size(); j++) {
-            if(alleKunden.get(j).getEmail().equals(email)){
-                String message = "Ihr Passwort ist: " + alleKunden.get(j).getPasswort();
+        ArrayList<Kunden> alleKunden = new ArrayList<>(kundenRepository.findAll());
+        for (Kunden kunden : alleKunden) {
+            if (kunden.getEmail().equals(email)) {
+                String message = "Ihr Passwort ist: " + kunden.getPasswort();
                 EmailSenden.emailversand(email, message);
             }
         }
@@ -65,9 +62,9 @@ public class KundenController {
     @ResponseBody
     public boolean einloggen(@RequestBody Einloggdaten einloggdaten) {
         ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) alleKunden();
-        for(int i=0; i<alleKunden.size(); i++) {
-            System.out.println("Passwort:" + alleKunden.get(i).getPasswort().equals(einloggdaten.getPasswort()));
-            if(alleKunden.get(i).getPasswort().equals(einloggdaten.getPasswort()) && alleKunden.get(i).getEmail().equals(einloggdaten.getEmail())) {
+        for (Kunden kunden : alleKunden) {
+            System.out.println("Passwort:" + kunden.getPasswort().equals(einloggdaten.getPasswort()));
+            if (kunden.getPasswort().equals(einloggdaten.getPasswort()) && kunden.getEmail().equals(einloggdaten.getEmail())) {
                 return true;
             }
         }
