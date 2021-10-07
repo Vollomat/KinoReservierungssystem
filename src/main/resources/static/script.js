@@ -75,19 +75,8 @@ updateSelectedCount();
 function abbruchStartseite() {
     var r = confirm("Dein Ticketbuchungsprozess wird nicht gespeichert, wenn du diese Seite verlässt. " +
     "Möchtest du trotzdem zurück zur Startseite?");
-    if (r == true) {
+    if (r === true) {
     window.location.href="../index.html";
-    }
-}
-
-// Saalplan Checkboxen
-function checkbox1() {
-    var checkBox = document.getElementById("input1");
-    var text = document.getElementById("anzahl1");
-    if (checkBox.checked == true){
-        text.style.display = "block";
-    } else {
-        text.style.display = "none";
     }
 }
 
@@ -102,10 +91,39 @@ function sitzgewaehlt() {
     }
 }
 
+// Saalplan: man kann nur so viele Leute eingeben, wie Sitzplätze ausgewählt sind
+function altergleichsitze() {
+    const selectedSeats = document.querySelectorAll('.row .seat.selected');
+    const selectedSeatsCount = selectedSeats.length;
+    var unterNeun = document.getElementById("anzahl1").innerText;
+    var unterachtzehn = document.getElementById("anzahl2").innerText;
+    var untersechsundzwanzig = document.getElementById("anzahl3").innerText;
+
+    const rabattiert = unterNeun + unterachtzehn + untersechsundzwanzig;
+
+    if(rabattiert > selectedSeatsCount){
+        alert("Die Anzahl an eingegebenen Personen übersteigt die Anzahl von ausgewählten Sitzen.");
+    }else{
+        window.location.href="../ticketbuchung/registrierung.html";
+    }
+
+}
+
+// Saalplan Checkboxen
+function checkbox1() {
+    var checkBox = document.getElementById("input1");
+    var text = document.getElementById("anzahl1");
+    if (checkBox.checked === true){
+        text.style.display = "block";
+    } else {
+        text.style.display = "none";
+    }
+}
+
 function checkbox2() {
     var checkBox = document.getElementById("input2");
     var text = document.getElementById("anzahl2");
-    if (checkBox.checked == true){
+    if (checkBox.checked === true){
         text.style.display = "block";
     } else {
         text.style.display = "none";
@@ -115,17 +133,7 @@ function checkbox2() {
 function checkbox3() {
     var checkBox = document.getElementById("input3");
     var text = document.getElementById("anzahl3");
-    if (checkBox.checked == true){
-        text.style.display = "block";
-    } else {
-        text.style.display = "none";
-    }
-}
-
-function checkbox4() {
-    var checkBox = document.getElementById("input4");
-    var text = document.getElementById("anzahl4");
-    if (checkBox.checked == true){
+    if (checkBox.checked === true){
         text.style.display = "block";
     } else {
         text.style.display = "none";
