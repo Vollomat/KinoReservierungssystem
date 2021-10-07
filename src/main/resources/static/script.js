@@ -75,8 +75,31 @@ updateSelectedCount();
 function abbruchStartseite() {
     var r = confirm("Dein Ticketbuchungsprozess wird nicht gespeichert, wenn du diese Seite verlässt. " +
     "Möchtest du trotzdem zurück zur Startseite?");
-    if (r == true) {
+    if (r === true) {
     window.location.href="../index.html";
+    }
+}
+
+// Saalplan: man kann nur weiter, wenn min. 1 Sitz ausgewählt ist und man kann nur so viele Leute eingeben, wie Sitzplätze ausgewählt sind
+function sitzgewaehlt() {
+    const selectedSeats = document.querySelectorAll('.row .seat.selected');
+    const selectedSeatsCount = selectedSeats.length;
+    const unterNeun = document.getElementById('anzahl1').value;
+    const unterAchtzehn = document.getElementById('anzahl2').value;
+    const unterSechsundzwanzig = document.getElementById('anzahl3').value;
+
+    const unterNeunInt = unterNeun * 1;
+    const unterAchtzehnInt = unterAchtzehn * 1;
+    const unterSechsundzwanzigInt = unterSechsundzwanzig * 1;
+
+    const rabattiert = unterNeunInt + unterAchtzehnInt + unterSechsundzwanzigInt;
+
+    if (selectedSeatsCount === 0) {
+        alert("Du musst mindestens einen Sitz auswählen, um die Buchung fortsetzen zu können.");
+    }else if (selectedSeatsCount < rabattiert){
+        alert("Die Anzahl an eingegebenen Personen übersteigt die Anzahl von ausgewählten Sitzen.");
+    }else{
+        window.location.href="../ticketbuchung/registrierung.html";
     }
 }
 
@@ -84,7 +107,7 @@ function abbruchStartseite() {
 function checkbox1() {
     var checkBox = document.getElementById("input1");
     var text = document.getElementById("anzahl1");
-    if (checkBox.checked == true){
+    if (checkBox.checked === true){
         text.style.display = "block";
     } else {
         text.style.display = "none";
@@ -94,7 +117,7 @@ function checkbox1() {
 function checkbox2() {
     var checkBox = document.getElementById("input2");
     var text = document.getElementById("anzahl2");
-    if (checkBox.checked == true){
+    if (checkBox.checked === true){
         text.style.display = "block";
     } else {
         text.style.display = "none";
@@ -104,17 +127,7 @@ function checkbox2() {
 function checkbox3() {
     var checkBox = document.getElementById("input3");
     var text = document.getElementById("anzahl3");
-    if (checkBox.checked == true){
-        text.style.display = "block";
-    } else {
-        text.style.display = "none";
-    }
-}
-
-function checkbox4() {
-    var checkBox = document.getElementById("input4");
-    var text = document.getElementById("anzahl4");
-    if (checkBox.checked == true){
+    if (checkBox.checked === true){
         text.style.display = "block";
     } else {
         text.style.display = "none";
