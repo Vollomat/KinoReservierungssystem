@@ -12,9 +12,6 @@ public class Tickets {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketid;
 
-
-    private String email;
-
     private String startuhrzeit;
 
     private String kinosaalNummer;
@@ -23,7 +20,22 @@ public class Tickets {
 
     private String preis;
 
-    private String status;
+    private String bezahlStatus;
+
+    private String sitzplatzreihe;
+
+    private String sitzplatzspalte;
+
+    private int bestellungID;
+
+
+    public int getBestellungID() {
+        return bestellungID;
+    }
+
+    public void setBestellungID(int bestellungID) {
+        this.bestellungID = bestellungID;
+    }
 
     public int getTicketid() {
         return ticketid;
@@ -31,14 +43,6 @@ public class Tickets {
 
     public void setTicketid(int ticketid) {
         this.ticketid = ticketid;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getStartuhrzeit() {
@@ -73,11 +77,27 @@ public class Tickets {
         this.preis = preis;
     }
 
-    public String getStatus() {
-        return status;
+    public String getBezahlStatus() {
+        return bezahlStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setBezahlStatus(String bezahlStatus) {
+        this.bezahlStatus = bezahlStatus;
+    }
+
+    public String getSitzplatzreihe() {
+        return sitzplatzreihe;
+    }
+
+    public void setSitzplatzreihe(String sitzplatzreihe) {
+        this.sitzplatzreihe = sitzplatzreihe;
+    }
+
+    public String getSitzplatzspalte() {
+        return sitzplatzspalte;
+    }
+
+    public void setSitzplatzspalte(String sitzplatzspalte) {
+        this.sitzplatzspalte = sitzplatzspalte;
     }
 }

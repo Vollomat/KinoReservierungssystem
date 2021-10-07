@@ -22,7 +22,6 @@ public class KundenController {
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
     public List<Kunden> alleKunden() {
-        System.out.println("GET wurde ausgeführt für alle Kunden");
         return kundenRepository.findAll();
     }
 
@@ -52,23 +51,23 @@ public class KundenController {
             if (kunden.getEmail().equals(email)) {
                 String message = "Ihr Passwort ist: " + kunden.getPasswort();
                 EmailSenden.emailversand(email, message);
+                return;
             }
         }
+        System.err.println("Die E-Mail "+ email +" existiert nicht!");
     }
 
     @RequestMapping(value = "/login",produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public boolean einloggen(@RequestBody Einloggdaten einloggdaten) {
+    public Kunden einloggen(@RequestBody Einloggdaten einloggdaten) {
         ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) alleKunden();
         for (Kunden kunden : alleKunden) {
-            System.out.println("Passwort:" + kunden.getPasswort().equals(einloggdaten.getPasswort()));
-            if (kunden.getPasswort().equals(einloggdaten.getPasswort()) && kunden.getEmail().equals(einloggdaten.getEmail())) {
-                return true;
+            if (kunden.getEmail().equals(einloggdaten.getEmail()) && kunden.getPasswort().equals(einloggdaten.getPasswort())) {
+                return kunden;
             }
         }
-        return false;
+        return null;
     }
-
 }

@@ -12,18 +12,9 @@ public class Bestellungen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bestellID;
 
-    private String email;  //Eindeutige ID, egal ob Gast oder Kundenkonto. Versand der Tickets dorthin
+    private String email;  //Eindeutige ID, egal ob Gast oder Kundenkonto. Versand der Tickets dorthin. Eine Bestellung hat mehrere Tickets.
 
     private String bezahlart;
-
-    private String filmName;
-
-    private String vorstellungsID;
-
-    private String sitzplatzreihe;
-
-    private String sitzplatzspalte;
-
 
     public int getBestellID() {
         return bestellID;
@@ -49,35 +40,4 @@ public class Bestellungen {
         this.bezahlart = bezahlart;
     }
 
-    public String getFilmName() {
-        return filmName;
-    }
-
-    public void setFilmName(String filmName) {
-        this.filmName = filmName;
-    }
-
-    public String getVorstellungsID() {
-        return vorstellungsID;
-    }
-
-    public void setVorstellungsID(String vorstellungsID) {
-        this.vorstellungsID = vorstellungsID;
-    }
-
-    public String getSitzplatzreihe() {
-        return sitzplatzreihe;
-    }
-
-    public void setSitzplatzreihe(String sitzplatzreihe) {
-        this.sitzplatzreihe = sitzplatzreihe;
-    }
-
-    public String getSitzplatzspalte() {
-        return sitzplatzspalte;
-    }
-
-    public void setSitzplatzspalte(String sitzplatzspalte) {
-        this.sitzplatzspalte = sitzplatzspalte;
-    }
 }

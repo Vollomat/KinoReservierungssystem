@@ -32,8 +32,6 @@ public class Kunden {
    private String passwort;
 
 
-
-
     public int getId() {
         return id;
     }
