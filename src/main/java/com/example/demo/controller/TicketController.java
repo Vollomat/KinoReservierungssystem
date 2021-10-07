@@ -36,6 +36,7 @@ public class TicketController {
     public Tickets ticketAnlegen(@RequestBody Tickets ticket) {
         if(existiertTicketSchon(ticket)) {
             System.err.println("Das Ticket existiert schon!");
+            return null;
         } else {
             System.out.println("Es wurde ein Ticket angelegt!");
             ticketRepository.save(ticket);
@@ -102,20 +103,12 @@ public class TicketController {
                     "\n" +
                     "</body>\n" +
                     "</html>";
-            String emailTicketBesitzer = null;
-            ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) kundenRepository.findAll();
-            for(int i = 0; i < alleKunden.size(); i++){
-                if(alleKunden.get(i).getNachname().equals(ticket.getNachnameDesBesitzers()) && alleKunden.get(i).getVorname().equals(ticket.getVornameDesBesitzers())) {
-                    emailTicketBesitzer = alleKunden.get(i).getEmail();
-                }
-            }
+            String emailTicketBesitzer = ticket.getEmail();
             if(emailTicketBesitzer != null) {
-                System.out.println(emailTicketBesitzer + " wurde gesendet");
                 EmailSenden.emailversand(emailTicketBesitzer, nachricht);
             } else {
-                System.err.println("Der Kunde ist nicht in der Datenbank hinterlegt!");
+                System.err.println("Es wurde keine E-Mail mitgegeben!");
             }
-            return ticket;
         }
         return ticket;
     }
@@ -125,12 +118,12 @@ public class TicketController {
         boolean ergebnis = false;
 
         ArrayList<Tickets> alleTickets = (ArrayList<Tickets>) ticketRepository.findAll();
-        for (int i = 0; i < alleTickets.size(); i++) {
-            if (alleTickets.get(i).getVornameDesBesitzers().equals(ticket.getVornameDesBesitzers()) && alleTickets.get(i).getNachnameDesBesitzers().equals(ticket.getNachnameDesBesitzers()) && alleTickets.get(i).getStartuhrzeit().equals(ticket.getStartuhrzeit())) {
+        for (Tickets alleTicket : alleTickets) {
+            if (alleTicket.getEmail().equals(ticket.getEmail()) && alleTicket.getStartuhrzeit().equals(ticket.getStartuhrzeit()) && alleTicket.getFilmName().equals(ticket.getFilmName())) {
                 ergebnis = true;
-                if(!alleTickets.get(i).getStatus().equals(ticket.getStatus())) {   //Update Status vom Ticket
+                if (!alleTicket.getStatus().equals(ticket.getStatus())) {   //Update Status vom Ticket
                     ergebnis = false;
-                    ticketRepository.delete(alleTickets.get(i));
+                    ticketRepository.delete(alleTicket);
                     ticketRepository.save(ticket);
                 }
             }

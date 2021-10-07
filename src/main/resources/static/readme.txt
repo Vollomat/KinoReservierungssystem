@@ -1,3 +1,23 @@
+Information für Frontend:
+Wenn ihr das Ticket mit POST an den Spring Boot Server sendet dann wie folgt:
+POST an: http://localhost:8080/tickets
+
+Beispiel JSON:
+{
+"email":"patrick.vollstedt2@gmx.de",
+"startuhrzeit":"18:00",
+"kinosaalNummer":2,
+"filmName":"Terminator Genisys",
+"preis":"22,50",
+"status":"BEZAHLT"
+}
+
+--> Preis mit drinnen da zuvor ja schon vom Server der Preis angefragt werden kann
+
+Aktuelles Problem: Mehrere Sitzplätze abspeichern im Ticket
+
+
+
 ________________________________________________________________________________________________________________________
 WAS NOCH ZU TUN IST:
 ________________________________________________________________________________________________________________________

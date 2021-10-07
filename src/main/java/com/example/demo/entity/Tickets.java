@@ -13,9 +13,7 @@ public class Tickets {
     private int ticketid;
 
 
-    private String vornameDesBesitzers;
-
-    private String nachnameDesBesitzers;
+    private String email;
 
     private String startuhrzeit;
 
@@ -27,14 +25,6 @@ public class Tickets {
 
     private String status;
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public int getTicketid() {
         return ticketid;
     }
@@ -43,20 +33,12 @@ public class Tickets {
         this.ticketid = ticketid;
     }
 
-    public String getVornameDesBesitzers() {
-        return vornameDesBesitzers;
+    public String getEmail() {
+        return email;
     }
 
-    public void setVornameDesBesitzers(String vornameDesBesitzers) {
-        this.vornameDesBesitzers = vornameDesBesitzers;
-    }
-
-    public String getNachnameDesBesitzers() {
-        return nachnameDesBesitzers;
-    }
-
-    public void setNachnameDesBesitzers(String nachnameDesBesitzers) {
-        this.nachnameDesBesitzers = nachnameDesBesitzers;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getStartuhrzeit() {
@@ -89,5 +71,13 @@ public class Tickets {
 
     public void setPreis(String preis) {
         this.preis = preis;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
