@@ -80,33 +80,27 @@ function abbruchStartseite() {
     }
 }
 
-// Saalplan: man kann nur weiter, wenn min. 1 Sitz ausgewählt ist
+// Saalplan: man kann nur weiter, wenn min. 1 Sitz ausgewählt ist und man kann nur so viele Leute eingeben, wie Sitzplätze ausgewählt sind
 function sitzgewaehlt() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
     const selectedSeatsCount = selectedSeats.length;
-    if(selectedSeatsCount < 1) {
+    const unterNeun = document.getElementById('anzahl1').value;
+    const unterAchtzehn = document.getElementById('anzahl2').value;
+    const unterSechsundzwanzig = document.getElementById('anzahl3').value;
+
+    const unterNeunInt = unterNeun * 1;
+    const unterAchtzehnInt = unterAchtzehn * 1;
+    const unterSechsundzwanzigInt = unterSechsundzwanzig * 1;
+
+    const rabattiert = unterNeunInt + unterAchtzehnInt + unterSechsundzwanzigInt;
+
+    if (selectedSeatsCount === 0) {
         alert("Du musst mindestens einen Sitz auswählen, um die Buchung fortsetzen zu können.");
-    }else{
-        window.location.href="../ticketbuchung/registrierung.html";
-    }
-}
-
-// Saalplan: man kann nur so viele Leute eingeben, wie Sitzplätze ausgewählt sind
-function altergleichsitze() {
-    const selectedSeats = document.querySelectorAll('.row .seat.selected');
-    const selectedSeatsCount = selectedSeats.length;
-    var unterNeun = document.getElementById("anzahl1").innerText;
-    var unterachtzehn = document.getElementById("anzahl2").innerText;
-    var untersechsundzwanzig = document.getElementById("anzahl3").innerText;
-
-    const rabattiert = unterNeun + unterachtzehn + untersechsundzwanzig;
-
-    if(rabattiert > selectedSeatsCount){
+    }else if (selectedSeatsCount < rabattiert){
         alert("Die Anzahl an eingegebenen Personen übersteigt die Anzahl von ausgewählten Sitzen.");
     }else{
         window.location.href="../ticketbuchung/registrierung.html";
     }
-
 }
 
 // Saalplan Checkboxen

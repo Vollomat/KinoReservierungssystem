@@ -47,7 +47,6 @@ ________________________________________________________________________________
 saalplan.html:
 Es müssen Funktionen geschrieben werden für:
 
-- dass nur so viele Zahlen unten eingegeben werden können, wie Sitze ausgewählt wurden
 - dass ausgewählte Sitze den Status "occupied" (belegt) bekommen, wenn das Ticket gebucht wurde
 -> eventuell muss jedem Sitz eine ID gegeben werden -> mit Patrick absprechen
 - die ausgewählten Sitze müssen auch in der Datenbank als gebucht/reserviert/... markiert werden
