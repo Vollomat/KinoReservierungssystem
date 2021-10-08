@@ -1,9 +1,9 @@
 Information für Frontend:
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Zusammengefasst: Erst Bestellung anlegen, dann BestellungID verwenden und einzelne Tickets je Sitzplatz anlegen.
+Zusammengefasst: Siehe PDF ,,Befehle fuers Frontend".
 
-Pro Sitzplatz wird ein Ticket angelegt!!! BestellungsID bekommt man indem man zuvor:
+Pro Sitzplatz wird ein Ticket angelegt!!! BestellungsID bekommt man indem man zuvor Bestellung anlegt:
 POST an: http://localhost:8080/bestellungen
 
 Beispiel JSON:
@@ -16,7 +16,7 @@ return vom Server--> BestellungsID
 
 
 
-Wenn ihr das Ticket mit POST an den Spring Boot Server sendet dann wie folgt:
+Wenn das Ticket mit POST an den Spring Boot Server gesendet wird, dann wie folgt:
 POST an: http://localhost:8080/tickets
 
 Beispiel JSON:
@@ -31,7 +31,8 @@ Beispiel JSON:
 "bestellungID":1
 }
 
---> Preis muss danach noch gelöst werden
+--> Preis muss danach noch gelöst werden, geht allerdings erst wenn alles läuft, damit ich weiß, wann der berechnet
+werden muss
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
