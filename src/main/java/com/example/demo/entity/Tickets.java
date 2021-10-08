@@ -20,8 +20,6 @@ public class Tickets {
 
     private String preis;
 
-    private String bezahlStatus;
-
     private String sitzplatzreihe;
 
     private String sitzplatzspalte;
@@ -75,14 +73,6 @@ public class Tickets {
 
     public void setPreis(String preis) {
         this.preis = preis;
-    }
-
-    public String getBezahlStatus() {
-        return bezahlStatus;
-    }
-
-    public void setBezahlStatus(String bezahlStatus) {
-        this.bezahlStatus = bezahlStatus;
     }
 
     public String getSitzplatzreihe() {

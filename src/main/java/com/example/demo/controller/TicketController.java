@@ -34,16 +34,16 @@ public class TicketController {
     @PostMapping(value = "/tickets", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Tickets ticketAnlegen(@RequestBody Tickets ticket) {
+    public boolean ticketAnlegen(@RequestBody Tickets ticket) {
         if(existiertTicketSchon(ticket)) {
             System.err.println("Das Ticket existiert schon!");
-            return null;
+            return false;
         } else {
             System.out.println("Es wurde ein Ticket angelegt!");
             ticketRepository.save(ticket);
 
         }
-        return ticket;
+        return true;
     }
 
 

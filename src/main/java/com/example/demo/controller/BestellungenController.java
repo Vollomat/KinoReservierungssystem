@@ -36,8 +36,8 @@ public class BestellungenController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public int bestellungAnlegen(@RequestBody Bestellungen bestellungen) {
         ArrayList<Bestellungen> alleBestellungen = (ArrayList<Bestellungen>) bestellungenRepository.findAll();
-        for(int i = 0; i < alleBestellungen.size(); i++) {
-            if(bestellungen.getBestellID() == alleBestellungen.get(i).getBestellID()){
+        for (Bestellungen value : alleBestellungen) {
+            if (bestellungen.getBestellID() == value.getBestellID()) {
                 System.err.println("Die Bestellung existiert schon mit dieser ID!");
                 return 9999;
             }
@@ -49,7 +49,7 @@ public class BestellungenController {
     @RequestMapping(value = "/emailsenden",produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value ="/emailsenden", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void emailSenden(@RequestBody int bestellid) {
+    public boolean emailSenden(@RequestBody int bestellid) {
         String emailBestellungBesitzer = null;
         String nachricht = "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
@@ -91,13 +91,12 @@ public class BestellungenController {
         ArrayList<Bestellungen> alleBestellungen = (ArrayList<Bestellungen>) bestellungenRepository.findAll();
         ArrayList<Tickets> alleTickets = (ArrayList<Tickets>) ticketRepository.findAll();
         ArrayList<Tickets> ticketsDerBestellung = new ArrayList<>();
-        for(int i = 0; i < alleTickets.size(); i++) {
-            if(alleTickets.get(i).getBestellungID() == bestellid) {
-                ticketsDerBestellung.add(alleTickets.get(i));
+        for (Tickets alleTicket : alleTickets) {
+            if (alleTicket.getBestellungID() == bestellid) {
+                ticketsDerBestellung.add(alleTicket);
             }
         }
         for (Tickets tickets : ticketsDerBestellung) {
-            System.out.println(ticketsDerBestellung.size());
             nachricht = nachricht + "  <table>\n" +
                     "    <tr>\n" +
                     "      <td>Kino:</td>\n" +
@@ -135,12 +134,11 @@ public class BestellungenController {
         }
         if(emailBestellungBesitzer != null) {
             EmailSenden.emailversand(emailBestellungBesitzer, nachricht);
+            return true;
         } else {
             System.err.println("Es wurde keine passende Bestellung gefunden!");
+            return false;
         }
-
-        System.out.println(nachricht);
-
 
     }
 

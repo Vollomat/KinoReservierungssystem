@@ -26,7 +26,6 @@ Beispiel JSON:
 "kinosaalNummer":4,
 "filmName":"James Bond",
 "preis":"22,50",
-"bezahlStatus":"BEZAHLT",
 "sitzplatzreihe":"2",
 "sitzplatzspalte":"3",
 "bestellungID":1
