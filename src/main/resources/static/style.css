@@ -243,12 +243,12 @@ td, th {
 
 
 /*footer style*/----------------------------------------------
-.container {
-  max-width: 1170px;
-  /*text-align: left;*/
-  perspective: 1000px;
-  margin-bottom: 30px;
-}
+                .container {
+                  max-width: 1170px;
+                  /*text-align: left;*/
+                  perspective: 1000px;
+                  margin-bottom: 30px;
+                }
 
 .row {
   display: flex;
@@ -359,11 +359,11 @@ ul {
 }
 
 /*tooltip*/----------------------------------------------
-   /* Tooltip container */
- .tooltip {
-   position: relative;
-   display: inline-block;
- }
+             /* Tooltip container */
+           .tooltip {
+             position: relative;
+             display: inline-block;
+           }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
@@ -429,9 +429,9 @@ ul {
 
 /*Registrierung*/----------------------------------------------
 
-.daten{
-  margin: 50px;
-}
+                 .daten{
+                   margin: 50px;
+                 }
 
 .registrierung{
   max-width: 700px;
@@ -573,9 +573,9 @@ form .button input:hover{
 }
 
 /*saalplan*/----------------------------------------------
-.movie-container{
-  margin: 20px 0;
-}
+            .movie-container{
+              margin: 20px 0;
+            }
 
 .movie-container select{
   background-color: #fff;
@@ -690,12 +690,12 @@ p.text span{
 }
 
 /*checkbox*/----------------------------------------------
-.checkbox{
-  max-width: 1170px;
-  text-align: left;
-  perspective: 1000px;
-  margin-bottom: 30px;
-}
+            .checkbox{
+              max-width: 1170px;
+              text-align: left;
+              perspective: 1000px;
+              margin-bottom: 30px;
+            }
 
 input[type=checkbox] + label {
   display: block;
@@ -754,9 +754,9 @@ input[type=checkbox]:checked:disabled + label:before {
 }*/
 
 /*Hover-Effekt Filme*/----------------------------------------------
-.filmbilder{
-  width: 1000px;
-}
+                      .filmbilder{
+                        width: 1000px;
+                      }
 
 .filmbilder .box{
   position: relative;
@@ -845,9 +845,9 @@ input[type=checkbox]:checked:disabled + label:before {
 }
 
 /*Hover-Effekt Filme STARTSEITE*/----------------------------------------------
-.filmbilderindex{
-  width: 900px;
-}
+                                 .filmbilderindex{
+                                   width: 900px;
+                                 }
 
 .filmbilderindex .box{
   position: relative;
@@ -938,9 +938,9 @@ input[type=checkbox]:checked:disabled + label:before {
 }
 
 /*Kontaktformular*/----------------------------------------------
-details {
-  font-size: 20px;
-}
+                   details {
+                     font-size: 20px;
+                   }
 summary{
   color: white;
 }
@@ -992,13 +992,13 @@ details[open] summary {
 }
 
 /*Bezahlen*/----------------------------------------------
-.main-container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
+            .main-container {
+              height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+            }
 
 .main-container h2 {
   margin: 0 0 80px 0;
@@ -1091,19 +1091,19 @@ details[open] summary {
 
 /*Newsletter*/----------------------------------------------
 
-.newsletter {
-  color: #fff;
-  margin-bottom: 15px;
-  font-weight: 500;
-  height: 45px;
-  outline: none;
-  font-size: 16px;
-  border-radius: 5px;
-  padding-left: 15px;
-  border: 1px solid #ccc;
-  border-bottom-width: 2px;
-  background: rgb(46, 45, 45);
-}
+              .newsletter {
+                color: #fff;
+                margin-bottom: 15px;
+                font-weight: 500;
+                height: 45px;
+                outline: none;
+                font-size: 16px;
+                border-radius: 5px;
+                padding-left: 15px;
+                border: 1px solid #ccc;
+                border-bottom-width: 2px;
+                background: rgb(46, 45, 45);
+              }
 
 .newsletter .input-box input{
   color: #fff;
