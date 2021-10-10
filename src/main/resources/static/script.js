@@ -74,9 +74,9 @@ updateSelectedCount();
 //Abbruch Button bei der Ticketbuchung
 function abbruchStartseite() {
     var r = confirm("Dein Ticketbuchungsprozess wird nicht gespeichert, wenn du diese Seite verlässt. " +
-    "Möchtest du trotzdem zurück zur Startseite?");
+        "Möchtest du trotzdem zurück zur Startseite?");
     if (r === true) {
-    window.location.href="../index.html";
+        window.location.href="../index.html";
     }
 }
 
@@ -149,73 +149,120 @@ async function getAndShowVorstellungen(currentfilm){
 function success() {
     var film = sessionStorage.getItem('s_Film');
     var vorstellungen = JSON.parse(this.responseText.toString()); //parse the string to JSON
-        if (film === 'Transformers') {
-            document.getElementById("ersteVorst_transf").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById('ersteVorst_transf').value = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_transf").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_transf").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_transf").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'Black Widow') {
-            document.getElementById("ersteVorst_bw").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_bw").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_bw").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_bw").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'Wonder Woman 1984') {
-            document.getElementById("ersteVorst_ww").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_ww").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_ww").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_ww").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'Soul') {
-            document.getElementById("ersteVorst_soul").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_soul").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_soul").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_soul").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'Free Guy') {
-            document.getElementById("ersteVorst_fg").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_fg").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_fg").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_fg").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'The Day After Tomorrow') {
-            document.getElementById("ersteVorst_tdat").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_tdat").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_tdat").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_tdat").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'The Hobbit: An Unexpected Journey') {
-            document.getElementById("ersteVorst_hobbit").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_hobbit").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_hobbit").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_hobbit").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'Creed') {
-            document.getElementById("ersteVorst_creed").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_creed").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_creed").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_creed").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'The Avengers') {
-            document.getElementById("ersteVorst_avengers").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_avengers").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_avengers").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_avengers").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'Avatar') {
-            document.getElementById("ersteVorst_avatar").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_avatar").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_avatar").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_avatar").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'Joker') {
-            document.getElementById("ersteVorst_joker").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_joker").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_joker").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_joker").innerText = vorstellungen[3].startuhrzeit;
-        } else if (film === 'Terminator 2: Judgment Day') {
-            document.getElementById("ersteVorst_t2jd").innerText = vorstellungen[0].startuhrzeit;
-            document.getElementById("zweiteVorst_t2jd").innerText = vorstellungen[1].startuhrzeit;
-            document.getElementById("dritteVorst_t2jd").innerText = vorstellungen[2].startuhrzeit;
-            document.getElementById("vierteVorst_t2jd").innerText = vorstellungen[3].startuhrzeit;
-        }
+    if (film === 'Transformers') {
+        document.getElementById("ersteVorst_transf").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_transf").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_transf").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_transf").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById('ersteVorst_transf').value = vorstellungen[0].startuhrzeit;
+        document.getElementById('zweiteVorst_transf').value = vorstellungen[1].startuhrzeit;
+        document.getElementById('dritteVorst_transf').value = vorstellungen[2].startuhrzeit;
+        document.getElementById('vierteVorst_transf').value = vorstellungen[3].startuhrzeit;
+    } else if (film === 'Black Widow') {
+        document.getElementById("ersteVorst_bw").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_bw").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_bw").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_bw").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById('ersteVorst_bw').value = vorstellungen[0].startuhrzeit;
+        document.getElementById('zweiteVorst_bw').value = vorstellungen[1].startuhrzeit;
+        document.getElementById('dritteVorst_bw').value = vorstellungen[2].startuhrzeit;
+        document.getElementById('vierteVorst_bw').value = vorstellungen[3].startuhrzeit
+    } else if (film === 'Wonder Woman 1984') {
+        document.getElementById("ersteVorst_ww").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_ww").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_ww").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_ww").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById('ersteVorst_ww').value = vorstellungen[0].startuhrzeit;
+        document.getElementById('zweiteVorst_ww').value = vorstellungen[1].startuhrzeit;
+        document.getElementById('dritteVorst_ww').value = vorstellungen[2].startuhrzeit;
+        document.getElementById('vierteVorst_ww').value = vorstellungen[3].startuhrzeit
+    } else if (film === 'Soul') {
+        document.getElementById("ersteVorst_soul").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_soul").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_soul").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_soul").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById('ersteVorst_soul').value = vorstellungen[0].startuhrzeit;
+        document.getElementById('zweiteVorst_soul').value = vorstellungen[1].startuhrzeit;
+        document.getElementById('dritteVorst_soul').value = vorstellungen[2].startuhrzeit;
+        document.getElementById('vierteVorst_soul').value = vorstellungen[3].startuhrzeit
+    } else if (film === 'Free Guy') {
+        document.getElementById("ersteVorst_fg").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_fg").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_fg").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_fg").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById("ersteVorst_fg").value = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_fg").value = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_fg").value = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_fg").value = vorstellungen[3].startuhrzeit;
+    } else if (film === 'The Day After Tomorrow') {
+        document.getElementById("ersteVorst_tdat").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_tdat").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_tdat").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_tdat").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById("ersteVorst_tdat").value = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_tdat").value = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_tdat").value = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_tdat").value = vorstellungen[3].startuhrzeit;
+    } else if (film === 'The Hobbit: An Unexpected Journey') {
+        document.getElementById("ersteVorst_hobbit").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_hobbit").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_hobbit").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_hobbit").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById("ersteVorst_hobbit").value = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_hobbit").value = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_hobbit").value = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_hobbit").value = vorstellungen[3].startuhrzeit;
+    } else if (film === 'Creed') {
+        document.getElementById("ersteVorst_creed").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_creed").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_creed").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_creed").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById("ersteVorst_creed").value = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_creed").value = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_creed").value = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_creed").value = vorstellungen[3].startuhrzeit;
+    } else if (film === 'The Avengers') {
+        document.getElementById("ersteVorst_avengers").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_avengers").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_avengers").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_avengers").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById("ersteVorst_avengers").value = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_avengers").value = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_avengers").value = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_avengers").value = vorstellungen[3].startuhrzeit;
+    } else if (film === 'Avatar') {
+        document.getElementById("ersteVorst_avatar").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_avatar").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_avatar").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_avatar").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById("ersteVorst_avatar").value = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_avatar").value = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_avatar").value = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_avatar").value = vorstellungen[3].startuhrzeit;
+    } else if (film === 'Joker') {
+        document.getElementById("ersteVorst_joker").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_joker").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_joker").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_joker").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById("ersteVorst_joker").value = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_joker").value = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_joker").value = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_joker").value = vorstellungen[3].startuhrzeit;
+    } else if (film === 'Terminator 2: Judgment Day') {
+        document.getElementById("ersteVorst_t2jd").innerText = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_t2jd").innerText = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_t2jd").innerText = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_t2jd").innerText = vorstellungen[3].startuhrzeit;
+        document.getElementById("ersteVorst_t2jd").value = vorstellungen[0].startuhrzeit;
+        document.getElementById("zweiteVorst_t2jd").value = vorstellungen[1].startuhrzeit;
+        document.getElementById("dritteVorst_t2jd").value = vorstellungen[2].startuhrzeit;
+        document.getElementById("vierteVorst_t2jd").value = vorstellungen[3].startuhrzeit;
+    }
 }
 
 // function to handle error
 function error(err) {
-  alert('Request Failed');
+    alert('Request Failed');
 }
 
 
