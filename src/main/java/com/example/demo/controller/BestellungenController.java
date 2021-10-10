@@ -2,9 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.EmailSenden;
 import com.example.demo.entity.Bestellungen;
+import com.example.demo.entity.SitzplaetzeFuerVorstellung;
 import com.example.demo.entity.Tickets;
+import com.example.demo.entity.Vorstellungen;
 import com.example.demo.repository.BestellungenRepository;
+import com.example.demo.repository.SitzplaetzeFuerVorstellungRepository;
 import com.example.demo.repository.TicketRepository;
+import com.example.demo.repository.VorstellungRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +21,14 @@ public class BestellungenController {
 
     private BestellungenRepository bestellungenRepository;
     private TicketRepository ticketRepository;
+    private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
+    private VorstellungRepository vorstellungRepository;
 
-    public BestellungenController(BestellungenRepository bestellungenRepository, TicketRepository ticketRepository) {
+    public BestellungenController(BestellungenRepository bestellungenRepository, TicketRepository ticketRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository, VorstellungRepository vorstellungRepository) {
         this.bestellungenRepository = bestellungenRepository;
         this.ticketRepository = ticketRepository;
+        this.sitzplaetzeFuerVorstellungRepository = sitzplaetzeFuerVorstellungRepository;
+        this.vorstellungRepository = vorstellungRepository;
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
@@ -97,6 +105,7 @@ public class BestellungenController {
             }
         }
         for (Tickets tickets : ticketsDerBestellung) {
+            sitzplatzStatusAufGebuchtSetzen(tickets, "GEBUCHT");
             nachricht = nachricht + "  <table>\n" +
                     "    <tr>\n" +
                     "      <td>Kino:</td>\n" +
@@ -140,6 +149,34 @@ public class BestellungenController {
             return false;
         }
 
+    }
+
+
+
+    public boolean sitzplatzStatusAufGebuchtSetzen(Tickets ticket, String neuerStatusSitzplatz) {
+        int benoetigteVorstellungsID = 0;
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        for (Vorstellungen vorstellungen : alleVorstellungen) {
+            if (vorstellungen.getFilmName().equals(ticket.getFilmName()) && vorstellungen.getStartuhrzeit().equals(ticket.getStartuhrzeit())) {
+                benoetigteVorstellungsID = vorstellungen.getVorstellungsid();
+            }
+        }
+        ArrayList<SitzplaetzeFuerVorstellung> alleSitzplaetzeFuerVorstellung = (ArrayList<SitzplaetzeFuerVorstellung>) sitzplaetzeFuerVorstellungRepository.findAll();
+        for (SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung : alleSitzplaetzeFuerVorstellung) {
+            if (sitzplaetzeFuerVorstellung.getVorstellungsID() == benoetigteVorstellungsID && sitzplaetzeFuerVorstellung.getReihe() == ticket.getSitzplatzreihe() && sitzplaetzeFuerVorstellung.getSpalte() == ticket.getSitzplatzspalte()) {
+                if (sitzplaetzeFuerVorstellung.getStatusVomSitzplatz().equals("RESERVIERT")) {
+                    System.err.println("Dieser Sitzplatz ist schon reserviert/gebucht!!!");
+                    return false;
+                } else {
+                    sitzplaetzeFuerVorstellungRepository.delete(sitzplaetzeFuerVorstellung);
+                    sitzplaetzeFuerVorstellungRepository.save(new SitzplaetzeFuerVorstellung(sitzplaetzeFuerVorstellung.getSitzplatzID(), sitzplaetzeFuerVorstellung.getReihe(), sitzplaetzeFuerVorstellung.getSpalte(), sitzplaetzeFuerVorstellung.getVorstellungsID(), neuerStatusSitzplatz));
+                    System.out.println("Sitzplatzstatus wurde geändert für VorstellungsID: " + benoetigteVorstellungsID);
+                    return true;
+                }
+            }
+        }
+        System.err.println("Unbekannter Fehler in Funktion: ticketStatusAufReserviertSetzen()!");
+        return false;
     }
 
 }

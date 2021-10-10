@@ -20,9 +20,9 @@ public class Tickets {
 
     private String preis;
 
-    private String sitzplatzreihe;
+    private int sitzplatzreihe;
 
-    private String sitzplatzspalte;
+    private int sitzplatzspalte;
 
     private int bestellungID;
 
@@ -75,19 +75,19 @@ public class Tickets {
         this.preis = preis;
     }
 
-    public String getSitzplatzreihe() {
+    public int getSitzplatzreihe() {
         return sitzplatzreihe;
     }
 
-    public void setSitzplatzreihe(String sitzplatzreihe) {
+    public void setSitzplatzreihe(int sitzplatzreihe) {
         this.sitzplatzreihe = sitzplatzreihe;
     }
 
-    public String getSitzplatzspalte() {
+    public int getSitzplatzspalte() {
         return sitzplatzspalte;
     }
 
-    public void setSitzplatzspalte(String sitzplatzspalte) {
+    public void setSitzplatzspalte(int sitzplatzspalte) {
         this.sitzplatzspalte = sitzplatzspalte;
     }
 }
