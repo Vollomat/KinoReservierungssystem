@@ -43,6 +43,8 @@ ________________________________________________________________________________
 
 Elisa:
 
+- Ticketbuchung Header: abort() muss in AbbruchStartseite() rein (muss aufgerufen werden, wenn man ok drückt)
+
 - Header muss ganz am Ende auf allen Seiten (außer Ticketbuchung) gleich sein (siehe Index)
 
 Nandini
@@ -58,6 +60,14 @@ Nandini
 Dana:
 
 - User Interface für die Mail erstellen, die der User erhält, wenn er sein Passwort vergessen hat
+
+________________________________________________________________________________________________________________________
+TODO Dana & Elisa:
+________________________________________________________________________________________________________________________
+
+- Präsentation
+
+- Jobstellen
 
 ________________________________________________________________________________________________________________________
 WAS AUF DEN EINZELNEN SEITEN NOCH ZU TUN IST:
