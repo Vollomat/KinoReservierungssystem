@@ -152,6 +152,26 @@ public class BestellungenController {
     }
 
 
+    @RequestMapping(value = "/preisbekommen",produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value ="/preisbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public double preisBerechnenAllerTicketsDerBuchung(@RequestBody int bestellid) {
+        ArrayList<Bestellungen> alleBestellungen = (ArrayList<Bestellungen>) bestellungenRepository.findAll();
+        ArrayList<Tickets> alleTickets = (ArrayList<Tickets>) ticketRepository.findAll();
+        ArrayList<Tickets> ticketsDerBestellung = new ArrayList<>();
+        for (Tickets alleTicket : alleTickets) {
+            if (alleTicket.getBestellungID() == bestellid) {
+                ticketsDerBestellung.add(alleTicket);
+            }
+        }
+        double kummulierterPreis = 0.0;
+        for (Tickets tickets : ticketsDerBestellung) {
+            kummulierterPreis = kummulierterPreis + tickets.getPreis();
+        }
+        return kummulierterPreis;
+    }
+
+
 
     public boolean sitzplatzStatusAufGebuchtSetzen(Tickets ticket, String neuerStatusSitzplatz) {
         int benoetigteVorstellungsID = 0;

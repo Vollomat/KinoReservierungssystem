@@ -1,12 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.SitzplaetzeFuerVorstellung;
-import com.example.demo.entity.Tickets;
-import com.example.demo.entity.Vorstellungen;
-import com.example.demo.repository.BestellungenRepository;
-import com.example.demo.repository.SitzplaetzeFuerVorstellungRepository;
-import com.example.demo.repository.TicketRepository;
-import com.example.demo.repository.VorstellungRepository;
+import com.example.demo.entity.*;
+import com.example.demo.repository.*;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +16,14 @@ public class TicketController {
     private BestellungenRepository bestellungenRepository;
     private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
     private VorstellungRepository vorstellungRepository;
+    private KundenRepository kundenRepository;
 
-    public TicketController(TicketRepository ticketRepository, BestellungenRepository bestellungenRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository, VorstellungRepository vorstellungRepository) {
+    public TicketController(TicketRepository ticketRepository, BestellungenRepository bestellungenRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository, VorstellungRepository vorstellungRepository, KundenRepository kundenRepository) {
         this.ticketRepository = ticketRepository;
         this.bestellungenRepository = bestellungenRepository;
         this.sitzplaetzeFuerVorstellungRepository = sitzplaetzeFuerVorstellungRepository;
         this.vorstellungRepository = vorstellungRepository;
+        this.kundenRepository = kundenRepository;
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
@@ -39,17 +36,20 @@ public class TicketController {
     @PostMapping(value = "/tickets", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public boolean ticketAnlegen(@RequestBody Tickets ticket) {
+    public int ticketAnlegen(@RequestBody Tickets ticket) {
         if(existiertTicketSchon(ticket)) {
             System.err.println("Das Ticket existiert schon!");
-            return false;
+            return -1;
         } else {
             System.out.println("Es wurde ein Ticket angelegt!");
             if(sitzplatzStatusAufReserviertSetzen(ticket, "Reserviert")){
-                ticketRepository.save(ticket);
+                double preisDesTicketsInklRabatt = ticketPreisBerechnung(ticket);
+                Tickets dasTicket = new Tickets(ticket.getTicketid(), ticket.getStartuhrzeit(), ticket.getKinosaalNummer(), ticket.getFilmName(), preisDesTicketsInklRabatt, ticket.getAlterInJahren(), ticket.getSitzplatzreihe(), ticket.getSitzplatzspalte(), ticket.getBestellungID());
+                ticketRepository.save(dasTicket);
+                return (int) dasTicket.getPreis();
             }
         }
-        return true;
+        return -1;
     }
 
 
@@ -90,5 +90,118 @@ public class TicketController {
         return false;
     }
 
+    public double ticketPreisBerechnung(Tickets ticket) {
+        double anfangspreisDesTickets = 20.0; //Standardpreis
+
+        double rabattstufenRabatt = 0;
+
+        String emailDesKunden = "";
+        //Zuerst Rabattstufe ermitteln anhand aller vergangenen Buchungen
+        ArrayList<Bestellungen> alleBestellungen = (ArrayList<Bestellungen>) bestellungenRepository.findAll();
+        ArrayList<Bestellungen> alleBestellungenDesKunden = new ArrayList<>();
+        ArrayList<Tickets> alleTickets = (ArrayList<Tickets>) ticketRepository.findAll();
+        ArrayList<Tickets> ticketsAllerBestellungenDesKunden = new ArrayList<>();
+
+        for (Bestellungen value : alleBestellungen) {
+            if (value.getBestellID() == ticket.getBestellungID()) {
+                emailDesKunden = value.getEmail();
+            }
+        }
+        for (Bestellungen bestellungen : alleBestellungen) {
+            if (bestellungen.getEmail().equals(emailDesKunden)) {
+                alleBestellungenDesKunden.add(bestellungen);
+            }
+        }
+        for (Bestellungen bestellungen : alleBestellungenDesKunden) {
+            for (Tickets alleTicket : alleTickets) {
+                if (alleTicket.getBestellungID() == bestellungen.getBestellID()) {
+                    ticketsAllerBestellungenDesKunden.add(alleTicket); //Wieviele Tickets hat der Kunde bestellt?
+                }
+            }
+        }
+
+        if(ticketsAllerBestellungenDesKunden.size() >= 5) {
+            rabattstufenRabatt = 0.1;
+            if(ticketsAllerBestellungenDesKunden.size() >= 10) {
+                rabattstufenRabatt = 0.2;
+                if(ticketsAllerBestellungenDesKunden.size() >= 20) {
+                    rabattstufenRabatt = 0.3;
+                }
+            }
+        }
+
+        //Ist das Konto verifiziert?
+        ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) kundenRepository.findAll();
+        if(!emailDesKunden.equals("")){
+            for (Kunden kunden : alleKunden) {
+                if (kunden.getEmail().equals(emailDesKunden)) {
+                    if (kunden.isVerifiziert()) {
+                        rabattstufenRabatt = rabattstufenRabatt + 0.05;
+                    }
+                }
+            }
+        }
+
+        double neuerPreis = anfangspreisDesTickets*(1.0-rabattstufenRabatt);
+
+        String filmName = ticket.getFilmName();
+        String startuhrzeit = ticket.getStartuhrzeit();
+
+
+        int vorstellungsID = -1;
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        for (Vorstellungen vorstellungen : alleVorstellungen) { //VorstellungsID finden
+            if (vorstellungen.getStartuhrzeit().equals(ticket.getStartuhrzeit()) && vorstellungen.getFilmName().equals(ticket.getFilmName())) {
+                vorstellungsID = vorstellungen.getVorstellungsid();
+            }
+        }
+
+        ArrayList<SitzplaetzeFuerVorstellung> alleSitzplaetze = (ArrayList<SitzplaetzeFuerVorstellung>) sitzplaetzeFuerVorstellungRepository.findAll();
+        ArrayList<SitzplaetzeFuerVorstellung> alleRelevantenSitzplaetze = new ArrayList<>();
+        for (SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung : alleSitzplaetze) {
+            if (sitzplaetzeFuerVorstellung.getVorstellungsID() == vorstellungsID) {
+                alleRelevantenSitzplaetze.add(sitzplaetzeFuerVorstellung);
+            }
+        }
+
+        ArrayList<SitzplaetzeFuerVorstellung> alleGebuchtenSitzplaetzeDieserVorstellung = new ArrayList<>();
+
+        for (SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung : alleRelevantenSitzplaetze) {
+            if (sitzplaetzeFuerVorstellung.getStatusVomSitzplatz().equals("GEBUCHT")) {
+                alleGebuchtenSitzplaetzeDieserVorstellung.add(sitzplaetzeFuerVorstellung);
+            }
+        }
+
+        //Berechnung
+        double rabattAuslastung = 0.0;
+        double auslastungInProzent = (double) 100 * alleGebuchtenSitzplaetzeDieserVorstellung.size() / alleRelevantenSitzplaetze.size();
+        if(auslastungInProzent < 50.0) {
+            rabattAuslastung = 0.02;
+            if(auslastungInProzent < 25.0) {
+                rabattAuslastung = 0.05;
+                if(auslastungInProzent < 10.0) {
+                    rabattAuslastung = 0.12;
+                }
+            }
+        }
+
+        neuerPreis = neuerPreis*(1-rabattAuslastung);
+
+        //Alter des Kunden
+        double rabattAlter = 0.0;
+        if(ticket.getAlterInJahren() < 27) {
+            rabattAlter = 0.1;
+            if(ticket.getAlterInJahren() < 18) {
+                rabattAlter = 0.25;
+                if(ticket.getAlterInJahren() < 10) {
+                    rabattAlter = 0.5;
+                }
+            }
+        }
+
+        neuerPreis = neuerPreis*(1-rabattAlter);
+
+        return (int) neuerPreis;
+    }
 }
 

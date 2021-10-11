@@ -18,7 +18,9 @@ public class Tickets {
 
     private String filmName;
 
-    private String preis;
+    private double preis;
+
+    private int alterInJahren;
 
     private int sitzplatzreihe;
 
@@ -26,6 +28,21 @@ public class Tickets {
 
     private int bestellungID;
 
+    public Tickets(int ticketid, String startuhrzeit, String kinosaalNummer, String filmName, double preis, int alterInJahren, int sitzplatzreihe, int sitzplatzspalte, int bestellungID) {
+        this.ticketid = ticketid;
+        this.startuhrzeit = startuhrzeit;
+        this.kinosaalNummer = kinosaalNummer;
+        this.filmName = filmName;
+        this.preis = preis;
+        this.alterInJahren = alterInJahren;
+        this.sitzplatzreihe = sitzplatzreihe;
+        this.sitzplatzspalte = sitzplatzspalte;
+        this.bestellungID = bestellungID;
+    }
+
+    public Tickets() {
+
+    }
 
     public int getBestellungID() {
         return bestellungID;
@@ -67,11 +84,11 @@ public class Tickets {
         this.filmName = filmName;
     }
 
-    public String getPreis() {
+    public double getPreis() {
         return preis;
     }
 
-    public void setPreis(String preis) {
+    public void setPreis(double preis) {
         this.preis = preis;
     }
 
@@ -89,5 +106,13 @@ public class Tickets {
 
     public void setSitzplatzspalte(int sitzplatzspalte) {
         this.sitzplatzspalte = sitzplatzspalte;
+    }
+
+    public int getAlterInJahren() {
+        return alterInJahren;
+    }
+
+    public void setAlterInJahren(int alterInJahren) {
+        this.alterInJahren = alterInJahren;
     }
 }

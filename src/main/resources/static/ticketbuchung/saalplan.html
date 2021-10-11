@@ -47,57 +47,94 @@
             <div class="screen"></div>
 
             <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
+                <div id="Reihe 1 Platz 1" class="seat"></div>
+                <div id="Reihe 1 Platz 2" class="seat"></div>
+                <div id="Reihe 1 Platz 3" class="seat"></div>
+                <div id="Reihe 1 Platz 4" class="seat"></div>
+                <div id="Reihe 1 Platz 5" class="seat"></div>
+                <div id="Reihe 1 Platz 6" class="seat"></div>
+                <div id="Reihe 1 Platz 7" class="seat"></div>
+                <div id="Reihe 1 Platz 8" class="seat"></div>
             </div>
             <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
+                <div id="Reihe 2 Platz 1" class="seat"></div>
+                <div id="Reihe 2 Platz 2" class="seat"></div>
+                <div id="Reihe 2 Platz 3" class="seat"></div>
+                <div id="Reihe 2 Platz 4" class="seat"></div>
+                <div id="Reihe 2 Platz 5" class="seat"></div>
+                <div id="Reihe 2 Platz 6" class="seat"></div>
+                <div id="Reihe 2 Platz 7" class="seat"></div>
+                <div id="Reihe 2 Platz 8" class="seat"></div>
             </div>
             <div class="row">
                 <!--div class="seat occupied"></div-->
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
+                <div id="Reihe 3 Platz 1" class="seat"></div>
+                <div id="Reihe 3 Platz 2" class="seat"></div>
+                <div id="Reihe 3 Platz 3" class="seat"></div>
+                <div id="Reihe 3 Platz 4" class="seat"></div>
+                <div id="Reihe 3 Platz 5" class="seat"></div>
+                <div id="Reihe 3 Platz 6" class="seat"></div>
+                <div id="Reihe 3 Platz 7" class="seat"></div>
+                <div id="Reihe 3 Platz 8" class="seat"></div>
             </div>
             <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
+                <div id="Reihe 4 Platz 1" class="seat"></div>
+                <div id="Reihe 4 Platz 2" class="seat"></div>
+                <div id="Reihe 4 Platz 3" class="seat"></div>
+                <div id="Reihe 4 Platz 4" class="seat"></div>
+                <div id="Reihe 4 Platz 5" class="seat"></div>
+                <div id="Reihe 4 Platz 6" class="seat"></div>
+                <div id="Reihe 4 Platz 7" class="seat"></div>
+                <div id="Reihe 4 Platz 8" class="seat"></div>
             </div><!--end row-->
             <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
+                <div id="Reihe 5 Platz 1" class="seat"></div>
+                <div id="Reihe 5 Platz 2" class="seat"></div>
+                <div id="Reihe 5 Platz 3" class="seat"></div>
+                <div id="Reihe 5 Platz 4" class="seat"></div>
+                <div id="Reihe 5 Platz 5" class="seat"></div>
+                <div id="Reihe 5 Platz 6" class="seat"></div>
+                <div id="Reihe 5 Platz 7" class="seat"></div>
+                <div id="Reihe 5 Platz 8" class="seat"></div>
             </div><!--end row-->
         </div><!--end container-->
+
+        <script>
+            //HIER WERDEN ALLE DATEN EINER BESTELLUNG AN DEN SERVER GESENDET
+            async function getAndShowSaalplan(){
+                var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+                xhr.onload = successSaalplan; // call success function if request is successful
+                xhr.onerror = errorSaalpan;  // call error function if request failed
+                xhr.open('POST', 'http://localhost:8080/vorstellungen/sitzplaetze'); // open a GET request
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                let filmName = sessionStorage.getItem('s_Film');
+                let startuhrzeit = sessionStorage.getItem('s_Vorst');
+                xhr.send(JSON.stringify({
+                    filmName:filmName,
+                    startuhrzeit:startuhrzeit
+                })); // send the request to the server.
+            }
+
+            function successSaalplan(){
+                var sitzplaetze = JSON.parse(this.responseText.toString()); //parse the string to JSON
+                for (var i = 0; i <= (sitzplaetze.length - 1); i++) {
+                    var IdName = "Reihe " + sitzplaetze[i].reihe + " Platz " + sitzplaetze[i].spalte;
+                    var statusVomSitzplatz = sitzplaetze[i].statusVomSitzplatz;
+                    document.getElementById(IdName).classList.remove("selected");
+                    count.innerText = "0";
+                    if(statusVomSitzplatz !== "FREI"){
+                        document.getElementById(IdName).classList.add("occupied");
+                    }
+                }
+            }
+
+            function errorSaalpan(){
+                alert('Request Failed');
+            }
+
+            getAndShowSaalplan();
+        </script>
+
 
         <p class="text">Du hast <span id="count">0</span>
             Sitze ausgewählt.
@@ -109,52 +146,52 @@
 
 
         <div class=checkboxen">
-        <p class="text">
-            Buchst du für Personen, die
-        </p>
-        <form>
-            <table>
-                <style>
-                    #spalte1{width: 250px;}
-                    #spalte2{width: 185px;}
-                </style>
-                <colgroup>
-                    <col id="spalte1">
-                </colgroup>
-                <colgroup>
-                    <col id="spalte2">
-                </colgroup>
-                <tbody>
-                <tr>
-                    <td><input type="checkbox" id="input1" name="input-1" onclick="checkbox1()">
-                        <label for="input1"> unter 9 Jahren sind?</label></td>
-                    <td><div class="anzahl"><input type="number" min="0" id="anzahl1" name="" style="display:none" placeholder="Wie viele?"></div></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="input2" name="input-2" onclick="checkbox2()">
-                        <label for="input2"> unter 18 Jahren sind?</label></td>
-                    <td><div class="anzahl"><input type="number" min="0" id="anzahl2" name="" style="display:none" placeholder="Wie viele?"></div></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="input3" name="input-3" onclick="checkbox3()">
-                        <label for="input3"> unter 26 Jahren sind?</label></td>
-                    <td><div class="anzahl"><input type="number" min="0" id="anzahl3" name="" style="display:none" placeholder="Wie viele?"></div></td>
-                </tr>
-                </tbody>
-            </table>
-        </form>
-    </div>
+            <p class="text">
+                Buchst du für Personen, die
+            </p>
+            <form>
+                <table>
+                    <style>
+                        #spalte1{width: 250px;}
+                        #spalte2{width: 185px;}
+                    </style>
+                    <colgroup>
+                        <col id="spalte1">
+                    </colgroup>
+                    <colgroup>
+                        <col id="spalte2">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td><input type="checkbox" id="input1" name="input-1" onclick="checkbox1()">
+                            <label for="input1"> unter 9 Jahren sind?</label></td>
+                        <td><div class="anzahl"><input type="number" min="0" id="anzahl1" name="" style="display:none" placeholder="Wie viele?"></div></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="input2" name="input-2" onclick="checkbox2()">
+                            <label for="input2"> unter 18 Jahren sind?</label></td>
+                        <td><div class="anzahl"><input type="number" min="0" id="anzahl2" name="" style="display:none" placeholder="Wie viele?"></div></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="input3" name="input-3" onclick="checkbox3()">
+                            <label for="input3"> unter 26 Jahren sind?</label></td>
+                        <td><div class="anzahl"><input type="number" min="0" id="anzahl3" name="" style="display:none" placeholder="Wie viele?"></div></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
 
-    <p style="font-style:italic; font-size:12px">
-        Die Rabatte werden an der Kasse abgezogen.
-    </p>
-    <div>
-        <button class="btn btn2" onclick="sitzgewaehlt()">Bestätigen</button>
-    </div>
-    <br>
-    <br>
-    <br>
-</div><!--end saalplan-->
+        <p style="font-style:italic; font-size:12px">
+            Die Rabatte werden an der Kasse abgezogen.
+        </p>
+        <div>
+            <button class="btn btn2" onclick="sitzgewaehlt()">Bestätigen</button>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div><!--end saalplan-->
 </div><!--end wrapper-->
 
 
