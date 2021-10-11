@@ -44,11 +44,22 @@ public class TicketController {
             System.out.println("Es wurde ein Ticket angelegt!");
             if(sitzplatzStatusAufReserviertSetzen(ticket, "Reserviert")){
                 double preisDesTicketsInklRabatt = ticketPreisBerechnung(ticket);
-                Tickets dasTicket = new Tickets(ticket.getTicketid(), ticket.getStartuhrzeit(), ticket.getKinosaalNummer(), ticket.getFilmName(), preisDesTicketsInklRabatt, ticket.getAlterInJahren(), ticket.getSitzplatzreihe(), ticket.getSitzplatzspalte(), ticket.getBestellungID());
+                Tickets dasTicket = new Tickets(ticket.getTicketid(), ticket.getStartuhrzeit(), kinosaalnummerBekommen(ticket), ticket.getFilmName(), preisDesTicketsInklRabatt, ticket.getAlterInJahren(), ticket.getSitzplatzreihe(), ticket.getSitzplatzspalte(), ticket.getBestellungID());
                 ticketRepository.save(dasTicket);
                 return (int) dasTicket.getPreis();
             }
         }
+        return -1;
+    }
+
+    public int kinosaalnummerBekommen(Tickets ticket) {
+        ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
+        for (Vorstellungen vorstellungen : alleVorstellungen) {
+            if (vorstellungen.getFilmName().equals(ticket.getFilmName()) && vorstellungen.getStartuhrzeit().equals(ticket.getStartuhrzeit())) {
+                return vorstellungen.getKinosaalNummer();
+            }
+        }
+        System.out.println("Fehler: Funktion kinosaalnummerBekommen kann nicht ausgeführt werden und findet nicht die passende Kinosaalnummer!");
         return -1;
     }
 

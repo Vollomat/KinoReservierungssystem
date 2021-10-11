@@ -14,7 +14,7 @@ public class Tickets {
 
     private String startuhrzeit;
 
-    private String kinosaalNummer;
+    private int kinosaalNummer;
 
     private String filmName;
 
@@ -28,7 +28,7 @@ public class Tickets {
 
     private int bestellungID;
 
-    public Tickets(int ticketid, String startuhrzeit, String kinosaalNummer, String filmName, double preis, int alterInJahren, int sitzplatzreihe, int sitzplatzspalte, int bestellungID) {
+    public Tickets(int ticketid, String startuhrzeit, int kinosaalNummer, String filmName, double preis, int alterInJahren, int sitzplatzreihe, int sitzplatzspalte, int bestellungID) {
         this.ticketid = ticketid;
         this.startuhrzeit = startuhrzeit;
         this.kinosaalNummer = kinosaalNummer;
@@ -68,11 +68,11 @@ public class Tickets {
         this.startuhrzeit = startuhrzeit;
     }
 
-    public String getKinosaalNummer() {
+    public int getKinosaalNummer() {
         return kinosaalNummer;
     }
 
-    public void setKinosaalNummer(String kinosaalNummer) {
+    public void setKinosaalNummer(int kinosaalNummer) {
         this.kinosaalNummer = kinosaalNummer;
     }
 
