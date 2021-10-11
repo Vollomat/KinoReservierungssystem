@@ -62,12 +62,15 @@ Dana:
 - User Interface für die Mail erstellen, die der User erhält, wenn er sein Passwort vergessen hat
 
 ________________________________________________________________________________________________________________________
-TODO Dana & Elisa:
+TO-DO Dana & Elisa:
 ________________________________________________________________________________________________________________________
 
 - Präsentation
 
 - Jobstellen
+
+evtl.:
+- Kundenkonto löschen Button bei Bestellungen Seite (footer)
 
 ________________________________________________________________________________________________________________________
 WAS AUF DEN EINZELNEN SEITEN NOCH ZU TUN IST:
