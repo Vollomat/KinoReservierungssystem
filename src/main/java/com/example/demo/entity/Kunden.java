@@ -23,6 +23,7 @@ public class Kunden {
 
    private String strasse;
 
+
    private String hausnummer;
 
    private String postleitzahl;
@@ -31,6 +32,16 @@ public class Kunden {
 
    private String passwort;
 
+   private boolean verifiziert;
+
+
+    public boolean isVerifiziert() {
+        return verifiziert;
+    }
+
+    public void setVerifiziert(boolean verifiziert) {
+        this.verifiziert = verifiziert;
+    }
 
     public int getId() {
         return id;
