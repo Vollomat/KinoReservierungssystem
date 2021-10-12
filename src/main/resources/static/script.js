@@ -128,7 +128,7 @@ function passwortGleich() {
     }else{
         alert("Die eingegebenen Passwörter stimmen nicht überein.");
     }
-}--> ist in allesAusgefülltRegistrierung() integriert*/
+}--> ist in 'allesAusgefülltRegistrierung()' integriert*/
 
 //Registrierung: Überprüfung, ob alle Felder ausgefüllt sind
 function allesAusgefülltRegistrierung(){
