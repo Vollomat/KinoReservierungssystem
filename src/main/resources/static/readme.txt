@@ -38,8 +38,7 @@ werden muss
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Idee für Präsi:
-Jeder von uns nimmt eine Persona an und führt dementsprechend den Buchungsprozess
-anders durch
+Jeder von uns nimmt eine Persona an und führt dementsprechend den Buchungsprozess anders durch
 ________________________________________________________________________________________________________________________
 WAS NOCH ZU TUN IST:
 ________________________________________________________________________________________________________________________
@@ -47,9 +46,6 @@ ________________________________________________________________________________
 Elisa:
 
 - Ticketbuchung Header: abort() muss in AbbruchStartseite() rein (muss aufgerufen werden, wenn man ok drückt)
-
-- Registrierung: in beide Passowrt-Felder muss DER GLEICHE String eingegeben werden
--> Java Script Funktion schreiben
 
 - Header muss ganz am Ende auf allen Seiten (außer Ticketbuchung) gleich sein (siehe Index)
 

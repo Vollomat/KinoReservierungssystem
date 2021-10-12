@@ -118,7 +118,7 @@ function checkbox3() {
     }
 }
 
-//Registrierung: Überprüfung, ob Passwort1 und Passowrt2 den gleichen String enthalten
+/*Registrierung: Überprüfung, ob Passwort1 und Passowrt2 den gleichen String enthalten
 function passwortGleich() {
     const passwort1 = document.getElementById('passwort').value;
     const passwort2 = document.getElementById('passwort2').value;
@@ -126,8 +126,59 @@ function passwortGleich() {
     if (passwort1 === passwort2){
         window.location.href="../ticketbuchung/bezahlen.html";
     }else{
-        alert("Die eingegebenen Passwörter stimmen nicht überein.")
+        alert("Die eingegebenen Passwörter stimmen nicht überein.");
     }
+}--> ist in allesAusgefülltRegistrierung() integriert*/
+
+//Registrierung: Überprüfung, ob alle Felder ausgefüllt sind
+function allesAusgefülltRegistrierung(){
+    const regVorname = document.getElementById('vorname').value;
+    const regNachname = document.getElementById('nachname').value;
+    const regMail = document.getElementById('email').value;
+    const regAlter = document.getElementById('alter').value;
+    const regStrasse = document.getElementById('strasse').value;
+    const regHausnummer = document.getElementById('hausnummer').value;
+    const regPLZ = document.getElementById('plz').value;
+    const regOrt = document.getElementById('ort').value;
+    const regPasswort = document.getElementById('passwort').value;
+    const regPasswort2 = document.getElementById('passwort2').value;
+
+    if ((regVorname === "") || (regNachname === "") || (regMail === "") || (regAlter === "") || (regStrasse === "") || (regHausnummer === "") || (regPLZ === "") || (regOrt === "") || (regPasswort === "") || (regPasswort2 === "")){
+        alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.");
+    }else if (regPasswort !== regPasswort2){
+        alert("Die eingegebenen Passwörter stimmen nicht überein.");
+    }else {
+        window.location.href="../ticketbuchung/bezahlen.html";
+    }
+
+}
+
+//Login: Überprüfung, ob alle Felder ausgefüllt sind
+function allesAusgefülltLogin(){
+    const loginMail = document.getElementById('email').value;
+    const loginPassword = document.getElementById('passwort').value;
+
+    if ((loginMail === "") || (loginPassword === "")){
+        alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.")
+    }else {
+        window.location.href="../ticketbuchung/bezahlen.html";
+    }
+
+}
+
+//Gast: Überprüfung, ob alle Felder ausgefüllt sind
+function allesAusgefülltGast(){
+    const gastVorname = document.getElementById('vorname').value;
+    const gastNachname = document.getElementById('nachname').value;
+    const gastMail = document.getElementById('email').value;
+    const gastAlter = document.getElementById('alter').value;
+
+    if ((gastVorname === "") || (gastNachname === "") || (gastMail === "") || (gastAlter === "")){
+        alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.")
+    }else {
+        window.location.href="../ticketbuchung/bezahlen.html";
+    }
+
 }
 
 
