@@ -155,9 +155,6 @@ public class TicketController {
 
         double neuerPreis = anfangspreisDesTickets*(1.0-rabattstufenRabatt);
 
-        String filmName = ticket.getFilmName();
-        String startuhrzeit = ticket.getStartuhrzeit();
-
 
         int vorstellungsID = -1;
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();

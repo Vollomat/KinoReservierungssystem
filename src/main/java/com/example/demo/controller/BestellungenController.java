@@ -156,7 +156,6 @@ public class BestellungenController {
     @PostMapping(value ="/preisbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public double preisBerechnenAllerTicketsDerBuchung(@RequestBody int bestellid) {
-        ArrayList<Bestellungen> alleBestellungen = (ArrayList<Bestellungen>) bestellungenRepository.findAll();
         ArrayList<Tickets> alleTickets = (ArrayList<Tickets>) ticketRepository.findAll();
         ArrayList<Tickets> ticketsDerBestellung = new ArrayList<>();
         for (Tickets alleTicket : alleTickets) {
