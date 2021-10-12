@@ -69,8 +69,6 @@ ________________________________________________________________________________
 
 - Präsentation
 
-- Jobstellen
-
 evtl.:
 - Kundenkonto löschen Button bei Bestellungen Seite (footer)
 
