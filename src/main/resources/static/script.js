@@ -118,6 +118,19 @@ function checkbox3() {
     }
 }
 
+//Registrierung: Überprüfung, ob Passwort1 und Passowrt2 den gleichen String enthalten
+function passwortGleich() {
+    const passwort1 = document.getElementById('passwort').value;
+    const passwort2 = document.getElementById('passwort2').value;
+
+    if (passwort1 === passwort2){
+        window.location.href="../ticketbuchung/bezahlen.html";
+    }else{
+        alert("Die eingegebenen Passwörter stimmen nicht überein.")
+    }
+}
+
+
 //aktuell ausgewählter Film wird mitgegeben und die zugehörigen Vorstellungen werden zurückgeliefert
 async function getAndShowVorstellungen(currentfilm){
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest

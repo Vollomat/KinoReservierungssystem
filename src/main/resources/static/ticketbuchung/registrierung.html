@@ -76,7 +76,7 @@
 <daten>
   <div class="registrierung">
     <div class="content">
-      <form action="../ticketbuchung/bezahlen.html">
+      <div class="form">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Vorname</span>
@@ -140,13 +140,13 @@
           </div>
         </div>
           <div class= "button" >
-              <a href="bezahlen.html"><input type="submit" value="Bestätigen" onclick="UserAction()"></a>
+              <input type="submit" value="Bestätigen" onclick="UserAction(), passwortGleich()">
           </div>
         <p style="font-style:italic; font-size:10px; text-align:center">
             <a href="../ticketbuchung/login.html">Du hast schon ein Konto?  Klicke hier zum Einloggen</a> <br /> <br />
             <a href="../ticketbuchung/gast.html">Weiter als Gast</a>
         </p>
-      </form>
+      </div>
     </div>
   </div>
 </daten>
