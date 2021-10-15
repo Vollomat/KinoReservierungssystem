@@ -278,7 +278,6 @@ function successLogin() {
         //E-Mail wird in sessionstorage gespeichert
         sessionStorage.setItem('s_email', email);
         bestellungAnlegen();
-        reserviereAlleSitzplaetze();
         window.location.href = "../ticketbuchung/bezahlen.html";
     } else {
         alert("Ihre Login-Daten sind falsch!");
@@ -453,18 +452,26 @@ function error(err) {
 
 // Durch senden der E-Mail wird eine Bestellung in der Datenbank angelegt und eine BestellId
 // als eindeutiger Identifikator zurückgesendet
-async function bestellungAnlegen(){
+function bestellungAnlegen(){
     alert("bin in Bestellung anlegen");
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
-    xhr.onload = successBestellung; // call success function if request is successful
-    xhr.onerror = errorBestellung;  // call error function if request failed
-    xhr.open('POST', 'http://localhost:8080/bestellungen'); // open a GET request
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            reserviereAlleSitzplaetze(xhr.responseText);
+            sessionStorage.setItem('s_bestellId', xhr.responseText);
+            window.location.href = "../ticketbuchung/bezahlen.html";
+        }
+    }
+    xhr.open('POST', 'http://localhost:8080/bestellungen', true);
     var email = sessionStorage.getItem('s_email')
-    alert(email);
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         email:email
-    }));  // send the request to the server.
+    }));
+    var bestellID = JSON.parse(this.responseText.toString());
+    alert("bestellId wurde gesetzt: " + bestellID);
+    sessionStorage.setItem('s_bestellId', bestellID);
+    reserviereAlleSitzplaetze(bestellID);
 }
 
 function successBestellung(){
@@ -479,12 +486,11 @@ function errorBestellung(){
 }
 
 //die im Sessionstorage gespeicherten Sitzplätze werden ausgelesen und einzeln an die Datenbank gegeben -> Reservierung
-function reserviereAlleSitzplaetze(){
+function reserviereAlleSitzplaetze(bestellId){
     var selectedSeats = JSON.parse(sessionStorage.getItem('s_selectedSeats'));
     console.log(selectedSeats);
     var startuhrzeit = sessionStorage.getItem('s_Vorst');
     var filmname = sessionStorage.getItem('s_Film');
-    var bestellId = sessionStorage.getItem('s_bestellId');
     for (let i = 0; i < selectedSeats.length; i++) {
         var sitzplatzreihe = selectedSeats[i][0];
         var sitzsplatzspalte = selectedSeats[i][1];
@@ -494,14 +500,13 @@ function reserviereAlleSitzplaetze(){
 }
 
 // sorgt dafür, dass ein Sitzplatz reserviert wird
-async function sitzplatzReservieren(alterInJahren, sitzplatzreihe, sitzsplatzspalte, startuhrzeit, filmname, bestellId){
+function sitzplatzReservieren(alterInJahren, sitzplatzreihe, sitzsplatzspalte, startuhrzeit, filmname, bestellId){
     alert("bin in Sitzplatzreservieren");
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
     xhr.onload = successReservierung; // call success function if request is successful
     xhr.onerror = errorReservierung;  // call error function if request failed
     xhr.open('POST', 'http://localhost:8080/tickets'); // open a GET request
     xhr.setRequestHeader('Content-Type', 'application/json');
-    alert("zum lesen");
     xhr.send(JSON.stringify({
         startuhrzeit: startuhrzeit,
         filmName: filmname,
