@@ -21,6 +21,19 @@ public class Vorstellungen {
 
     private String laengeDerVorstellungInMinuten;
 
+
+    public Vorstellungen(int vorstellungsid, String filmName, int kinosaalNummer, String startuhrzeit, String laengeDerVorstellungInMinuten) {
+        this.vorstellungsid = vorstellungsid;
+        this.filmName = filmName;
+        this.kinosaalNummer = kinosaalNummer;
+        this.startuhrzeit = startuhrzeit;
+        this.laengeDerVorstellungInMinuten = laengeDerVorstellungInMinuten;
+    }
+
+    public Vorstellungen() {
+
+    }
+
     public int getVorstellungsid() {
         return vorstellungsid;
     }
