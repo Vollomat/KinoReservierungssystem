@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import com.example.demo.entity.OMDBFilme;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
