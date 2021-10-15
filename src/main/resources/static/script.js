@@ -8,6 +8,14 @@ const movieSelect = document.getElementById('movie');
 
 populateUI();
 
+let ticketPrice = +movieSelect.value;
+
+// Save selected movie index and price
+function setMovieData(movieIndex, moviePrice) {
+    localStorage.setItem('selectedMovieIndex', movieIndex);
+    localStorage.setItem('selectedMoviePrice', moviePrice);
+}
+
 // Update total and count
 function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
@@ -19,6 +27,7 @@ function updateSelectedCount() {
     const selectedSeatsCount = selectedSeats.length;
 
     count.innerText = selectedSeatsCount;
+    total.innerText = selectedSeatsCount * ticketPrice;
 }
 
 // Get data from localstorage and populate UI
@@ -39,6 +48,13 @@ function populateUI() {
         movieSelect.selectedIndex = selectedMovieIndex;
     }
 }
+
+// Movie select event
+movieSelect.addEventListener('change', e => {
+    ticketPrice = +e.target.value;
+    setMovieData(e.target.selectedIndex, e.target.value);
+    updateSelectedCount();
+});
 
 // Seat click event
 container.addEventListener('click', e => {
@@ -61,11 +77,13 @@ function abbruchStartseite() {
         "Möchtest du trotzdem zurück zur Startseite?");
     if (r === true) {
         window.location.href="../index.html";
+        sessionStorage.clear();
     }
 }
 
 // Saalplan: man kann nur weiter, wenn min. 1 Sitz ausgewählt ist und man kann nur so viele Leute eingeben, wie Sitzplätze ausgewählt sind
 function sitzgewaehlt() {
+    alert("Bin in sitzgewählt");
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
     const selectedSeatsCount = selectedSeats.length;
     const unterNeun = document.getElementById('anzahl1').value;
@@ -80,12 +98,45 @@ function sitzgewaehlt() {
 
     if (selectedSeatsCount === 0) {
         alert("Du musst mindestens einen Sitz auswählen, um die Buchung fortsetzen zu können.");
-    }else if (selectedSeatsCount < rabattiert){
+    } else if (selectedSeatsCount < rabattiert) {
         alert("Die Anzahl an eingegebenen Personen übersteigt die Anzahl von ausgewählten Sitzen.");
-    }else{
-        window.location.href="../ticketbuchung/registrierung.html";
+    } else {
+        window.location.href = "../ticketbuchung/registrierung.html";
+        //sitzplaetze und Alter werden in ein Array und dann in localStorage gespeichert
+        console.log(selectedSeats);
+        let selectedSaeatsAndAge = new Array();
+        let kleinerNeun = unterNeunInt;
+        let kleinerAchtzehn = unterAchtzehnInt;
+        let kleinerSechUndZwanzig = unterSechsundzwanzigInt;
+        for (var i = 0; i < selectedSeats.length; i++) {
+            const splitArray = selectedSeats[i].id.split(" ");
+            console.log(splitArray);
+            var reihe = parseInt(splitArray[1]);
+            console.log(reihe);
+            var spalte = parseInt(splitArray[3]);
+            console.log(spalte);
+            if (kleinerNeun > 0){
+                selectedSaeatsAndAge[i] = [reihe, spalte, 8];
+                kleinerNeun -= 1;
+                console.log(selectedSaeatsAndAge[i]);
+            } else if (kleinerAchtzehn > 0){
+                selectedSaeatsAndAge[i] = [reihe, spalte, 17];
+                kleinerAchtzehn -= 1;
+                console.log(selectedSaeatsAndAge[i]);
+            } else if (kleinerSechUndZwanzig > 0){
+                selectedSaeatsAndAge[i] = [reihe, spalte, 25];
+                kleinerSechUndZwanzig -= 1;
+                console.log(selectedSaeatsAndAge[i]);
+            } else {
+                selectedSaeatsAndAge[i] = [reihe, spalte, 30];
+                console.log(selectedSaeatsAndAge[i]);
+            }
+        }
+        console.log(selectedSaeatsAndAge);
+        sessionStorage.setItem('s_selectedSeats', JSON.stringify(selectedSaeatsAndAge));
     }
 }
+
 
 // Saalplan Checkboxen
 function checkbox1() {
@@ -130,8 +181,56 @@ function passwortGleich() {
     }
 }--> ist in 'allesAusgefülltRegistrierung()' integriert*/
 
+//Registrierung
+async function UserAction() {
+    var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+    xhr.onload = successRegister; // call success function if request is successful
+    xhr.onerror = errorRegister;  // call error function if request failed
+    xhr.open('POST', 'http://localhost:8080/kunden/register/'); // open a GET request
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    let vorname = document.querySelector("#vorname").value;
+    let nachname = document.querySelector("#nachname").value;
+    let email = document.querySelector("#email").value;
+    let alterInJahren = document.querySelector("#alter").value;
+    let strasse = document.querySelector("#strasse").value;
+    let hausnummer = document.querySelector("#hausnummer").value;
+    let plz = document.querySelector("#plz").value;
+    let ort = document.querySelector("#ort").value;
+    let passwort = document.querySelector("#passwort").value;
+    xhr.send(JSON.stringify({
+        vorname:vorname,
+        nachname:nachname,
+        email:email,
+        alterInJahren:alterInJahren,
+        strasse:strasse,
+        hausnummer:hausnummer,
+        postleitzahl:plz,
+        ort:ort,
+        passwort:passwort
+    })); // send the request to the server.
+
+    //E-Mail wird in sessionstorage gespeichert
+    sessionStorage.setItem('s_email', email);
+}
+
+function successRegister() {
+    var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
+    alert(data);
+    if(data === false){
+        alert("Ihre Daten konnten nicht korrekt verarbeitet werden!");
+    } else {
+        bestellungAnlegen();
+        reserviereAlleSitzplaetze();
+    }
+}
+
+// function to handle error
+function errorRegister(err) {
+    alert('Request Failed');
+}
+
 //Registrierung: Überprüfung, ob alle Felder ausgefüllt sind
-function allesAusgefülltRegistrierung(){
+function allesAusgefuelltRegistrierung(){
     const regVorname = document.getElementById('vorname').value;
     const regNachname = document.getElementById('nachname').value;
     const regMail = document.getElementById('email').value;
@@ -148,26 +247,64 @@ function allesAusgefülltRegistrierung(){
     }else if (regPasswort !== regPasswort2){
         alert("Die eingegebenen Passwörter stimmen nicht überein.");
     }else {
+        UserAction();
         window.location.href="../ticketbuchung/bezahlen.html";
     }
 
 }
 
+//login
+async function login() {
+    var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+    xhr.onload = successLogin; // call success function if request is successful
+    xhr.onerror = errorLogin;  // call error function if request failed
+    xhr.open('POST', 'http://localhost:8080/kunden/login'); // open a POST request
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    let email = document.querySelector("#email").value; //email statt usernamen
+    let passwort = document.querySelector("#passwort").value;
+    xhr.send(JSON.stringify({
+        email:email,
+        passwort:passwort,
+    })); // send the request to the server.
+}
+
+function successLogin() {
+    alert("success funktion login wurde aufgerufen!");
+    const UserData = JSON.parse(this.responseText.toString()); //parse the string to JSON
+    console.log(UserData);
+    alert("zum lesen");
+    if (UserData != null) {
+        var email = UserData.email;
+        //E-Mail wird in sessionstorage gespeichert
+        sessionStorage.setItem('s_email', email);
+        bestellungAnlegen();
+        reserviereAlleSitzplaetze();
+        window.location.href = "../ticketbuchung/bezahlen.html";
+    } else {
+        alert("Ihre Login-Daten sind falsch!");
+    }
+}
+
+// function to handle error
+function errorLogin(err) {
+    alert('Request Failed');
+}
+
 //Login: Überprüfung, ob alle Felder ausgefüllt sind
-function allesAusgefülltLogin(){
+function allesAusgefuelltLogin(){
     const loginMail = document.getElementById('email').value;
     const loginPassword = document.getElementById('passwort').value;
 
     if ((loginMail === "") || (loginPassword === "")){
         alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.")
     }else {
-        window.location.href="../ticketbuchung/bezahlen.html";
+        alert("vorLogin");
+        login();
     }
-
 }
 
 //Gast: Überprüfung, ob alle Felder ausgefüllt sind
-function allesAusgefülltGast(){
+function allesAusgefuelltGast(){
     const gastVorname = document.getElementById('vorname').value;
     const gastNachname = document.getElementById('nachname').value;
     const gastMail = document.getElementById('email').value;
@@ -193,6 +330,7 @@ async function getAndShowVorstellungen(currentfilm){
     //sessionstorage film setzen
     sessionStorage.setItem('s_Film', currentfilm);
 }
+
 //passt die zurückgelieferten Vorstellungs-Zeiten abhängig vom ausgewählten Film an
 function success() {
     var film = sessionStorage.getItem('s_Film');
@@ -313,8 +451,77 @@ function error(err) {
     alert('Request Failed');
 }
 
-
-//HIER WERDEN ALLE DATEN EINER BESTELLUNG AN DEN SERVER GESENDET
-function elementeEinUndAusblenden(){
-    document.getElementById(ersteVorst_transf).style.visibility = "visible";
+// Durch senden der E-Mail wird eine Bestellung in der Datenbank angelegt und eine BestellId
+// als eindeutiger Identifikator zurückgesendet
+async function bestellungAnlegen(){
+    alert("bin in Bestellung anlegen");
+    var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+    xhr.onload = successBestellung; // call success function if request is successful
+    xhr.onerror = errorBestellung;  // call error function if request failed
+    xhr.open('POST', 'http://localhost:8080/bestellungen'); // open a GET request
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    var email = sessionStorage.getItem('s_email')
+    alert(email);
+    xhr.send(JSON.stringify({
+        email:email
+    }));  // send the request to the server.
 }
+
+function successBestellung(){
+    alert("bin in Bestellungen");
+    var bestellID = JSON.parse(this.responseText.toString());
+    alert("bestellId wurde gesetzt: " + bestellID);
+    sessionStorage.setItem('s_bestellId', bestellID);
+}
+
+function errorBestellung(){
+    alert("Es konnte keine Bestellung angelegt werden!");
+}
+
+//die im Sessionstorage gespeicherten Sitzplätze werden ausgelesen und einzeln an die Datenbank gegeben -> Reservierung
+function reserviereAlleSitzplaetze(){
+    var selectedSeats = JSON.parse(sessionStorage.getItem('s_selectedSeats'));
+    console.log(selectedSeats);
+    var startuhrzeit = sessionStorage.getItem('s_Vorst');
+    var filmname = sessionStorage.getItem('s_Film');
+    var bestellId = sessionStorage.getItem('s_bestellId');
+    for (let i = 0; i < selectedSeats.length; i++) {
+        var sitzplatzreihe = selectedSeats[i][0];
+        var sitzsplatzspalte = selectedSeats[i][1];
+        var alterInJahren = selectedSeats[i][2];
+        sitzplatzReservieren(alterInJahren, sitzplatzreihe, sitzsplatzspalte, startuhrzeit, filmname, bestellId);
+    }
+}
+
+// sorgt dafür, dass ein Sitzplatz reserviert wird
+async function sitzplatzReservieren(alterInJahren, sitzplatzreihe, sitzsplatzspalte, startuhrzeit, filmname, bestellId){
+    alert("bin in Sitzplatzreservieren");
+    var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
+    xhr.onload = successReservierung; // call success function if request is successful
+    xhr.onerror = errorReservierung;  // call error function if request failed
+    xhr.open('POST', 'http://localhost:8080/tickets'); // open a GET request
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    alert("zum lesen");
+    xhr.send(JSON.stringify({
+        startuhrzeit: startuhrzeit,
+        filmName: filmname,
+        preis: 28.50,
+        alterInJahren: alterInJahren,
+        sitzplatzreihe: sitzplatzreihe,
+        sitzplatzspalte: sitzsplatzspalte,
+        bestellungID: bestellId
+    }));  // send the request to the server.
+}
+
+function successReservierung(){
+    var isSitzplatzReserviert = JSON.parse(this.responseText.toString());
+    if(isSitzplatzReserviert === false){
+        alert("Leider wurde einer Ihrer Sitzplaetze in der Zwischenzeit ausgebucht. Bitte buchen sie erneut!");
+    }
+}
+
+function errorReservierung(){
+    alert("Sitzplatzreservierung ist fehlgeschlagen. Bitte wählen sie Ihre Sitze erneut aus.")
+}
+
+

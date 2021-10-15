@@ -11,50 +11,10 @@
 </head>
 <body>
 
-<script>
-    async function UserAction() {
-        var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
-        xhr.onload = success; // call success function if request is successful
-        xhr.onerror = error;  // call error function if request failed
-        xhr.open('POST', 'http://localhost:8080/kunden/login'); // open a POST request
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        let email = document.querySelector("#email").value; //email statt usernamen
-        let passwort = document.querySelector("#passwort").value;
-
-        xhr.send(JSON.stringify({
-            email:email,
-            passwort:passwort,
-        })); // send the request to the server.
-
-        //E-Mail wird in sessionstorage gespeichert
-        sessionStorage.setItem('s_email', email);
-    }
-
-    function success() {
-        var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
-        if (data == false) {
-            document.getElementById('FehlermeldungLogin').innerHTML = "Ihre Login-Daten sind falsch!";
-            //sessionStorage.setItem('s_email', email);
-        }
-        console.log(data);
-        alert(data);
-    }
-
-    // function to handle error
-    function error(err) {
-        alert('Request Failed');
-    }
-
-    function abort() {
-        sessionStorage.clear();
-    }
-
-</script>
-
 <header>
-    <img onclick="abbruchStartseite(), abort()" class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo">
+    <img onclick="abbruchStartseite()" class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo">
 
-    <button onclick="abbruchStartseite(), abort()" >Startseite</button>
+    <button onclick="abbruchStartseite()" >Startseite</button>
 </header> <!-- end header -->
 
 <div class="wrapper">
@@ -80,7 +40,7 @@
             <p id="FehlermeldungLogin" ></p>
         </div>
         <div class="button">
-          <input type="submit" value="Bestätigen" onclick="allesAusgefülltLogin()">
+          <input type="submit" value="Bestätigen" onclick="login()">
         </div>
       </div>
         </div>
