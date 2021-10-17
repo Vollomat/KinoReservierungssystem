@@ -31,37 +31,37 @@
     <h2>Wie möchtest du bezahlen?</h2>
     <div class="radio-buttons">
         <label class="custom-radio">
-            <input type="radio" name="radio" checked />
+            <input type="radio" name="radio" checked id="paypal" />
             <span class="radio-btn"
             ><i class="las la-check"></i>
-            <div class="hobbies-icon">
+            <div class="hobbies-icon" >
               <i class="fab fa-paypal"></i>
               <h3>Paypal</h3>
             </div>
           </span>
         </label>
         <label class="custom-radio">
-            <input type="radio" name="radio" />
+            <input type="radio" name="radio" id="rechnung"/>
             <span class="radio-btn"
             ><i class="las la-check"></i>
-            <div class="hobbies-icon">
+            <div class="hobbies-icon" >
               <i class="fas fa-file-invoice"></i>
               <h3>Rechnung</h3>
             </div>
           </span>
         </label>
         <label class="custom-radio">
-            <input type="radio" name="radio" />
+            <input type="radio" name="radio" id="karte" />
             <span class="radio-btn"
             ><i class="las la-check"></i>
-            <div class="hobbies-icon">
+            <div class="hobbies-icon" >
               <i class="fab fa-cc-visa"></i>
               <h3>Kredit-<br />karte</h3>
             </div>
           </span>
         </label>
         <label class="custom-radio">
-            <input type="radio" name="radio" />
+            <input type="radio" name="radio" id="bar"/>
             <span class="radio-btn"
             ><i class="las la-check"></i>
             <div class="hobbies-icon">
@@ -78,7 +78,7 @@
 
     </p>
     <div>
-        <a class="ticket" href="../ticketbuchung/kasse.html"><button class="btn btn2">Bestätigen</button></a>
+        <a class="ticket" href="../ticketbuchung/kasse.html"><button onclick="setzeBezahlart()" class="btn btn2">Bestätigen </button></a>
     </div>
     <p>
 
@@ -86,6 +86,25 @@
 </div>
 
 <script>
+
+    function setzeBezahlart(){
+        if(document.getElementById('bar').checked) {
+            sessionStorage.setItem("s_bezahlart", "Bar an der Kasse");
+            alert("bar wurde ausgewählt");
+        }else if(document.getElementById('karte').checked) {
+            sessionStorage.setItem("s_bezahlart", "Kreditkarte");
+            alert("karte wurde ausgewählt");
+        }
+        else if(document.getElementById('rechnung').checked) {
+            sessionStorage.setItem("s_bezahlart", "Klarna Rechnung");
+            alert("rechnung wurde ausgewählt");
+        }
+        else if(document.getElementById('paypal').checked) {
+            sessionStorage.setItem("s_bezahlart", "PayPal");
+            alert("paypal wurde ausgewählt");
+        }
+    }
+
     async function updateAndShowGesamtpreis(){
         alert("bin in updateAndShowGesamtpreis");
         var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
@@ -100,15 +119,14 @@
 
     function successPreis(){
         var gesamtPreis = JSON.parse(this.responseText.toString());
-        console.log(gesamtPreis);
-        alert("gesamtPreis: " + gesamtPreis);
-        document.getElementById("preisAnzeige").innerText = "Gesamtsumme: " + gesamtPreis;
+        sessionStorage.setItem("s_preis", gesamtPreis);
+        document.getElementById("preisAnzeige").innerText = "Gesamtsumme: " + gesamtPreis + "€";
+        document.getElementById("preisAnzeige").style.fontSize = "40px";
     }
 
     function errorPreis(){
         alert("Gesamtpreis kann nicht berechnet werden.")
     }
-
     updateAndShowGesamtpreis();
 </script>
 

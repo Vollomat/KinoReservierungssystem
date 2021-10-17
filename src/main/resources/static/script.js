@@ -211,6 +211,12 @@ async function UserAction() {
 
     //E-Mail wird in sessionstorage gespeichert
     sessionStorage.setItem('s_email', email);
+    sessionStorage.setItem('s_vorname', vorname);
+    sessionStorage.setItem('s_nachname', nachname);
+    sessionStorage.setItem('s_strasse', strasse);
+    sessionStorage.setItem('s_hausnummer', hausnummer);
+    sessionStorage.setItem('s_plz', plz);
+    sessionStorage.setItem('s_ort', ort);
 }
 
 function successRegister() {
@@ -220,7 +226,6 @@ function successRegister() {
         alert("Ihre Daten konnten nicht korrekt verarbeitet werden!");
     } else {
         bestellungAnlegen();
-        reserviereAlleSitzplaetze();
     }
 }
 
@@ -244,13 +249,12 @@ function allesAusgefuelltRegistrierung(){
 
     if ((regVorname === "") || (regNachname === "") || (regMail === "") || (regAlter === "") || (regStrasse === "") || (regHausnummer === "") || (regPLZ === "") || (regOrt === "") || (regPasswort === "") || (regPasswort2 === "")){
         alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.");
-    }else if (regPasswort !== regPasswort2){
-        alert("Die eingegebenen Passwörter stimmen nicht überein.");
+        if (regPasswort !== regPasswort2){
+            alert("Die eingegebenen Passwörter stimmen nicht überein.");
+        }
     }else {
         UserAction();
-        window.location.href="../ticketbuchung/bezahlen.html";
     }
-
 }
 
 //login
@@ -269,16 +273,13 @@ async function login() {
 }
 
 function successLogin() {
-    alert("success funktion login wurde aufgerufen!");
     const UserData = JSON.parse(this.responseText.toString()); //parse the string to JSON
-    console.log(UserData);
-    alert("zum lesen");
     if (UserData != null) {
         var email = UserData.email;
-        //E-Mail wird in sessionstorage gespeichert
         sessionStorage.setItem('s_email', email);
+        sessionStorage.setItem('s_vorname', UserData.vorname);
+        sessionStorage.setItem('s_nachname', UserData.nachname);
         bestellungAnlegen();
-        window.location.href = "../ticketbuchung/bezahlen.html";
     } else {
         alert("Ihre Login-Daten sind falsch!");
     }
@@ -312,11 +313,12 @@ function allesAusgefuelltGast(){
     if ((gastVorname === "") || (gastNachname === "") || (gastMail === "") || (gastAlter === "")){
         alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.")
     }else {
-        window.location.href="../ticketbuchung/bezahlen.html";
+        sessionStorage.setItem("s_vorname", gastVorname);
+        sessionStorage.setItem("s_nachname", gastNachname);
+        sessionStorage.setItem("s_email", gastMail);
+        bestellungAnlegen();
     }
-
 }
-
 
 //aktuell ausgewählter Film wird mitgegeben und die zugehörigen Vorstellungen werden zurückgeliefert
 async function getAndShowVorstellungen(currentfilm){
@@ -453,7 +455,6 @@ function error(err) {
 // Durch senden der E-Mail wird eine Bestellung in der Datenbank angelegt und eine BestellId
 // als eindeutiger Identifikator zurückgesendet
 function bestellungAnlegen(){
-    alert("bin in Bestellung anlegen");
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -469,21 +470,10 @@ function bestellungAnlegen(){
         email:email
     }));
     var bestellID = JSON.parse(this.responseText.toString());
-    alert("bestellId wurde gesetzt: " + bestellID);
     sessionStorage.setItem('s_bestellId', bestellID);
     reserviereAlleSitzplaetze(bestellID);
 }
 
-function successBestellung(){
-    alert("bin in Bestellungen");
-    var bestellID = JSON.parse(this.responseText.toString());
-    alert("bestellId wurde gesetzt: " + bestellID);
-    sessionStorage.setItem('s_bestellId', bestellID);
-}
-
-function errorBestellung(){
-    alert("Es konnte keine Bestellung angelegt werden!");
-}
 
 //die im Sessionstorage gespeicherten Sitzplätze werden ausgelesen und einzeln an die Datenbank gegeben -> Reservierung
 function reserviereAlleSitzplaetze(bestellId){
