@@ -23,7 +23,6 @@ public class Kunden {
 
    private String strasse;
 
-
    private String hausnummer;
 
    private String postleitzahl;
@@ -34,6 +33,23 @@ public class Kunden {
 
    private boolean verifiziert;
 
+    public Kunden(int id, String vorname, String nachname, String email, int alterInJahren, String strasse, String hausnummer, String postleitzahl, String ort, String passwort, boolean verifiziert) {
+        this.id = id;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.email = email;
+        this.alterInJahren = alterInJahren;
+        this.strasse = strasse;
+        this.hausnummer = hausnummer;
+        this.postleitzahl = postleitzahl;
+        this.ort = ort;
+        this.passwort = passwort;
+        this.verifiziert = verifiziert;
+    }
+
+    public Kunden(){
+
+    }
 
     public boolean isVerifiziert() {
         return verifiziert;

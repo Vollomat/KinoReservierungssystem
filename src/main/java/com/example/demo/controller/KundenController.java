@@ -44,17 +44,18 @@ public class KundenController {
     @RequestMapping(value = "/passwortvergessen",produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value ="/passwortvergessen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void passwortVergessen(@RequestBody String email) {
+    public String passwortVergessen(@RequestBody String email) {
         System.out.println("Der Kunde mit der E-Mail " + email + " hat sein Passwort vergessen!");
         ArrayList<Kunden> alleKunden = new ArrayList<>(kundenRepository.findAll());
         for (Kunden kunden : alleKunden) {
             if (kunden.getEmail().equals(email)) {
                 String message = "Ihr Passwort ist: " + kunden.getPasswort();
                 EmailSenden.emailversand(email, message);
-                return;
+                return message;
             }
         }
         System.err.println("Die E-Mail "+ email +" existiert nicht!");
+        return null;
     }
 
     @RequestMapping(value = "/login",produces = "application/json", method = RequestMethod.POST)
@@ -70,4 +71,9 @@ public class KundenController {
         }
         return null;
     }
+
+    public KundenRepository getKundenRepository() {
+        return kundenRepository;
+    }
+
 }
