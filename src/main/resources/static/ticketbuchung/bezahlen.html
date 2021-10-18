@@ -90,30 +90,24 @@
     function setzeBezahlart(){
         if(document.getElementById('bar').checked) {
             sessionStorage.setItem("s_bezahlart", "Bar an der Kasse");
-            alert("bar wurde ausgewählt");
         }else if(document.getElementById('karte').checked) {
             sessionStorage.setItem("s_bezahlart", "Kreditkarte");
-            alert("karte wurde ausgewählt");
         }
         else if(document.getElementById('rechnung').checked) {
             sessionStorage.setItem("s_bezahlart", "Klarna Rechnung");
-            alert("rechnung wurde ausgewählt");
         }
         else if(document.getElementById('paypal').checked) {
             sessionStorage.setItem("s_bezahlart", "PayPal");
-            alert("paypal wurde ausgewählt");
         }
     }
 
     async function updateAndShowGesamtpreis(){
-        alert("bin in updateAndShowGesamtpreis");
         var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
         xhr.onload = successPreis; // call success function if request is successful
         xhr.onerror = errorPreis;  // call error function if request failed
         xhr.open('POST', 'http://localhost:8080/bestellungen/preisbekommen'); // open a GET request
         xhr.setRequestHeader('Content-Type', 'application/json');
         var bestellId = sessionStorage.getItem("s_bestellId");
-        alert("bestellid: " + bestellId);
         xhr.send(bestellId);  // send the request to the server.
     }
 
