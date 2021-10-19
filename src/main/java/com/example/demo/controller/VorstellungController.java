@@ -38,7 +38,6 @@ public class VorstellungController {
         Vorstellungen[] vorstellungenzurueck = new Vorstellungen[4];
         int gefundeneElemente = 0;
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
-        System.out.println(filmname);
         for (Vorstellungen vorstellungen : alleVorstellungen) {
             if (vorstellungen.getFilmName().equals(filmname)) {
                 if (gefundeneElemente < 4) {
@@ -47,7 +46,6 @@ public class VorstellungController {
                 }
             }
         }
-        System.out.println("function aufgerufen");
         return vorstellungenzurueck;
     }
 
