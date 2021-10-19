@@ -219,40 +219,6 @@ public class TicketController {
         return ticketRepository;
     }
 
-    public void setTicketRepository(TicketRepository ticketRepository) {
-        this.ticketRepository = ticketRepository;
-    }
 
-    public BestellungenRepository getBestellungenRepository() {
-        return bestellungenRepository;
-    }
-
-    public void setBestellungenRepository(BestellungenRepository bestellungenRepository) {
-        this.bestellungenRepository = bestellungenRepository;
-    }
-
-    public SitzplaetzeFuerVorstellungRepository getSitzplaetzeFuerVorstellungRepository() {
-        return sitzplaetzeFuerVorstellungRepository;
-    }
-
-    public void setSitzplaetzeFuerVorstellungRepository(SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository) {
-        this.sitzplaetzeFuerVorstellungRepository = sitzplaetzeFuerVorstellungRepository;
-    }
-
-    public VorstellungRepository getVorstellungRepository() {
-        return vorstellungRepository;
-    }
-
-    public void setVorstellungRepository(VorstellungRepository vorstellungRepository) {
-        this.vorstellungRepository = vorstellungRepository;
-    }
-
-    public KundenRepository getKundenRepository() {
-        return kundenRepository;
-    }
-
-    public void setKundenRepository(KundenRepository kundenRepository) {
-        this.kundenRepository = kundenRepository;
-    }
 }
 
