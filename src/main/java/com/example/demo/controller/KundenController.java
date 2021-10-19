@@ -50,7 +50,7 @@ public class KundenController {
         for (Kunden kunden : alleKunden) {
             if (kunden.getEmail().equals(email)) {
                 String message = "Ihr Passwort ist: " + kunden.getPasswort();
-                EmailSenden.emailversand(email, message);
+                //EmailSenden.emailversand(email, message); //Todo
                 return message;
             }
         }

@@ -20,7 +20,7 @@ public class OMDBController {
     }
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
-    public void filmeEinfuegen() throws IOException {
+    public boolean filmeEinfuegen() throws IOException {
         String[] omdbAPIAbfragen = new String[12];
         omdbAPIAbfragen[0] = "http://www.omdbapi.com/?s=terminator&type=movie&apikey=96cfc15e";
         omdbAPIAbfragen[1] = "http://www.omdbapi.com/?s=transformers&type=movie&apikey=96cfc15e";
@@ -41,6 +41,7 @@ public class OMDBController {
         }
         OMDBFilme omdbFilm = KinoticketReservierungssystem.datenbankEintrag(KinoticketReservierungssystem.datenbankAbfrageOMDBAPI(omdbAPIAbfragen[0]), 0);
         omdbRepository.save(omdbFilm);
+        return omdbRepository.findAll().size() > 10;
     }
 
 

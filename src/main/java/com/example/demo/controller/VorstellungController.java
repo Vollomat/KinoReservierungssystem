@@ -124,4 +124,15 @@ public class VorstellungController {
     }
 
 
+    public SitzplaetzeRepository getSitzplaetzeRepository() {
+        return sitzplaetzeRepository;
+    }
+
+    public VorstellungRepository getVorstellungRepository() {
+        return vorstellungRepository;
+    }
+
+    public SitzplaetzeFuerVorstellungRepository getSitzplaetzeFuerVorstellungRepository() {
+        return sitzplaetzeFuerVorstellungRepository;
+    }
 }

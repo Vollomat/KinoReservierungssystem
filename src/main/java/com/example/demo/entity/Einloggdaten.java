@@ -13,6 +13,14 @@ public class Einloggdaten {
 
     private String passwort;
 
+    public Einloggdaten() {
+
+    }
+
+    public Einloggdaten(String email, String passwort) {
+        this.email = email;
+        this.passwort = passwort;
+    }
 
     public String getEmail() {
         return email;

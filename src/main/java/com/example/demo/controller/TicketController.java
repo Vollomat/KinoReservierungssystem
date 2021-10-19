@@ -37,16 +37,18 @@ public class TicketController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public int ticketAnlegen(@RequestBody Tickets ticket) {
-        if(existiertTicketSchon(ticket)) {
-            System.err.println("Das Ticket existiert schon!");
-            return -1;
-        } else {
-            System.out.println("Es wurde ein Ticket angelegt!");
-            if(sitzplatzStatusAufReserviertSetzen(ticket, "Reserviert")){
-                double preisDesTicketsInklRabatt = ticketPreisBerechnung(ticket);
-                Tickets dasTicket = new Tickets(ticket.getTicketid(), ticket.getStartuhrzeit(), kinosaalnummerBekommen(ticket), ticket.getFilmName(), preisDesTicketsInklRabatt, ticket.getAlterInJahren(), ticket.getSitzplatzreihe(), ticket.getSitzplatzspalte(), ticket.getBestellungID());
-                ticketRepository.save(dasTicket);
-                return (int) dasTicket.getPreis();
+        if (ticket != null) {
+            if (existiertTicketSchon(ticket)) {
+                System.err.println("Das Ticket existiert schon!");
+                return -1;
+            } else {
+                System.out.println("Es wurde ein Ticket angelegt!");
+                if (sitzplatzStatusAufReserviertSetzen(ticket, "Reserviert")) {
+                    double preisDesTicketsInklRabatt = ticketPreisBerechnung(ticket);
+                    Tickets dasTicket = new Tickets(ticket.getTicketid(), ticket.getStartuhrzeit(), kinosaalnummerBekommen(ticket), ticket.getFilmName(), preisDesTicketsInklRabatt, ticket.getAlterInJahren(), ticket.getSitzplatzreihe(), ticket.getSitzplatzspalte(), ticket.getBestellungID());
+                    ticketRepository.save(dasTicket);
+                    return (int) dasTicket.getPreis();
+                }
             }
         }
         return -1;

@@ -20,6 +20,17 @@ public class Sitzplaetze {
     private int kinosaalID; //Fremdschlüssel
 
 
+    public Sitzplaetze(int sitzplatzID, int reihe, int spalte, int kinosaalID) {
+        this.sitzplatzID = sitzplatzID;
+        this.reihe = reihe;
+        this.spalte = spalte;
+        this.kinosaalID = kinosaalID;
+    }
+
+    public Sitzplaetze() {
+
+    }
+
     public int getSitzplatzID() {
         return sitzplatzID;
     }
