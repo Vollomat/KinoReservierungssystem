@@ -14,7 +14,7 @@ import org.springframework.test.annotation.Rollback;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class TicketControllerTest {
+class TicketControllerTest {
 
     @Autowired
     public TicketRepository ticketRepository;
