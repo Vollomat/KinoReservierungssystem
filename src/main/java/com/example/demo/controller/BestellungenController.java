@@ -44,6 +44,9 @@ public class BestellungenController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public int bestellungAnlegen(@RequestBody Bestellungen bestellungen) {
         ArrayList<Bestellungen> alleBestellungen = (ArrayList<Bestellungen>) bestellungenRepository.findAll();
+        if(bestellungen == null) {
+            return -1;
+        }
         for (Bestellungen value : alleBestellungen) {
             if (bestellungen.getBestellID() == value.getBestellID()) {
                 System.err.println("Die Bestellung existiert schon mit dieser ID!");

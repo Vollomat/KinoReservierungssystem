@@ -16,6 +16,16 @@ public class Bestellungen {
 
     private String bezahlart;
 
+    public Bestellungen(int bestellID, String email, String bezahlart) {
+        this.bestellID = bestellID;
+        this.email = email;
+        this.bezahlart = bezahlart;
+    }
+
+    public Bestellungen() {
+
+    }
+
     public int getBestellID() {
         return bestellID;
     }
