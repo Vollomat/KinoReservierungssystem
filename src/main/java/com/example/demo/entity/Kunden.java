@@ -13,25 +13,25 @@ public class Kunden {
     private int id;
 
 
-   private String vorname;
+    private String vorname;
 
-   private String nachname;
+    private String nachname;
 
-   private String email;
+    private String email;
 
-   private int alterInJahren;
+    private int alterInJahren;
 
-   private String strasse;
+    private String strasse;
 
-   private String hausnummer;
+    private String hausnummer;
 
-   private String postleitzahl;
+    private String postleitzahl;
 
-   private String ort;
+    private String ort;
 
-   private String passwort;
+    private String passwort;
 
-   private boolean verifiziert;
+    private boolean verifiziert;
 
     public Kunden(int id, String vorname, String nachname, String email, int alterInJahren, String strasse, String hausnummer, String postleitzahl, String ort, String passwort, boolean verifiziert) {
         this.id = id;
@@ -47,7 +47,7 @@ public class Kunden {
         this.verifiziert = verifiziert;
     }
 
-    public Kunden(){
+    public Kunden() {
 
     }
 

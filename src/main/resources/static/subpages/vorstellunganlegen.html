@@ -23,10 +23,10 @@
         let startuhrzeit = document.querySelector("#startuhrzeit").value;
         let laenge = document.querySelector("#laenge").value;
         xhr.send(JSON.stringify({
-            filmname:filmname,
-            kinosaal:kinosaal,
-            startuhrzeit:startuhrzeit,
-            laenge:laenge,
+            filmname: filmname,
+            kinosaal: kinosaal,
+            startuhrzeit: startuhrzeit,
+            laenge: laenge,
         })); // send the request to the server.
 
         //E-Mail wird in sessionstorage gespeichert
@@ -53,9 +53,11 @@
 </script>
 
 <header>
-    <img onclick="abbruchStartseite(), abort()" class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo">
+    <img onclick="abbruchStartseite(), abort()" class="logo"
+         src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801"
+         alt="logo">
 
-    <button onclick="abbruchStartseite(), abort()" >Startseite</button>
+    <button onclick="abbruchStartseite(), abort()">Startseite</button>
 </header> <!-- end header -->
 
 <div class="wrapper">
@@ -74,7 +76,8 @@
                         </div>
                         <div class="input-box">
                             <span class="details">Kinosaal</span>
-                            <input type="number" min="0" id="kinosaal" placeholder="Gebe die Nummer des Kinosaals ein" required>
+                            <input type="number" min="0" id="kinosaal" placeholder="Gebe die Nummer des Kinosaals ein"
+                                   required>
                         </div>
                         <div class="input-box">
                             <span class="details">Startuhrzeit</span>
@@ -82,10 +85,11 @@
                         </div>
                         <div class="input-box">
                             <span class="details">Länge der Vorstellung (in Minuten)</span>
-                            <input type="number" id="laenge" min="0" placeholder="Gebe die Länge der Vorstellung ein" required>
+                            <input type="number" id="laenge" min="0" placeholder="Gebe die Länge der Vorstellung ein"
+                                   required>
                         </div>
                     </div>
-                    <div class= "button" >
+                    <div class="button">
                         <a href="#"><input type="submit" value="Bestätigen" onclick="UserAction()"></a>
                     </div>
                     </p>
@@ -101,8 +105,9 @@
 
 <footer class="footer">
     <div class="container" style="text-align: center;">
-        <p><br /></p>
-        <img src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2FMail-Logo.png?v=1632767682319" alt="logo" height="150px">
+        <p><br/></p>
+        <img src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2FMail-Logo.png?v=1632767682319"
+             alt="logo" height="150px">
         <p style="text-align: center; font-size: 10px;">© MovieMaxx. All rights reserved.</p>
     </div>
 </footer>

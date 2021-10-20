@@ -31,8 +31,8 @@ public class TestdatenAnlegen {
         this.omdbRepository = omdbRepository;
     }
 
-    @RequestMapping(value ="/kinosaalplaetze", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/kinosaalplaetze", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/kinosaalplaetze", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/kinosaalplaetze", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void testdatenKinosaalplaetzeAnlegen() {
         for (int anzahlKinoSaal = 4; anzahlKinoSaal > 0; anzahlKinoSaal--) {
@@ -49,35 +49,38 @@ public class TestdatenAnlegen {
         System.out.println("Kinosaal-Plätze eingefügt!");
     }
 
-        @RequestMapping(value ="/vorstellungen", produces = "application/json", method = RequestMethod.POST)
-        @PostMapping(value ="/vorstellungen", consumes = MediaType.APPLICATION_JSON_VALUE,
-                produces = MediaType.APPLICATION_JSON_VALUE)
-        public void testdatenVorstellungenAnlegen() {
-            VorstellungController vorstellungController = new VorstellungController(vorstellungRepository, sitzplaetzeRepository, sitzplaetzeFuerVorstellungRepository);
-            for(int j = 0; j < omdbRepository.findAll().size(); j++) {
-                for (int i = 1; i < 5; i++) {
-                    Vorstellungen vorstellung = new Vorstellungen();
-                    if(i == 1) {
-                        vorstellung.setStartuhrzeit("12:00");
-                    } if(i == 2) {
-                        vorstellung.setStartuhrzeit("15:00");
-                    } if(i == 3) {
-                        vorstellung.setStartuhrzeit("18:00");
-                    } if(i == 4) {
-                        vorstellung.setStartuhrzeit("21:00");
-                    }
-                    vorstellung.setFilmName(omdbRepository.findAll().get(j).getTitel());
-                    vorstellung.setLaengeDerVorstellungInMinuten("175");
-                    vorstellung.setKinosaalNummer(i);
-                    vorstellungController.vorstellungAnlegen(vorstellung);
+    @RequestMapping(value = "/vorstellungen", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/vorstellungen", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void testdatenVorstellungenAnlegen() {
+        VorstellungController vorstellungController = new VorstellungController(vorstellungRepository, sitzplaetzeRepository, sitzplaetzeFuerVorstellungRepository);
+        for (int j = 0; j < omdbRepository.findAll().size(); j++) {
+            for (int i = 1; i < 5; i++) {
+                Vorstellungen vorstellung = new Vorstellungen();
+                if (i == 1) {
+                    vorstellung.setStartuhrzeit("12:00");
                 }
+                if (i == 2) {
+                    vorstellung.setStartuhrzeit("15:00");
+                }
+                if (i == 3) {
+                    vorstellung.setStartuhrzeit("18:00");
+                }
+                if (i == 4) {
+                    vorstellung.setStartuhrzeit("21:00");
+                }
+                vorstellung.setFilmName(omdbRepository.findAll().get(j).getTitel());
+                vorstellung.setLaengeDerVorstellungInMinuten("175");
+                vorstellung.setKinosaalNummer(i);
+                vorstellungController.vorstellungAnlegen(vorstellung);
             }
-
-            System.out.println("Vorstellung (und Sitzplan für die Vorstellung) eingefügt");
         }
 
-    @RequestMapping(value ="/filme", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/filme", consumes = MediaType.APPLICATION_JSON_VALUE,
+        System.out.println("Vorstellung (und Sitzplan für die Vorstellung) eingefügt");
+    }
+
+    @RequestMapping(value = "/filme", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/filme", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void testdatenFilmeAnlegen() {
 
@@ -92,9 +95,8 @@ public class TestdatenAnlegen {
     }
 
 
-
-    @RequestMapping(value ="/kino", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/kino", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/kino", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/kino", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void testdatenkinoAnlegen() {
         Kinos unserKino = new Kinos();
@@ -106,8 +108,8 @@ public class TestdatenAnlegen {
         System.out.println("Kino eingefügt");
     }
 
-    @RequestMapping(value ="/kinosaal", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/kinosaal", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/kinosaal", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/kinosaal", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void testdatenkinoSaalAnlegen() {
         int gewuenschteKinoID = 0;
@@ -117,7 +119,7 @@ public class TestdatenAnlegen {
                 gewuenschteKinoID = alleKino.getKinoID();
             }
         }
-        for(int j = 1; j <= 4; j++) {
+        for (int j = 1; j <= 4; j++) {
             KinoSaale kinoSaal = new KinoSaale();
             kinoSaal.setKinoSaalID(j);
             kinoSaal.setKinoID(gewuenschteKinoID);
@@ -127,22 +129,24 @@ public class TestdatenAnlegen {
     }
 
 
-
-    @RequestMapping(value ="/alle", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/alle", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/alle", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/alle", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void testdatenAnlegen() {
+    public boolean testdatenAnlegen() {
         testdatenKinosaalplaetzeAnlegen();
         testdatenkinoAnlegen();
         testdatenkinoSaalAnlegen();
         testdatenFilmeAnlegen();
         testdatenVorstellungenAnlegen();
-        sitzplanFuerSitzplaetzeAnlegen();
         System.err.println("TESTDATEN ANGELEGT!");
+        if (kinoRepository.findAll().size() > 0 && sitzplaetzeRepository.findAll().size() > 0 && kinoSaalRepository.findAll().size() > 0 && omdbRepository.findAll().size() > 0 && vorstellungRepository.findAll().size() > 0 && sitzplaetzeFuerVorstellungRepository.findAll().size() > 0 && sitzplanFuerSitzplaetzeAnlegen()) {
+            return true;
+        }
+        return false;
     }
 
 
-    public void sitzplanFuerSitzplaetzeAnlegen() {
+    public boolean sitzplanFuerSitzplaetzeAnlegen() {
         ArrayList<Vorstellungen> alleVorstellungen = (ArrayList<Vorstellungen>) vorstellungRepository.findAll();
         ArrayList<Sitzplaetze> alleSitzplaetze = (ArrayList<Sitzplaetze>) sitzplaetzeRepository.findAll();
         sitzplaetzeFuerVorstellungRepository.deleteAll();
@@ -154,10 +158,14 @@ public class TestdatenAnlegen {
                     sitzplaetzeFuerVorstellungRepository.save(sitzplaetzeFuerVorstellung);
                 }
             }
+
         }
-
+        if (sitzplaetzeFuerVorstellungRepository.findAll().size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
 
 
 }

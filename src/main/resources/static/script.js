@@ -76,7 +76,7 @@ function abbruchStartseite() {
     var r = confirm("Dein Ticketbuchungsprozess wird nicht gespeichert, wenn du diese Seite verlässt. " +
         "Möchtest du trotzdem zurück zur Startseite?");
     if (r === true) {
-        window.location.href="../index.html";
+        window.location.href = "../index.html";
         sessionStorage.clear();
     }
 }
@@ -114,15 +114,15 @@ function sitzgewaehlt() {
             console.log(reihe);
             var spalte = parseInt(splitArray[3]);
             console.log(spalte);
-            if (kleinerNeun > 0){
+            if (kleinerNeun > 0) {
                 selectedSaeatsAndAge[i] = [reihe, spalte, 8];
                 kleinerNeun -= 1;
                 console.log(selectedSaeatsAndAge[i]);
-            } else if (kleinerAchtzehn > 0){
+            } else if (kleinerAchtzehn > 0) {
                 selectedSaeatsAndAge[i] = [reihe, spalte, 17];
                 kleinerAchtzehn -= 1;
                 console.log(selectedSaeatsAndAge[i]);
-            } else if (kleinerSechUndZwanzig > 0){
+            } else if (kleinerSechUndZwanzig > 0) {
                 selectedSaeatsAndAge[i] = [reihe, spalte, 25];
                 kleinerSechUndZwanzig -= 1;
                 console.log(selectedSaeatsAndAge[i]);
@@ -141,7 +141,7 @@ function sitzgewaehlt() {
 function checkbox1() {
     var checkBox = document.getElementById("input1");
     var text = document.getElementById("anzahl1");
-    if (checkBox.checked === true){
+    if (checkBox.checked === true) {
         text.style.display = "block";
     } else {
         text.style.display = "none";
@@ -151,7 +151,7 @@ function checkbox1() {
 function checkbox2() {
     var checkBox = document.getElementById("input2");
     var text = document.getElementById("anzahl2");
-    if (checkBox.checked === true){
+    if (checkBox.checked === true) {
         text.style.display = "block";
     } else {
         text.style.display = "none";
@@ -161,7 +161,7 @@ function checkbox2() {
 function checkbox3() {
     var checkBox = document.getElementById("input3");
     var text = document.getElementById("anzahl3");
-    if (checkBox.checked === true){
+    if (checkBox.checked === true) {
         text.style.display = "block";
     } else {
         text.style.display = "none";
@@ -197,15 +197,15 @@ async function UserAction() {
     let ort = document.querySelector("#ort").value;
     let passwort = document.querySelector("#passwort").value;
     xhr.send(JSON.stringify({
-        vorname:vorname,
-        nachname:nachname,
-        email:email,
-        alterInJahren:alterInJahren,
-        strasse:strasse,
-        hausnummer:hausnummer,
-        postleitzahl:plz,
-        ort:ort,
-        passwort:passwort
+        vorname: vorname,
+        nachname: nachname,
+        email: email,
+        alterInJahren: alterInJahren,
+        strasse: strasse,
+        hausnummer: hausnummer,
+        postleitzahl: plz,
+        ort: ort,
+        passwort: passwort
     })); // send the request to the server.
 
     //E-Mail wird in sessionstorage gespeichert
@@ -220,7 +220,7 @@ async function UserAction() {
 
 function successRegister() {
     var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
-    if(data === false){
+    if (data === false) {
         alert("Ihre Daten konnten nicht korrekt verarbeitet werden!");
     } else {
         bestellungAnlegen();
@@ -233,7 +233,7 @@ function errorRegister(err) {
 }
 
 //Registrierung: Überprüfung, ob alle Felder ausgefüllt sind
-function allesAusgefuelltRegistrierung(){
+function allesAusgefuelltRegistrierung() {
     const regVorname = document.getElementById('vorname').value;
     const regNachname = document.getElementById('nachname').value;
     const regMail = document.getElementById('email').value;
@@ -245,12 +245,12 @@ function allesAusgefuelltRegistrierung(){
     const regPasswort = document.getElementById('passwort').value;
     const regPasswort2 = document.getElementById('passwort2').value;
 
-    if ((regVorname === "") || (regNachname === "") || (regMail === "") || (regAlter === "") || (regStrasse === "") || (regHausnummer === "") || (regPLZ === "") || (regOrt === "") || (regPasswort === "") || (regPasswort2 === "")){
+    if ((regVorname === "") || (regNachname === "") || (regMail === "") || (regAlter === "") || (regStrasse === "") || (regHausnummer === "") || (regPLZ === "") || (regOrt === "") || (regPasswort === "") || (regPasswort2 === "")) {
         alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.");
-        if (regPasswort !== regPasswort2){
+        if (regPasswort !== regPasswort2) {
             alert("Die eingegebenen Passwörter stimmen nicht überein.");
         }
-    }else {
+    } else {
         UserAction();
     }
 }
@@ -265,8 +265,8 @@ async function login() {
     let email = document.querySelector("#email").value; //email statt usernamen
     let passwort = document.querySelector("#passwort").value;
     xhr.send(JSON.stringify({
-        email:email,
-        passwort:passwort,
+        email: email,
+        passwort: passwort,
     })); // send the request to the server.
 }
 
@@ -289,27 +289,27 @@ function errorLogin(err) {
 }
 
 //Login: Überprüfung, ob alle Felder ausgefüllt sind
-function allesAusgefuelltLogin(){
+function allesAusgefuelltLogin() {
     const loginMail = document.getElementById('email').value;
     const loginPassword = document.getElementById('passwort').value;
 
-    if ((loginMail === "") || (loginPassword === "")){
+    if ((loginMail === "") || (loginPassword === "")) {
         alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.")
-    }else {
+    } else {
         login();
     }
 }
 
 //Gast: Überprüfung, ob alle Felder ausgefüllt sind
-function allesAusgefuelltGast(){
+function allesAusgefuelltGast() {
     const gastVorname = document.getElementById('vorname').value;
     const gastNachname = document.getElementById('nachname').value;
     const gastMail = document.getElementById('email').value;
     const gastAlter = document.getElementById('alter').value;
 
-    if ((gastVorname === "") || (gastNachname === "") || (gastMail === "") || (gastAlter === "")){
+    if ((gastVorname === "") || (gastNachname === "") || (gastMail === "") || (gastAlter === "")) {
         alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.")
-    }else {
+    } else {
         sessionStorage.setItem("s_vorname", gastVorname);
         sessionStorage.setItem("s_nachname", gastNachname);
         sessionStorage.setItem("s_email", gastMail);
@@ -318,7 +318,7 @@ function allesAusgefuelltGast(){
 }
 
 //aktuell ausgewählter Film wird mitgegeben und die zugehörigen Vorstellungen werden zurückgeliefert
-async function getAndShowVorstellungen(currentfilm){
+async function getAndShowVorstellungen(currentfilm) {
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
     xhr.onload = success; // call success function if request is successful
     xhr.onerror = error;  // call error function if request failed
@@ -451,9 +451,9 @@ function error(err) {
 
 // Durch senden der E-Mail wird eine Bestellung in der Datenbank angelegt und eine BestellId
 // als eindeutiger Identifikator zurückgesendet
-function bestellungAnlegen(){
+function bestellungAnlegen() {
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             reserviereAlleSitzplaetze(xhr.responseText);
             sessionStorage.setItem('s_bestellId', xhr.responseText);
@@ -464,7 +464,7 @@ function bestellungAnlegen(){
     var email = sessionStorage.getItem('s_email')
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
-        email:email
+        email: email
     }));
     var bestellID = JSON.parse(this.responseText.toString());
     sessionStorage.setItem('s_bestellId', bestellID);
@@ -473,7 +473,7 @@ function bestellungAnlegen(){
 
 
 //die im Sessionstorage gespeicherten Sitzplätze werden ausgelesen und einzeln an die Datenbank gegeben -> Reservierung
-function reserviereAlleSitzplaetze(bestellId){
+function reserviereAlleSitzplaetze(bestellId) {
     var selectedSeats = JSON.parse(sessionStorage.getItem('s_selectedSeats'));
     console.log(selectedSeats);
     var startuhrzeit = sessionStorage.getItem('s_Vorst');
@@ -487,7 +487,7 @@ function reserviereAlleSitzplaetze(bestellId){
 }
 
 // sorgt dafür, dass ein Sitzplatz reserviert wird
-function sitzplatzReservieren(alterInJahren, sitzplatzreihe, sitzsplatzspalte, startuhrzeit, filmname, bestellId){
+function sitzplatzReservieren(alterInJahren, sitzplatzreihe, sitzsplatzspalte, startuhrzeit, filmname, bestellId) {
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
     xhr.onload = successReservierung; // call success function if request is successful
     xhr.onerror = errorReservierung;  // call error function if request failed
@@ -504,14 +504,14 @@ function sitzplatzReservieren(alterInJahren, sitzplatzreihe, sitzsplatzspalte, s
     }));  // send the request to the server.
 }
 
-function successReservierung(){
+function successReservierung() {
     var isSitzplatzReserviert = JSON.parse(this.responseText.toString());
-    if(isSitzplatzReserviert === false){
+    if (isSitzplatzReserviert === false) {
         alert("Leider wurde einer Ihrer Sitzplaetze in der Zwischenzeit ausgebucht. Bitte buchen sie erneut!");
     }
 }
 
-function errorReservierung(){
+function errorReservierung() {
     alert("Sitzplatzreservierung ist fehlgeschlagen. Bitte wählen sie Ihre Sitze erneut aus.")
 }
 

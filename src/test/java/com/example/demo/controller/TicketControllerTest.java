@@ -37,12 +37,12 @@ class TicketControllerTest {
 
     @Test
     @Rollback(value = false)
-    void alleTickets(){
+    void alleTickets() {
         TicketController ticketController = new TicketController(ticketRepository, bestellungenRepository, sitzplaetzeFuerVorstellungRepository, vorstellungRepository, kundenRepository);
 
         Assertions.assertEquals(0, ticketController.alleTickets().size()); //Erst sollte die DB leer sein
 
-        Tickets ticket = new Tickets(1, "20:00", 3, "Terminator", 45.00, 23, 5, 5, 1);
+        Tickets ticket = new Tickets(1, "21:00", 3, "Terminator", 45.00, 23, 5, 5, 1);
         ticketController.getTicketRepository().save(ticket);
         Assertions.assertEquals(1, ticketController.alleTickets().size()); //Dann sollte die DB nur ticket enthalten --> size = 1
 
@@ -61,7 +61,7 @@ class TicketControllerTest {
 
         vorstellungController.getSitzplaetzeRepository().save(sitzplatz);
 
-        Vorstellungen vorstellung = new Vorstellungen(1, "Terminator2", 2, "20:00", "230");
+        Vorstellungen vorstellung = new Vorstellungen(1, "Terminator2", 2, "21:00", "230");
 
         vorstellungController.getVorstellungRepository().save(vorstellung);
 
@@ -69,7 +69,7 @@ class TicketControllerTest {
 
         vorstellungController.getSitzplaetzeFuerVorstellungRepository().save(sitzplaetzeFuerVorstellung);
 
-        Tickets ticket = new Tickets(8, "20:00", 2, "Terminator2", 45.00, 23, 4, 4, 1);
+        Tickets ticket = new Tickets(18, "21:00", 2, "Terminator2", 45.00, 23, 4, 4, 1);
 
         TicketController ticketController = new TicketController(ticketRepository, bestellungenRepository, sitzplaetzeFuerVorstellungRepository, vorstellungRepository, kundenRepository);
 
@@ -80,21 +80,4 @@ class TicketControllerTest {
         Assertions.assertEquals(-1, ticketController.ticketAnlegen(null));  //Bei null sollte die Rückgabe -1 sein, da kein Ticket erzeugt wird und in der DB gespeichert wird.
     }
 
-    @Test
-    void kinosaalnummerBekommen() {
-    }
-
-    @Test
-    void existiertTicketSchon() {
-    }
-
-    @Test
-    void sitzplatzStatusAufReserviertSetzen() {
-    }
-
-    @Test
-    void ticketPreisBerechnung() {
-        TicketController ticketController = new TicketController(ticketRepository, bestellungenRepository, sitzplaetzeFuerVorstellungRepository, vorstellungRepository, kundenRepository);
-        //Todo
-    }
 }

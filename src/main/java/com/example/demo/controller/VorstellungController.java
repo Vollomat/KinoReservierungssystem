@@ -31,8 +31,8 @@ public class VorstellungController {
         return vorstellungRepository.findAll();
     }
 
-    @RequestMapping(value ="/filmbekommen", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/filmbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/filmbekommen", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/filmbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Vorstellungen[] alleZVorstellungen(@RequestBody String filmname) {
         Vorstellungen[] vorstellungenzurueck = new Vorstellungen[4];
@@ -50,12 +50,11 @@ public class VorstellungController {
     }
 
 
-
-    @RequestMapping(value ="/anlegen", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/anlegen", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/anlegen", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/anlegen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void vorstellungAnlegen(@RequestBody Vorstellungen vorstellung) {
-        if(existiertVorstellungSchon(vorstellung)) {
+        if (existiertVorstellungSchon(vorstellung)) {
             System.err.println("Die Vorstellung existiert schon!");
         } else {
             System.out.println("Es wurde eine Vorstellung angelegt!");
@@ -64,8 +63,8 @@ public class VorstellungController {
         }
     }
 
-    @RequestMapping(value ="/sitzplaetze", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/sitzplaetze", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/sitzplaetze", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/sitzplaetze", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<SitzplaetzeFuerVorstellung> sitzplaetzeDerVorstellung(@RequestBody Vorstellungen vorstellungen) {
         Vorstellungen gewuenschteVorstellung = null;
@@ -86,8 +85,6 @@ public class VorstellungController {
         }
         return gewuenschterSitzplan;
     }
-
-
 
 
     public void sitzplanFuerVorstellungAnlegen(Vorstellungen vorstellungen) {

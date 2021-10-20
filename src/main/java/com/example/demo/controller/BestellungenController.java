@@ -44,7 +44,7 @@ public class BestellungenController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public int bestellungAnlegen(@RequestBody Bestellungen bestellungen) {
         ArrayList<Bestellungen> alleBestellungen = (ArrayList<Bestellungen>) bestellungenRepository.findAll();
-        if(bestellungen == null) {
+        if (bestellungen == null) {
             return -1;
         }
         for (Bestellungen value : alleBestellungen) {
@@ -57,8 +57,8 @@ public class BestellungenController {
         return bestellungen.getBestellID();
     }
 
-    @RequestMapping(value = "/emailsenden",produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/emailsenden", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/emailsenden", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/emailsenden", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean emailSenden(@RequestBody int bestellid) {
         String emailBestellungBesitzer = null;
@@ -144,7 +144,7 @@ public class BestellungenController {
                 emailBestellungBesitzer = bestellungen.getEmail();
             }
         }
-        if(emailBestellungBesitzer != null) {
+        if (emailBestellungBesitzer != null) {
             EmailSenden.emailversand(emailBestellungBesitzer, nachricht);
             return true;
         } else {
@@ -155,8 +155,8 @@ public class BestellungenController {
     }
 
 
-    @RequestMapping(value = "/preisbekommen",produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/preisbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/preisbekommen", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/preisbekommen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public double preisBerechnenAllerTicketsDerBuchung(@RequestBody int bestellid) {
         ArrayList<Tickets> alleTickets = (ArrayList<Tickets>) ticketRepository.findAll();
@@ -172,7 +172,6 @@ public class BestellungenController {
         }
         return kummulierterPreis;
     }
-
 
 
     public boolean sitzplatzStatusAufGebuchtSetzen(Tickets ticket, String neuerStatusSitzplatz) {

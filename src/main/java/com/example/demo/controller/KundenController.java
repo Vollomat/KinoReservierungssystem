@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.EmailSenden;
 import com.example.demo.entity.Einloggdaten;
 import com.example.demo.entity.Kunden;
 import com.example.demo.repository.KundenRepository;
@@ -25,8 +24,8 @@ public class KundenController {
         return kundenRepository.findAll();
     }
 
-    @RequestMapping(value ="/register", produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/register", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/register", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean kundenAnlegen(@RequestBody Kunden kunden) {
         ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) kundenRepository.findAll();
@@ -41,8 +40,8 @@ public class KundenController {
         return true;
     }
 
-    @RequestMapping(value = "/passwortvergessen",produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/passwortvergessen", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/passwortvergessen", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/passwortvergessen", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public String passwortVergessen(@RequestBody String email) {
         System.out.println("Der Kunde mit der E-Mail " + email + " hat sein Passwort vergessen!");
@@ -54,12 +53,12 @@ public class KundenController {
                 return message;
             }
         }
-        System.err.println("Die E-Mail "+ email +" existiert nicht!");
+        System.err.println("Die E-Mail " + email + " existiert nicht!");
         return null;
     }
 
-    @RequestMapping(value = "/login",produces = "application/json", method = RequestMethod.POST)
-    @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/login", produces = "application/json", method = RequestMethod.POST)
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Kunden einloggen(@RequestBody Einloggdaten einloggdaten) {
