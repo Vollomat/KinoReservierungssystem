@@ -13,7 +13,7 @@ import java.io.IOException;
 @RestController
 public class OMDBController {
 
-    private OMDBRepository omdbRepository;
+    private final OMDBRepository omdbRepository;
 
     public OMDBController(OMDBRepository omdbRepository) {
         this.omdbRepository = omdbRepository;

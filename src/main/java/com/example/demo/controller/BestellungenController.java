@@ -19,10 +19,10 @@ import java.util.List;
 @RestController
 public class BestellungenController {
 
-    private BestellungenRepository bestellungenRepository;
-    private TicketRepository ticketRepository;
-    private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
-    private VorstellungRepository vorstellungRepository;
+    private final BestellungenRepository bestellungenRepository;
+    private final TicketRepository ticketRepository;
+    private final SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
+    private final VorstellungRepository vorstellungRepository;
 
     public BestellungenController(BestellungenRepository bestellungenRepository, TicketRepository ticketRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository, VorstellungRepository vorstellungRepository) {
         this.bestellungenRepository = bestellungenRepository;

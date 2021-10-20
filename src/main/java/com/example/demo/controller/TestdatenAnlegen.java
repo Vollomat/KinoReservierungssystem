@@ -15,12 +15,12 @@ import java.util.ArrayList;
 @RestController
 public class TestdatenAnlegen {
 
-    private VorstellungRepository vorstellungRepository;
-    private SitzplaetzeRepository sitzplaetzeRepository;
-    private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
-    private KinoRepository kinoRepository;
-    private KinoSaalRepository kinoSaalRepository;
-    private OMDBRepository omdbRepository;
+    private final VorstellungRepository vorstellungRepository;
+    private final SitzplaetzeRepository sitzplaetzeRepository;
+    private final SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
+    private final KinoRepository kinoRepository;
+    private final KinoSaalRepository kinoSaalRepository;
+    private final OMDBRepository omdbRepository;
 
     public TestdatenAnlegen(VorstellungRepository vorstellungRepository, SitzplaetzeRepository sitzplaetzeRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository, KinoRepository kinoRepository, KinoSaalRepository kinoSaalRepository, OMDBRepository omdbRepository) {
         this.vorstellungRepository = vorstellungRepository;
@@ -139,10 +139,7 @@ public class TestdatenAnlegen {
         testdatenFilmeAnlegen();
         testdatenVorstellungenAnlegen();
         System.err.println("TESTDATEN ANGELEGT!");
-        if (kinoRepository.findAll().size() > 0 && sitzplaetzeRepository.findAll().size() > 0 && kinoSaalRepository.findAll().size() > 0 && omdbRepository.findAll().size() > 0 && vorstellungRepository.findAll().size() > 0 && sitzplaetzeFuerVorstellungRepository.findAll().size() > 0 && sitzplanFuerSitzplaetzeAnlegen()) {
-            return true;
-        }
-        return false;
+        return kinoRepository.findAll().size() > 0 && sitzplaetzeRepository.findAll().size() > 0 && kinoSaalRepository.findAll().size() > 0 && omdbRepository.findAll().size() > 0 && vorstellungRepository.findAll().size() > 0 && sitzplaetzeFuerVorstellungRepository.findAll().size() > 0 && sitzplanFuerSitzplaetzeAnlegen();
     }
 
 
@@ -160,11 +157,7 @@ public class TestdatenAnlegen {
             }
 
         }
-        if (sitzplaetzeFuerVorstellungRepository.findAll().size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return sitzplaetzeFuerVorstellungRepository.findAll().size() > 0;
     }
 
 

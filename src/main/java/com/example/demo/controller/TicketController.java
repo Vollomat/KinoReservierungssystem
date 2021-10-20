@@ -12,11 +12,11 @@ import java.util.List;
 @RestController
 public class TicketController {
 
-    private TicketRepository ticketRepository;
-    private BestellungenRepository bestellungenRepository;
-    private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
-    private VorstellungRepository vorstellungRepository;
-    private KundenRepository kundenRepository;
+    private final TicketRepository ticketRepository;
+    private final BestellungenRepository bestellungenRepository;
+    private final SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
+    private final VorstellungRepository vorstellungRepository;
+    private final KundenRepository kundenRepository;
 
     public TicketController(TicketRepository ticketRepository, BestellungenRepository bestellungenRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository, VorstellungRepository vorstellungRepository, KundenRepository kundenRepository) {
         this.ticketRepository = ticketRepository;

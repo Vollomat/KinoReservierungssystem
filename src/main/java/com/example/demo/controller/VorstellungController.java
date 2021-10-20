@@ -16,9 +16,9 @@ import java.util.List;
 @RestController
 public class VorstellungController {
 
-    private VorstellungRepository vorstellungRepository;
-    private SitzplaetzeRepository sitzplaetzeRepository;
-    private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
+    private final VorstellungRepository vorstellungRepository;
+    private final SitzplaetzeRepository sitzplaetzeRepository;
+    private final SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
 
     public VorstellungController(VorstellungRepository vorstellungRepository, SitzplaetzeRepository sitzplaetzeRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository) {
         this.vorstellungRepository = vorstellungRepository;
