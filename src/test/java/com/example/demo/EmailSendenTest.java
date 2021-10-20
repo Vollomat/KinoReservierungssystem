@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class EmailSendenTest {
 
     @Test
-    public void emailsenden(){
+    public void emailsenden() {
 
         String emailMitRichtigemFormat = "patrick.vollstedt@gmx.de";
         String emailMitFalschemFormat = " idjaddadwjrw@";
