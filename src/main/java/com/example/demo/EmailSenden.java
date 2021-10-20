@@ -24,7 +24,7 @@ public class EmailSenden {
         return message;
     }
 
-    public static void emailversand(String emailadresse, String nachricht) {
+    public static boolean emailversand(String emailadresse, String nachricht) {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -44,7 +44,9 @@ public class EmailSenden {
             System.out.println("E-Mail erfolgreich versendet! An: " + emailadresse);
         } catch (Exception e1) {
             e1.printStackTrace();
+            return false;
         }
+        return true;
     }
 
 }

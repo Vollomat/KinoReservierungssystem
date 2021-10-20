@@ -49,20 +49,4 @@ class BestellungenControllerTest {
 
     }
 
-    @Test
-    void emailSenden() {
-        //TODO
-    }
-
-    @Test
-    void preisBerechnenAllerTicketsDerBuchung() {
-        //TODO
-    }
-
-    @Test
-    void sitzplatzStatusAufGebuchtSetzen() {
-        //TODO
-    }
-
-
 }

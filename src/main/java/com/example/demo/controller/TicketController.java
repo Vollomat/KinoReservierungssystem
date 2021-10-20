@@ -83,6 +83,7 @@ public class TicketController {
         for (Vorstellungen vorstellungen : alleVorstellungen) {
             if (vorstellungen.getFilmName().equals(ticket.getFilmName()) && vorstellungen.getStartuhrzeit().equals(ticket.getStartuhrzeit())) {
                 benoetigteVorstellungsID = vorstellungen.getVorstellungsid();
+                System.out.println(benoetigteVorstellungsID);
             }
         }
         ArrayList<SitzplaetzeFuerVorstellung> alleSitzplaetzeFuerVorstellung = (ArrayList<SitzplaetzeFuerVorstellung>) sitzplaetzeFuerVorstellungRepository.findAll();

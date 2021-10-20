@@ -55,23 +55,23 @@ class TicketControllerTest {
     void ticketAnlegen() {
         VorstellungController vorstellungController = new VorstellungController(vorstellungRepository, sitzplaetzeRepository, sitzplaetzeFuerVorstellungRepository);
 
-        //Um ein Ticket anzulegen muss der Kinosaal und die passende Vorstellung in der Datenbank gelistet sein!
-
-        Sitzplaetze sitzplatz = new Sitzplaetze(1, 4, 4, 3);
+        Sitzplaetze sitzplatz = new Sitzplaetze(6, 5, 5, 1);
 
         vorstellungController.getSitzplaetzeRepository().save(sitzplatz);
 
-        Vorstellungen vorstellung = new Vorstellungen(1, "Terminator2", 2, "21:00", "230");
+        Vorstellungen vorstellung = new Vorstellungen(97, "Transformers", 1, "18:00", "230");
 
         vorstellungController.getVorstellungRepository().save(vorstellung);
 
-        SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(3, 4, 4, vorstellung.getVorstellungsid(), "FREI");
+        SitzplaetzeFuerVorstellung sitzplaetzeFuerVorstellung = new SitzplaetzeFuerVorstellung(6, 5, 5, vorstellung.getVorstellungsid(), "FREI");
 
         vorstellungController.getSitzplaetzeFuerVorstellungRepository().save(sitzplaetzeFuerVorstellung);
 
-        Tickets ticket = new Tickets(18, "21:00", 2, "Terminator2", 45.00, 23, 4, 4, 1);
+        Tickets ticket = new Tickets(88, "18:00", 1, "Transformers", 14.00, 24, 5, 5, 2);
 
         TicketController ticketController = new TicketController(ticketRepository, bestellungenRepository, sitzplaetzeFuerVorstellungRepository, vorstellungRepository, kundenRepository);
+
+        sitzplaetzeFuerVorstellungRepository.save(sitzplaetzeFuerVorstellung);
 
         Assertions.assertNotEquals(-1, ticketController.ticketAnlegen(ticket));
 
