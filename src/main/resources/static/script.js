@@ -83,6 +83,7 @@ function abbruchStartseite() {
 
 // Saalplan: man kann nur weiter, wenn min. 1 Sitz ausgewählt ist und man kann nur so viele Leute eingeben, wie Sitzplätze ausgewählt sind
 function sitzgewaehlt() {
+    alert("Bin in sitzgewählt");
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
     const selectedSeatsCount = selectedSeats.length;
     const unterNeun = document.getElementById('anzahl1').value;
@@ -220,6 +221,7 @@ async function UserAction() {
 
 function successRegister() {
     var data = JSON.parse(this.responseText.toString()); //parse the string to JSON
+    alert(data);
     if(data === false){
         alert("Ihre Daten konnten nicht korrekt verarbeitet werden!");
     } else {
@@ -296,6 +298,7 @@ function allesAusgefuelltLogin(){
     if ((loginMail === "") || (loginPassword === "")){
         alert("Du musst alle Felder ausfüllen, um deine Buchung fortsetzen zu können.")
     }else {
+        alert("vorLogin");
         login();
     }
 }
@@ -488,6 +491,7 @@ function reserviereAlleSitzplaetze(bestellId){
 
 // sorgt dafür, dass ein Sitzplatz reserviert wird
 function sitzplatzReservieren(alterInJahren, sitzplatzreihe, sitzsplatzspalte, startuhrzeit, filmname, bestellId){
+    alert("bin in Sitzplatzreservieren");
     var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
     xhr.onload = successReservierung; // call success function if request is successful
     xhr.onerror = errorReservierung;  // call error function if request failed
