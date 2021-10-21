@@ -10,8 +10,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class KundenControllerTest {
@@ -27,7 +25,7 @@ class KundenControllerTest {
 
         kundenController.getKundenRepository().deleteAll();
 
-        Assertions.assertEquals(0 , kundenController.alleKunden().size());
+        Assertions.assertEquals(0, kundenController.alleKunden().size());
 
         Kunden kunde1 = new Kunden(1, "Max", "Mustermann", "max.mustermann@gmx.de", 22, "Teststrasse", "22a", "66666", "Testort", "testpasswort", false);
         kundenController.kundenAnlegen(kunde1);

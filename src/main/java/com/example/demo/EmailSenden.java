@@ -1,17 +1,11 @@
 package com.example.demo;
 
-import java.util.Properties;
-import javax.mail.Authenticator;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.util.Properties;
 
 public class EmailSenden {
 
@@ -30,7 +24,7 @@ public class EmailSenden {
         return message;
     }
 
-    public static void emailversand(String emailadresse, String nachricht) {
+    public static boolean emailversand(String emailadresse, String nachricht) {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -50,7 +44,9 @@ public class EmailSenden {
             System.out.println("E-Mail erfolgreich versendet! An: " + emailadresse);
         } catch (Exception e1) {
             e1.printStackTrace();
+            return false;
         }
+        return true;
     }
 
 }

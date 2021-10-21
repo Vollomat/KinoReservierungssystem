@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Bestellungen;
-import com.example.demo.repository.*;
+import com.example.demo.repository.BestellungenRepository;
+import com.example.demo.repository.SitzplaetzeFuerVorstellungRepository;
+import com.example.demo.repository.TicketRepository;
+import com.example.demo.repository.VorstellungRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,21 +48,5 @@ class BestellungenControllerTest {
         Assertions.assertEquals(1, bestellungenController.bekommeAlleBestellungen().size());
 
     }
-
-    @Test
-    void emailSenden() {
-        //TODO
-    }
-
-    @Test
-    void preisBerechnenAllerTicketsDerBuchung() {
-        //TODO
-    }
-
-    @Test
-    void sitzplatzStatusAufGebuchtSetzen() {
-        //TODO
-    }
-
 
 }

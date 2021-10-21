@@ -13,7 +13,7 @@ import java.io.IOException;
 @RestController
 public class OMDBController {
 
-    private OMDBRepository omdbRepository;
+    private final OMDBRepository omdbRepository;
 
     public OMDBController(OMDBRepository omdbRepository) {
         this.omdbRepository = omdbRepository;
@@ -35,7 +35,7 @@ public class OMDBController {
         omdbAPIAbfragen[10] = "https://www.omdbapi.com/?s=avatar&type=movie&apikey=96cfc15e";
         omdbAPIAbfragen[11] = "https://www.omdbapi.com/?s=joker&type=movie&apikey=96cfc15e";
 
-        for(int i = 0; i < omdbAPIAbfragen.length; i++) {
+        for (int i = 0; i < omdbAPIAbfragen.length; i++) {
             OMDBFilme omdbFilm = KinoticketReservierungssystem.datenbankEintrag(KinoticketReservierungssystem.datenbankAbfrageOMDBAPI(omdbAPIAbfragen[i]), i);
             omdbRepository.save(omdbFilm);
         }

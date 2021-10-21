@@ -12,106 +12,110 @@
 <body>
 
 <header>
-    <img onclick="abbruchStartseite()" class="logo" src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801" alt="logo">
+    <img onclick="abbruchStartseite()" class="logo"
+         src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2Fmoviemaxx%20(2).png?v=1632756198801"
+         alt="logo">
 
-    <button onclick="abbruchStartseite()" >Startseite</button>
+    <button onclick="abbruchStartseite()">Startseite</button>
 </header> <!-- end header -->
 
 <div class="wrapper">
-  <h2>
-    Registrierung
-  </h2>
-  
-<daten>
-  <div class="registrierung">
-    <div class="content">
-      <div class="form">
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Vorname</span>
-            <input type="text" id="vorname" placeholder="Gebe deinen Vornamen ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Nachname</span>
-            <input type="text" id="nachname" placeholder="Gebe deinen Nachnamen ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">E-Mail</span>
-            <input type="email" id="email" placeholder="Gebe deine E-Mail-Adresse ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Alter</span>
-            <input type="number" id="alter" min="0" placeholder="Gebe dein Alter ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Straße</span>
-            <input type="text" id="strasse" placeholder="Gebe deine Straße ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Hausnummer</span>
-            <input type="text" id="hausnummer" placeholder="Gebe deine Hausnummer ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Postleitzahl</span>
-            <input type="text" id="plz" placeholder="Gebe deine Postleitzahl ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Ort</span>
-            <input type="text" id="ort" placeholder="Gebe deinen Wohnort ein" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Passwort</span>
-            <input type="password" id="passwort" placeholder="Wähle ein Passwort" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Passwort wiederholen</span>
-            <input type="password" id="passwort2" placeholder="Wähle ein Passwort" required>
-          </div>
+    <h2>
+        Registrierung
+    </h2>
+
+    <daten>
+        <div class="registrierung">
+            <div class="content">
+                <div class="form">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Vorname</span>
+                            <input type="text" id="vorname" placeholder="Gebe deinen Vornamen ein" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Nachname</span>
+                            <input type="text" id="nachname" placeholder="Gebe deinen Nachnamen ein" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">E-Mail</span>
+                            <input type="email" id="email" placeholder="Gebe deine E-Mail-Adresse ein" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Alter</span>
+                            <input type="number" id="alter" min="0" placeholder="Gebe dein Alter ein" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Straße</span>
+                            <input type="text" id="strasse" placeholder="Gebe deine Straße ein" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Hausnummer</span>
+                            <input type="text" id="hausnummer" placeholder="Gebe deine Hausnummer ein" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Postleitzahl</span>
+                            <input type="text" id="plz" placeholder="Gebe deine Postleitzahl ein" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Ort</span>
+                            <input type="text" id="ort" placeholder="Gebe deinen Wohnort ein" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Passwort</span>
+                            <input type="password" id="passwort" placeholder="Wähle ein Passwort" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Passwort wiederholen</span>
+                            <input type="password" id="passwort2" placeholder="Wähle ein Passwort" required>
+                        </div>
+                    </div>
+                    <div class="gender-details">
+                        <input type="radio" name="gender" id="dot-1">
+                        <input type="radio" name="gender" id="dot-2">
+                        <input type="radio" name="gender" id="dot-3">
+                        <span class="gender-title">Geschlecht</span>
+                        <div class="category">
+                            <label for="dot-1">
+                                <span class="dot one"></span>
+                                <span class="gender">Männlich</span>
+                            </label>
+                            <label for="dot-2">
+                                <span class="dot two"></span>
+                                <span class="gender">Weiblich</span>
+                            </label>
+                            <label for="dot-3">
+                                <span class="dot three"></span>
+                                <span class="gender">divers</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Bestätigen" onclick="allesAusgefuelltRegistrierung()">
+                    </div>
+                    <p style="font-style:italic; font-size:10px; text-align:center">
+                        <a href="../ticketbuchung/login.html">Du hast schon ein Konto? Klicke hier zum Einloggen</a>
+                        <br/> <br/>
+                        <a href="../ticketbuchung/gast.html">Weiter als Gast</a>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1">
-          <input type="radio" name="gender" id="dot-2">
-          <input type="radio" name="gender" id="dot-3">
-          <span class="gender-title">Geschlecht</span>
-          <div class="category">
-            <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">Männlich</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">Weiblich</span>
-          </label>
-          <label for="dot-3">
-            <span class="dot three"></span>
-            <span class="gender">divers</span>
-            </label>
-          </div>
-        </div>
-          <div class= "button" >
-              <input type="submit" value="Bestätigen" onclick="allesAusgefuelltRegistrierung()">
-          </div>
-        <p style="font-style:italic; font-size:10px; text-align:center">
-            <a href="../ticketbuchung/login.html">Du hast schon ein Konto?  Klicke hier zum Einloggen</a> <br /> <br />
-            <a href="../ticketbuchung/gast.html">Weiter als Gast</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</daten>
-  
-  <p>
-    
-  </p>
+    </daten>
+
+    <p>
+
+    </p>
 </div>
 
 <footer class="footer">
     <div class="container" style="text-align: center;">
-        <p><br /></p>
-        <img src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2FMail-Logo.png?v=1632767682319" alt="logo" height="150px">
+        <p><br/></p>
+        <img src="https://cdn.glitch.com/d439d6d0-1bac-45dc-89dc-45037a7528cf%2FMail-Logo.png?v=1632767682319"
+             alt="logo" height="150px">
         <p style="text-align: center; font-size: 10px;">© MovieMaxx. All rights reserved.</p>
     </div>
 </footer>
-  
-  </body>
+
+</body>
 </html>

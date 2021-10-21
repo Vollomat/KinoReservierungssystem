@@ -12,11 +12,11 @@ import java.util.List;
 @RestController
 public class TicketController {
 
-    private TicketRepository ticketRepository;
-    private BestellungenRepository bestellungenRepository;
-    private SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
-    private VorstellungRepository vorstellungRepository;
-    private KundenRepository kundenRepository;
+    private final TicketRepository ticketRepository;
+    private final BestellungenRepository bestellungenRepository;
+    private final SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository;
+    private final VorstellungRepository vorstellungRepository;
+    private final KundenRepository kundenRepository;
 
     public TicketController(TicketRepository ticketRepository, BestellungenRepository bestellungenRepository, SitzplaetzeFuerVorstellungRepository sitzplaetzeFuerVorstellungRepository, VorstellungRepository vorstellungRepository, KundenRepository kundenRepository) {
         this.ticketRepository = ticketRepository;
@@ -83,6 +83,7 @@ public class TicketController {
         for (Vorstellungen vorstellungen : alleVorstellungen) {
             if (vorstellungen.getFilmName().equals(ticket.getFilmName()) && vorstellungen.getStartuhrzeit().equals(ticket.getStartuhrzeit())) {
                 benoetigteVorstellungsID = vorstellungen.getVorstellungsid();
+                System.out.println(benoetigteVorstellungsID);
             }
         }
         ArrayList<SitzplaetzeFuerVorstellung> alleSitzplaetzeFuerVorstellung = (ArrayList<SitzplaetzeFuerVorstellung>) sitzplaetzeFuerVorstellungRepository.findAll();
@@ -133,11 +134,11 @@ public class TicketController {
             }
         }
 
-        if(ticketsAllerBestellungenDesKunden.size() >= 5) {
+        if (ticketsAllerBestellungenDesKunden.size() >= 5) {
             rabattstufenRabatt = 0.1;
-            if(ticketsAllerBestellungenDesKunden.size() >= 10) {
+            if (ticketsAllerBestellungenDesKunden.size() >= 10) {
                 rabattstufenRabatt = 0.2;
-                if(ticketsAllerBestellungenDesKunden.size() >= 20) {
+                if (ticketsAllerBestellungenDesKunden.size() >= 20) {
                     rabattstufenRabatt = 0.3;
                 }
             }
@@ -145,7 +146,7 @@ public class TicketController {
 
         //Ist das Konto verifiziert?
         ArrayList<Kunden> alleKunden = (ArrayList<Kunden>) kundenRepository.findAll();
-        if(!emailDesKunden.equals("")){
+        if (!emailDesKunden.equals("")) {
             for (Kunden kunden : alleKunden) {
                 if (kunden.getEmail().equals(emailDesKunden)) {
                     if (kunden.isVerifiziert()) {
@@ -155,7 +156,7 @@ public class TicketController {
             }
         }
 
-        double neuerPreis = anfangspreisDesTickets*(1.0-rabattstufenRabatt);
+        double neuerPreis = anfangspreisDesTickets * (1.0 - rabattstufenRabatt);
 
 
         int vorstellungsID = -1;
@@ -185,31 +186,31 @@ public class TicketController {
         //Berechnung
         double rabattAuslastung = 0.0;
         double auslastungInProzent = (double) 100 * alleGebuchtenSitzplaetzeDieserVorstellung.size() / alleRelevantenSitzplaetze.size();
-        if(auslastungInProzent < 50.0) {
+        if (auslastungInProzent < 50.0) {
             rabattAuslastung = 0.02;
-            if(auslastungInProzent < 25.0) {
+            if (auslastungInProzent < 25.0) {
                 rabattAuslastung = 0.05;
-                if(auslastungInProzent < 10.0) {
+                if (auslastungInProzent < 10.0) {
                     rabattAuslastung = 0.12;
                 }
             }
         }
 
-        neuerPreis = neuerPreis*(1-rabattAuslastung);
+        neuerPreis = neuerPreis * (1 - rabattAuslastung);
 
         //Alter des Kunden
         double rabattAlter = 0.0;
-        if(ticket.getAlterInJahren() < 27) {
+        if (ticket.getAlterInJahren() < 27) {
             rabattAlter = 0.1;
-            if(ticket.getAlterInJahren() < 18) {
+            if (ticket.getAlterInJahren() < 18) {
                 rabattAlter = 0.25;
-                if(ticket.getAlterInJahren() < 10) {
+                if (ticket.getAlterInJahren() < 10) {
                     rabattAlter = 0.5;
                 }
             }
         }
 
-        neuerPreis = neuerPreis*(1-rabattAlter);
+        neuerPreis = neuerPreis * (1 - rabattAlter);
 
         return (int) neuerPreis;
     }
