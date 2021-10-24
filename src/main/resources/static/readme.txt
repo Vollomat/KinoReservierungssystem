@@ -50,13 +50,13 @@ WAS NOCH ZU TUN IST:
 
 - Bestellungen ansehen raus
 
- - Präsentation: Personas erwähnen, Pflichtenheft
+- Präsentation: Personas erwähnen, Pflichtenheft
 
- - Reservieren der Tickets -> Uhrzeit mitschicken
+- Reservieren der Tickets -> Uhrzeit mitschicken
 
- - Prüfnummer für Bestellung
+!!!- Vorstellungen Buttons vereinheitlichen
 
- -
+- Ticketbuchungsprozess: Zurücksperre bei Kasse
 ________________________________________________________________________________________________________________________
 
 Elisa:
