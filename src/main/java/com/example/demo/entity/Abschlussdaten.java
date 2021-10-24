@@ -6,35 +6,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Bestellungen {
+public class Abschlussdaten {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bestellID;
+    private int abschlussdatenID;
 
-    private String email;  //Eindeutige ID, egal ob Gast oder Kundenkonto. Versand der Tickets dorthin. Eine Bestellung hat mehrere Tickets.
+    private int bestellID;
 
     private String bezahlart;
 
-    private int pruefnummer;
 
-    public Bestellungen(int bestellID, String email, String bezahlart, int pruefnummer) {
+    public Abschlussdaten(int abschlussdatenID, int bestellID, String bezahlart) {
+        this.abschlussdatenID = abschlussdatenID;
         this.bestellID = bestellID;
-        this.email = email;
         this.bezahlart = bezahlart;
-        this.pruefnummer = pruefnummer;
     }
 
-    public Bestellungen() {
+    public Abschlussdaten() {
 
     }
 
-    public int getPruefnummer() {
-        return pruefnummer;
+    public int getAbschlussdatenID() {
+        return abschlussdatenID;
     }
 
-    public void setPruefnummer(int pruefnummer) {
-        this.pruefnummer = pruefnummer;
+    public void setAbschlussdatenID(int abschlussdatenID) {
+        this.abschlussdatenID = abschlussdatenID;
     }
 
     public int getBestellID() {
@@ -45,14 +43,6 @@ public class Bestellungen {
         this.bestellID = bestellID;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getBezahlart() {
         return bezahlart;
     }
@@ -60,5 +50,4 @@ public class Bestellungen {
     public void setBezahlart(String bezahlart) {
         this.bezahlart = bezahlart;
     }
-
 }

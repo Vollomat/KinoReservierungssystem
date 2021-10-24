@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.EmailSenden;
-import com.example.demo.entity.Bestellungen;
-import com.example.demo.entity.SitzplaetzeFuerVorstellung;
-import com.example.demo.entity.Tickets;
-import com.example.demo.entity.Vorstellungen;
+import com.example.demo.entity.*;
 import com.example.demo.repository.BestellungenRepository;
 import com.example.demo.repository.SitzplaetzeFuerVorstellungRepository;
 import com.example.demo.repository.TicketRepository;
@@ -60,7 +57,10 @@ public class BestellungenController {
     @RequestMapping(value = "/emailsenden", produces = "application/json", method = RequestMethod.POST)
     @PostMapping(value = "/emailsenden", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean emailSenden(@RequestBody int bestellid) {
+    public boolean emailSenden(@RequestBody Abschlussdaten abschlussdaten) {
+        double pruefnummer = Math.random()*9999;
+        int pruefnummerint = (int) pruefnummer;
+
         String emailBestellungBesitzer = null;
         String nachricht = "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
@@ -97,13 +97,16 @@ public class BestellungenController {
                 "    <br>\n" +
                 "    <br>\n" +
                 "    <h1>\n" +
+                "      Pruefnummer: \n" + pruefnummerint +
+                "  </h1>\n" +
+                "    <h1>\n" +
                 "      &Uuml;bersicht Ihrer Bestellung:\n" +
                 "  </h1>\n";
         ArrayList<Bestellungen> alleBestellungen = (ArrayList<Bestellungen>) bestellungenRepository.findAll();
         ArrayList<Tickets> alleTickets = (ArrayList<Tickets>) ticketRepository.findAll();
         ArrayList<Tickets> ticketsDerBestellung = new ArrayList<>();
         for (Tickets alleTicket : alleTickets) {
-            if (alleTicket.getBestellungID() == bestellid) {
+            if (alleTicket.getBestellungID() == abschlussdaten.getBestellID()) {
                 ticketsDerBestellung.add(alleTicket);
             }
         }
@@ -140,8 +143,11 @@ public class BestellungenController {
                 "</body>\n" +
                 "</html>";
         for (Bestellungen bestellungen : alleBestellungen) {
-            if (bestellungen.getBestellID() == bestellid) {
+            if (bestellungen.getBestellID() == abschlussdaten.getBestellID()) {
                 emailBestellungBesitzer = bestellungen.getEmail();
+                bestellungenRepository.getById(abschlussdaten.getBestellID()).setPruefnummer(pruefnummerint);
+                Bestellungen neueBestellung = new Bestellungen(abschlussdaten.getBestellID(), emailBestellungBesitzer, abschlussdaten.getBezahlart(), pruefnummerint);
+                bestellungenRepository.save(neueBestellung);
             }
         }
         if (emailBestellungBesitzer != null) {

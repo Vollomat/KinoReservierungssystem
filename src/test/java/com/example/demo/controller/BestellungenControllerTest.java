@@ -33,7 +33,7 @@ class BestellungenControllerTest {
         BestellungenController bestellungenController = new BestellungenController(bestellungenRepository, ticketRepository, sitzplaetzeFuerVorstellungRepository, vorstellungRepository);
         Assertions.assertEquals(0, bestellungenController.bekommeAlleBestellungen().size());
 
-        Bestellungen bestellungen = new Bestellungen(1, "test@gmx.de", "Kasse");
+        Bestellungen bestellungen = new Bestellungen(1, "test@gmx.de", "Kasse", -1);
 
         bestellungenController.bestellungAnlegen(bestellungen);
 
