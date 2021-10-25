@@ -44,12 +44,6 @@ WAS NOCH ZU TUN IST:
 
 - Bezahlart mitsenden
 
-- Header
-
-- Preisliste Essen + Trinken
-
-- Bestellungen ansehen raus
-
 - Präsentation: Personas erwähnen, Pflichtenheft
 
 - Reservieren der Tickets -> Uhrzeit mitschicken
@@ -61,7 +55,6 @@ ________________________________________________________________________________
 
 Elisa:
 
-- Header muss ganz am Ende auf allen Seiten (außer Ticketbuchung) gleich sein (siehe Index)
 
 Nandini
 
@@ -129,11 +122,3 @@ ______________________________________________________
 bestellungen.html:
 - man hat sich zuvor mit login2.html eingeloggt -> die entsprechende Mailadresse muss gespeichert werden
 - die zugehörigen Bestellungen müssen dann auf dieser Seite angezeigt werden
-
-________________________________________________________________________________________________________________________
-Was bei Langeweile gemacht werden kann, wenn ALLES ANDERE fertig ist :)
-________________________________________________________________________________________________________________________
-
-- Die Suchleiste muss implementiert werden
-
-- Für Karriere könnte man sich eine offene Stelle ausdenken (z.B. Aushilfe als Ticketverkäufer an der Kasse oder so)
