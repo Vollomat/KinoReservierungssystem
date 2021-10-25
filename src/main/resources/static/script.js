@@ -38,8 +38,8 @@ const displayCharacters = (characters) => {
             return `
             <li class="character">
                 <h2>${character.name}</h2>
-                <p>Genre: ${character.genre} <br> ${character.fsk}</p>
-                <img src="${character.image}"></img>
+                <p>Genre: ${character.genre} <br> ${character.fsk} <br> <a href="${character.link}" style="font-size: 14px; text-decoration: underline">Vorstellungen und weitere Informationen</a></p>
+                <img src="${character.image}">
             </li>
         `;
         })

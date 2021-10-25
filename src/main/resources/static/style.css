@@ -1276,11 +1276,11 @@ h4 {
     grid-area: house;
     margin: 0;
     color: white;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .character > img {
-    max-height: 120px;
+    max-height: 150px;
     grid-area: image;
 }
 
