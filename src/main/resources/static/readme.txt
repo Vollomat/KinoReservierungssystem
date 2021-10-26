@@ -42,6 +42,8 @@ Jeder von uns nimmt eine Persona an und führt dementsprechend den Buchungsproze
 ________________________________________________________________________________________________________________________
 WAS NOCH ZU TUN IST:
 
+- Metadokument erstellen
+
 - Bezahlart mitsenden
 
 - Präsentation: Personas erwähnen, Pflichtenheft
