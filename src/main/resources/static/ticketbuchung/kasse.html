@@ -70,10 +70,14 @@
         var xhr = new XMLHttpRequest(); //invoke a new instance of the XMLHttpRequest
         xhr.onload = successBestellung; // call success function if request is successful
         xhr.onerror = errorBestellung;  // call error function if request failed
-        xhr.open('POST', 'http://localhost:8080/bestellungen/emailsenden'); // open a GET request
+        xhr.open('POST', 'http://localhost:8080/bestellungen/emailsenden');
         xhr.setRequestHeader('Content-Type', 'application/json');
         var bestellId = sessionStorage.getItem("s_bestellId");
-        xhr.send(bestellId);  // send the request to the server.
+        var bezahlart = sessionStorage.getItem("s_bezahlart")
+        xhr.send(JSON.stringify({
+            bestellID: bestellId,
+            bezahlart: bezahlart,
+        }));  // send the request to the server.
     }
 
     function successBestellung() {

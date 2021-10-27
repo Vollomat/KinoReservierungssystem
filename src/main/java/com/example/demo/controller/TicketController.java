@@ -100,7 +100,7 @@ public class TicketController {
                 }
             }
         }
-        System.err.println("Unbekannter Fehler in Funktion: ticketStatusAufReserviertSetzen()!");
+        System.err.println("Unbekannter Fehler in Funktion: sitzplatzStatusAufReserviertSetzen()!");
         return false;
     }
 
